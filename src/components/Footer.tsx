@@ -62,11 +62,11 @@ const Footer = () => (
             <a href="mailto:contact@altissphere.com" className="flex items-center gap-2 hover:text-primary transition-colors">
               <Mail size={16} /> contact@altissphere.com
             </a>
-            <a href="tel:+33000000000" className="flex items-center gap-2 hover:text-primary transition-colors">
-              <Phone size={16} /> +33 0 00 00 00 00
+            <a href="tel:+243000000000" className="flex items-center gap-2 hover:text-primary transition-colors">
+              <Phone size={16} /> +243 0 00 00 00 00
             </a>
             <span className="flex items-center gap-2">
-              <MapPin size={16} /> Paris, France
+              <MapPin size={16} /> 110m Avenue Biayi, Kalubwe, Lubumbashi, RD Congo
             </span>
           </div>
         </div>
