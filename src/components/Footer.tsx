@@ -9,7 +9,7 @@ const Footer = () => (
         {/* Brand */}
         <div className="space-y-4">
           <Link to="/" className="flex items-center gap-2">
-            <img src={altisLogo} alt="ALTIS SPHERE" className="h-8 w-8" />
+            <img src={altisLogo} alt="ALTIS SPHERE" className="h-8 w-auto" />
             <span className="font-heading text-lg font-bold">
               ALTIS <span className="gradient-text">SPHERE</span>
             </span>
