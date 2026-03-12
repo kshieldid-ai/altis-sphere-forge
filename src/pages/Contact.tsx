@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Nom requis").max(100),
@@ -17,12 +18,27 @@ const contactSchema = z.object({
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = contactSchema.safeParse(form);
     if (!result.success) {
       toast.error(result.error.errors[0].message);
+      return;
+    }
+    setLoading(true);
+    const { error } = await supabase.from("contact_messages").insert({
+      name: result.data.name,
+      email: result.data.email,
+      phone: result.data.phone || null,
+      subject: result.data.subject,
+      message: result.data.message,
+    });
+    setLoading(false);
+    if (error) {
+      toast.error("Erreur lors de l'envoi. Veuillez réessayer.");
+      console.error(error);
       return;
     }
     toast.success("Message envoyé ! Nous vous recontacterons rapidement.");
@@ -99,8 +115,8 @@ const Contact = () => {
                 <label className="text-sm font-medium">Message *</label>
                 <Textarea placeholder="Décrivez votre projet ou question..." rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
               </div>
-              <Button variant="hero" size="lg" type="submit">
-                Envoyer <Send size={18} />
+              <Button variant="hero" size="lg" type="submit" disabled={loading}>
+                {loading ? "Envoi..." : "Envoyer"} <Send size={18} />
               </Button>
             </motion.form>
           </div>
