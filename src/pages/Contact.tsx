@@ -46,8 +46,8 @@ const Contact = () => {
             <div className="space-y-8">
               {[
                 { icon: Mail, label: "Email", value: "contact@altissphere.com", href: "mailto:contact@altissphere.com" },
-                { icon: Phone, label: "Téléphone", value: "+243 0 00 00 00 00", href: "tel:+243000000000" },
-                { icon: MapPin, label: "Adresse", value: "110m Avenue Biayi, Kalubwe, Lubumbashi, RD Congo" },
+                { icon: Phone, label: "Téléphone", value: "+243 998 914 448 / +243 993 653 3322", href: "tel:+243998914448" },
+                { icon: MapPin, label: "Adresse", value: "10, Avenue Biayi, Kalubwe, Lubumbashi, RD Congo" },
               ].map((item) => (
                 <div key={item.label} className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
