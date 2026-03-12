@@ -115,8 +115,8 @@ const Contact = () => {
                 <label className="text-sm font-medium">Message *</label>
                 <Textarea placeholder="Décrivez votre projet ou question..." rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
               </div>
-              <Button variant="hero" size="lg" type="submit">
-                Envoyer <Send size={18} />
+              <Button variant="hero" size="lg" type="submit" disabled={loading}>
+                {loading ? "Envoi..." : "Envoyer"} <Send size={18} />
               </Button>
             </motion.form>
           </div>
