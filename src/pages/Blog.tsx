@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
+import blogCyber from "@/assets/blog-cybersecurity.jpg";
+import blogStarlink from "@/assets/blog-starlink-fibre.jpg";
+import blogTendances from "@/assets/blog-tendances-it.jpg";
 
 const posts = [
-  { title: "Comment sécuriser votre réseau d'entreprise en 2026", category: "Cybersécurité", date: "10 mars 2026", excerpt: "Découvrez les meilleures pratiques pour protéger votre infrastructure contre les menaces actuelles." },
-  { title: "Starlink vs Fibre : quelle solution choisir ?", category: "Connectivité", date: "5 mars 2026", excerpt: "Comparatif complet des solutions de connectivité pour les zones rurales et urbaines." },
-  { title: "Les tendances IT à surveiller cette année", category: "Innovation", date: "28 février 2026", excerpt: "IA, edge computing, 5G privée : les technologies qui vont transformer votre entreprise." },
+  { title: "Comment sécuriser votre réseau d'entreprise en 2026", category: "Cybersécurité", date: "10 mars 2026", excerpt: "Découvrez les meilleures pratiques pour protéger votre infrastructure contre les menaces actuelles.", image: blogCyber },
+  { title: "Starlink vs Fibre : quelle solution choisir ?", category: "Connectivité", date: "5 mars 2026", excerpt: "Comparatif complet des solutions de connectivité pour les zones rurales et urbaines.", image: blogStarlink },
+  { title: "Les tendances IT à surveiller cette année", category: "Innovation", date: "28 février 2026", excerpt: "IA, edge computing, 5G privée : les technologies qui vont transformer votre entreprise.", image: blogTendances },
 ];
 
 const Blog = () => (
@@ -29,7 +32,12 @@ const Blog = () => (
               transition={{ delay: i * 0.15 }}
               className="rounded-xl bg-card border border-border overflow-hidden hover:border-primary/40 transition-colors cursor-pointer"
             >
-              <div className="h-48 gradient-bg opacity-60" />
+              <img
+                src={post.image}
+                alt={post.title}
+                className="w-full h-48 object-cover"
+                loading="lazy"
+              />
               <div className="p-6">
                 <span className="text-xs font-medium text-primary uppercase tracking-wider">{post.category}</span>
                 <h3 className="font-heading font-semibold text-lg mt-2 mb-3">{post.title}</h3>

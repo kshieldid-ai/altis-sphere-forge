@@ -24,9 +24,6 @@ const Navbar = () => {
       <div className="container flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center gap-2">
           <img src={altisLogo} alt="ALTIS SPHERE" className="h-10 w-auto" />
-          <span className="font-heading text-xl font-bold tracking-tight">
-            ALTIS <span className="gradient-text">SPHERE</span>
-          </span>
         </Link>
 
         {/* Desktop nav */}
