@@ -2,17 +2,17 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import altisLogo from "@/assets/altis-logo.png";
 
-const Footer = () => (
-  <footer className="border-t border-border bg-card">
+const Footer = () =>
+<footer className="border-t border-border bg-card">
     <div className="container py-16">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Brand */}
         <div className="space-y-4">
           <Link to="/" className="flex items-center gap-2">
             <img src={altisLogo} alt="ALTIS SPHERE" className="h-8 w-auto" />
-            <span className="font-heading text-lg font-bold">
-              ALTIS <span className="gradient-text">SPHERE</span>
-            </span>
+            
+
+          
           </Link>
           <p className="text-sm text-muted-foreground leading-relaxed">
             Solutions informatiques et connectivité internet pour particuliers et entreprises.
@@ -26,12 +26,12 @@ const Footer = () => (
           </h4>
           <div className="flex flex-col gap-2">
             {["Internet & Connectivité", "Solutions IT", "Cybersécurité", "Développement Web", "Support Technique"].map(
-              (s) => (
-                <Link key={s} to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            (s) =>
+            <Link key={s} to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   {s}
                 </Link>
-              )
-            )}
+
+          )}
           </div>
         </div>
 
@@ -42,14 +42,14 @@ const Footer = () => (
           </h4>
           <div className="flex flex-col gap-2">
             {[
-              { label: "À propos", path: "/a-propos" },
-              { label: "Blog", path: "/blog" },
-              { label: "Contact", path: "/contact" },
-            ].map((l) => (
-              <Link key={l.path} to={l.path} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+          { label: "À propos", path: "/a-propos" },
+          { label: "Blog", path: "/blog" },
+          { label: "Contact", path: "/contact" }].
+          map((l) =>
+          <Link key={l.path} to={l.path} className="text-sm text-muted-foreground hover:text-primary transition-colors">
                 {l.label}
               </Link>
-            ))}
+          )}
           </div>
         </div>
 
@@ -79,7 +79,7 @@ const Footer = () => (
         © {new Date().getFullYear()} ALTIS SPHERE. Tous droits réservés.
       </div>
     </div>
-  </footer>
-);
+  </footer>;
+
 
 export default Footer;
