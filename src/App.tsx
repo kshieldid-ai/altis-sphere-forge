@@ -15,6 +15,7 @@ const Solutions = lazy(() => import("./pages/Solutions"));
 const Blog = lazy(() => import("./pages/Blog"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const DomotiquePage = lazy(() => import("./pages/Domotique"));
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/solutions" element={<Solutions />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/domotique" element={<DomotiquePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

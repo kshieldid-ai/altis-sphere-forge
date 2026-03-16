@@ -25,12 +25,17 @@ const Footer = () =>
             Services
           </h4>
           <div className="flex flex-col gap-2">
-            {["Internet & Connectivité", "Solutions IT", "Cybersécurité", "Développement Web", "Support Technique", "Domotique / Maison intelligente"].map(
-            (s) =>
-            <Link key={s} to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  {s}
+            {[
+              { label: "Internet & Connectivité", path: "/services" },
+              { label: "Solutions IT", path: "/services" },
+              { label: "Cybersécurité", path: "/services" },
+              { label: "Développement Web", path: "/services" },
+              { label: "Support Technique", path: "/services" },
+              { label: "Domotique / Maison intelligente", path: "/domotique" },
+            ].map((s) =>
+            <Link key={s.label} to={s.path} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  {s.label}
                 </Link>
-
           )}
           </div>
         </div>
