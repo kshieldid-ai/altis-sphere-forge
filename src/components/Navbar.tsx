@@ -79,11 +79,7 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              <Button variant="hero" size="sm" className="mt-2" asChild>
-                <Link to="/contact" onClick={() => setOpen(false)}>
-                  Demander un devis
-                </Link>
-              </Button>
+              <QuoteRequestModal triggerVariant="hero" triggerSize="sm" triggerClassName="mt-2 w-full" />
             </div>
           </motion.div>
         )}

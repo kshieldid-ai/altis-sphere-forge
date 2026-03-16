@@ -33,11 +33,7 @@ const Hero = () => (
           Solutions informatiques complètes et connectivité internet haute performance pour propulser votre entreprise vers l'excellence.
         </p>
         <div className="flex flex-wrap gap-4">
-          <Button variant="hero" size="lg" asChild>
-            <Link to="/contact">
-              Demander un devis <ChevronRight size={18} />
-            </Link>
-          </Button>
+          <QuoteRequestModal triggerVariant="hero" triggerSize="lg" />
           <Button variant="hero-outline" size="lg" asChild>
             <Link to="/services">Nos services</Link>
           </Button>
