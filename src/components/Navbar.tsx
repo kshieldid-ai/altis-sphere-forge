@@ -41,9 +41,7 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
-          <Button variant="hero" size="sm" className="ml-4" asChild>
-            <Link to="/contact">Demander un devis</Link>
-          </Button>
+          <QuoteRequestModal triggerVariant="hero" triggerSize="sm" triggerClassName="ml-4" />
         </div>
 
         {/* Mobile toggle */}

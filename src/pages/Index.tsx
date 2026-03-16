@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import QuoteRequestModal from "@/components/QuoteRequestModal";
 import { Wifi, Shield, Code, Server, Headphones, Monitor, ChevronRight, Star, Zap, Users, Award } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
