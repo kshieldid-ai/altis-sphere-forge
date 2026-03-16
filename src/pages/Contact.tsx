@@ -106,11 +106,11 @@ const Contact = () => {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Téléphone</label>
-                  <Input placeholder="+33 ..." value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Sujet *</label>
-                  <Input placeholder="Sujet du message" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} />
+                   <Input placeholder="+33 ..." value={form.telephone} onChange={(e) => setForm({ ...form, telephone: e.target.value })} />
+                 </div>
+                 <div className="space-y-2">
+                   <label className="text-sm font-medium">Sujet *</label>
+                   <Input placeholder="Sujet du message" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} />
                 </div>
               </div>
               <div className="space-y-2">
