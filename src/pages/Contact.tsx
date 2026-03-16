@@ -29,12 +29,13 @@ const Contact = () => {
       return;
     }
     setLoading(true);
-    const { error } = await supabase.from("contact_messages").insert({
-      name: result.data.name,
+    const { error } = await supabase.from("devis_requests").insert({
+      nom: result.data.nom,
       email: result.data.email,
-      phone: result.data.phone || null,
-      subject: result.data.subject,
-      message: result.data.message,
+      telephone: result.data.telephone,
+      entreprise: result.data.entreprise || null,
+      service: result.data.service,
+      description: result.data.description,
     });
     setLoading(false);
     if (error) {
