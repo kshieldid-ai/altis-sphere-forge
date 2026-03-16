@@ -15,6 +15,7 @@ const Solutions = lazy(() => import("./pages/Solutions"));
 const Blog = lazy(() => import("./pages/Blog"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const DomotiquePage = lazy(() => import("./pages/Domotique"));
 
 const queryClient = new QueryClient();
 
