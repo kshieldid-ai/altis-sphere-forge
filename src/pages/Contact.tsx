@@ -18,7 +18,7 @@ const contactSchema = z.object({
 });
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
+  const [form, setForm] = useState({ nom: "", email: "", telephone: "", entreprise: "", service: "", description: "" });
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
