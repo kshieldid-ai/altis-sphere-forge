@@ -14,13 +14,55 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      devis_requests: {
+        Row: {
+          budget: string | null
+          created_at: string
+          date: string
+          delai: string | null
+          description: string
+          email: string
+          entreprise: string | null
+          id: string
+          nom: string
+          service: string
+          telephone: string
+        }
+        Insert: {
+          budget?: string | null
+          created_at?: string
+          date?: string
+          delai?: string | null
+          description: string
+          email: string
+          entreprise?: string | null
+          id?: string
+          nom: string
+          service: string
+          telephone: string
+        }
+        Update: {
+          budget?: string | null
+          created_at?: string
+          date?: string
+          delai?: string | null
+          description?: string
+          email?: string
+          entreprise?: string | null
+          id?: string
+          nom?: string
+          service?: string
+          telephone?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_authenticated_user: { Args: never; Returns: boolean }
+      is_visitor: { Args: never; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
