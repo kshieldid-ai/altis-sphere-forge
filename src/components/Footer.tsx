@@ -25,7 +25,7 @@ const Footer = () =>
             Services
           </h4>
           <div className="flex flex-col gap-2">
-            {["Internet & Connectivité", "Solutions IT", "Cybersécurité", "Développement Web", "Support Technique"].map(
+            {["Internet & Connectivité", "Solutions IT", "Cybersécurité", "Développement Web", "Support Technique", "Domotique / Maison intelligente"].map(
             (s) =>
             <Link key={s} to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   {s}
