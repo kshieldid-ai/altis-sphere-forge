@@ -44,7 +44,7 @@ const Contact = () => {
       return;
     }
     toast.success("Message envoyé ! Nous vous recontacterons rapidement.");
-    setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+    setForm({ nom: "", email: "", telephone: "", entreprise: "", service: "", description: "" });
   };
 
   return (
