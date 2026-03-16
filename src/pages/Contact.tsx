@@ -9,11 +9,12 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 
 const contactSchema = z.object({
-  name: z.string().trim().min(1, "Nom requis").max(100),
+  nom: z.string().trim().min(1, "Nom requis").max(100),
   email: z.string().trim().email("Email invalide").max(255),
-  phone: z.string().trim().max(20).optional(),
-  subject: z.string().trim().min(1, "Sujet requis").max(200),
-  message: z.string().trim().min(1, "Message requis").max(2000),
+  telephone: z.string().trim().min(1, "Téléphone requis").max(30),
+  entreprise: z.string().trim().max(200).optional(),
+  service: z.string().trim().min(1, "Sujet requis").max(200),
+  description: z.string().trim().min(1, "Message requis").max(2000),
 });
 
 const Contact = () => {
