@@ -115,7 +115,7 @@ const Contact = () => {
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Message *</label>
-                <Textarea placeholder="Décrivez votre projet ou question..." rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
+                <Textarea placeholder="Décrivez votre projet ou question..." rows={5} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
               </div>
               <Button variant="hero" size="lg" type="submit" disabled={loading}>
                 {loading ? "Envoi..." : "Envoyer"} <Send size={18} />
