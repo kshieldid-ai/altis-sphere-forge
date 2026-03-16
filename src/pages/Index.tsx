@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import QuoteRequestModal from "@/components/QuoteRequestModal";
 import { Wifi, Shield, Code, Server, Headphones, Monitor, ChevronRight, Star, Zap, Users, Award } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -32,11 +33,7 @@ const Hero = () => (
           Solutions informatiques complètes et connectivité internet haute performance pour propulser votre entreprise vers l'excellence.
         </p>
         <div className="flex flex-wrap gap-4">
-          <Button variant="hero" size="lg" asChild>
-            <Link to="/contact">
-              Demander un devis <ChevronRight size={18} />
-            </Link>
-          </Button>
+          <QuoteRequestModal triggerVariant="hero" triggerSize="lg" />
           <Button variant="hero-outline" size="lg" asChild>
             <Link to="/services">Nos services</Link>
           </Button>

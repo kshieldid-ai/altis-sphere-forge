@@ -9,15 +9,16 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 
 const contactSchema = z.object({
-  name: z.string().trim().min(1, "Nom requis").max(100),
+  nom: z.string().trim().min(1, "Nom requis").max(100),
   email: z.string().trim().email("Email invalide").max(255),
-  phone: z.string().trim().max(20).optional(),
-  subject: z.string().trim().min(1, "Sujet requis").max(200),
-  message: z.string().trim().min(1, "Message requis").max(2000),
+  telephone: z.string().trim().min(1, "Téléphone requis").max(30),
+  entreprise: z.string().trim().max(200).optional(),
+  service: z.string().trim().min(1, "Sujet requis").max(200),
+  description: z.string().trim().min(1, "Message requis").max(2000),
 });
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
+  const [form, setForm] = useState({ nom: "", email: "", telephone: "", entreprise: "", service: "", description: "" });
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,12 +29,13 @@ const Contact = () => {
       return;
     }
     setLoading(true);
-    const { error } = await supabase.from("contact_messages").insert({
-      name: result.data.name,
+    const { error } = await supabase.from("devis_requests").insert({
+      nom: result.data.nom,
       email: result.data.email,
-      phone: result.data.phone || null,
-      subject: result.data.subject,
-      message: result.data.message,
+      telephone: result.data.telephone,
+      entreprise: result.data.entreprise || null,
+      service: result.data.service,
+      description: result.data.description,
     });
     setLoading(false);
     if (error) {
@@ -42,7 +44,7 @@ const Contact = () => {
       return;
     }
     toast.success("Message envoyé ! Nous vous recontacterons rapidement.");
-    setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+    setForm({ nom: "", email: "", telephone: "", entreprise: "", service: "", description: "" });
   };
 
   return (
@@ -94,7 +96,7 @@ const Contact = () => {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Nom *</label>
-                  <Input placeholder="Votre nom" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                  <Input placeholder="Votre nom" value={form.nom} onChange={(e) => setForm({ ...form, nom: e.target.value })} />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Email *</label>
@@ -104,16 +106,16 @@ const Contact = () => {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Téléphone</label>
-                  <Input placeholder="+33 ..." value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Sujet *</label>
-                  <Input placeholder="Sujet du message" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} />
+                   <Input placeholder="+33 ..." value={form.telephone} onChange={(e) => setForm({ ...form, telephone: e.target.value })} />
+                 </div>
+                 <div className="space-y-2">
+                   <label className="text-sm font-medium">Sujet *</label>
+                   <Input placeholder="Sujet du message" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Message *</label>
-                <Textarea placeholder="Décrivez votre projet ou question..." rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
+                <Textarea placeholder="Décrivez votre projet ou question..." rows={5} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
               </div>
               <Button variant="hero" size="lg" type="submit" disabled={loading}>
                 {loading ? "Envoi..." : "Envoyer"} <Send size={18} />

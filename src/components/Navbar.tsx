@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import QuoteRequestModal from "@/components/QuoteRequestModal";
 import altisLogo from "@/assets/altis-logo.png";
 
 const navItems = [
@@ -41,9 +42,7 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
-          <Button variant="hero" size="sm" className="ml-4" asChild>
-            <Link to="/contact">Demander un devis</Link>
-          </Button>
+          <QuoteRequestModal triggerVariant="hero" triggerSize="sm" triggerClassName="ml-4" />
         </div>
 
         {/* Mobile toggle */}
@@ -80,11 +79,7 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              <Button variant="hero" size="sm" className="mt-2" asChild>
-                <Link to="/contact" onClick={() => setOpen(false)}>
-                  Demander un devis
-                </Link>
-              </Button>
+              <QuoteRequestModal triggerVariant="hero" triggerSize="sm" triggerClassName="mt-2 w-full" />
             </div>
           </motion.div>
         )}
