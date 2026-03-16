@@ -17,6 +17,7 @@ const serviceOptions = [
   "Développement Web & Applications",
   "Support & Maintenance",
   "Équipements informatiques",
+  "Domotique / Maison intelligente",
 ] as const;
 
 const quoteSchema = z.object({
