@@ -26,14 +26,14 @@ const Footer = () =>
           </h4>
           <div className="flex flex-col gap-2">
             {[
-              { label: "Internet & Connectivité", path: "/services" },
-              { label: "Solutions IT", path: "/services" },
-              { label: "Cybersécurité", path: "/services" },
-              { label: "Développement Web", path: "/services" },
-              { label: "Support Technique", path: "/services" },
-              { label: "Domotique / Maison intelligente", path: "/domotique" },
-            ].map((s) =>
-            <Link key={s.label} to={s.path} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+          { label: "Internet & Connectivité", path: "/services" },
+          { label: "Solutions IT", path: "/services" },
+          { label: "Cybersécurité", path: "/services" },
+          { label: "Développement Web", path: "/services" },
+          { label: "Support Technique", path: "/services" },
+          { label: "Domotique / Maison intelligente", path: "/domotique" }].
+          map((s) =>
+          <Link key={s.label} to={s.path} className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   {s.label}
                 </Link>
           )}
