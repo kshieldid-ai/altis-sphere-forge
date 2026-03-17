@@ -113,7 +113,7 @@ const QuoteRequestModal = ({
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button variant={triggerVariant} size={triggerSize} className={triggerClassName}>
+        <Button variant={triggerVariant} size={triggerSize} className={triggerClassName} translate="no">
           Demander un devis
         </Button>
       </DialogTrigger>
