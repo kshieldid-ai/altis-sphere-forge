@@ -70,7 +70,7 @@ const Footer = () =>
             <a href="tel:+243998914448" className="flex items-center gap-2 hover:text-primary transition-colors">
               <Phone size={16} /> +243 998 914 448
             </a>
-            <a href="tel:+2439936533322" className="flex items-center gap-2 hover:text-primary transition-colors">      +243 993 653 332
+            <a href="tel:+2439936533322" className="flex items-center gap-2 hover:text-primary transition-colors">      +243 993 653 3322
             <Phone size={16} /> +243 993 653 3322
             </a>
             <span className="flex items-center gap-2">
