@@ -19,15 +19,21 @@ const servicesList = [
 ];
 
 const ServicesPage = () => (
-  <div className="pt-20">
+  <div className="pt-24">
     <section className="py-24">
       <div className="container">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-16 text-center">
-          <span className="text-primary text-sm font-medium uppercase tracking-wider">Services</span>
-          <h1 className="mt-3 mb-4 text-4xl font-bold lg:text-5xl">Nos Services</h1>
-          <p className="mx-auto max-w-xl text-muted-foreground">
-            Une gamme complète de services informatiques et de connectivité pour répondre à tous vos besoins.
-          </p>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+          <div>
+            <span className="section-kicker">Services</span>
+            <h1 className="section-title mt-4">Nos Services</h1>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-muted-foreground">
+              Une gamme complète de services informatiques et de connectivité pour répondre à tous vos besoins.
+            </p>
+          </div>
+          <div className="editorial-panel">
+            <p className="text-xs uppercase tracking-[0.3em] text-primary">Signature</p>
+            <p className="mt-3 text-lg leading-8 text-foreground/82">Une mise en page plus affirmée, plus luxueuse et plus équilibrée, sans retirer le moindre service.</p>
+          </div>
         </motion.div>
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -39,28 +45,23 @@ const ServicesPage = () => (
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
               className={[
-                "overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40",
+                "overflow-hidden rounded-[1.75rem] border border-border/70 bg-card/78 transition-transform duration-300 hover:-translate-y-1",
                 s.featured ? "md:col-span-2 xl:col-span-4" : "",
               ].join(" ")}
             >
-              <div className={s.featured ? "grid xl:grid-cols-[1.2fr_1fr]" : ""}>
-                <div className={s.featured ? "h-52 xl:h-full" : "h-44 overflow-hidden"}>
-                  <img
-                    src={s.image}
-                    alt={s.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                  />
+              <div className={s.featured ? "grid xl:grid-cols-[1.15fr_0.85fr]" : ""}>
+                <div className={s.featured ? "h-64 xl:h-full" : "h-48 overflow-hidden"}>
+                  <img src={s.image} alt={s.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
                 </div>
-                <div className="p-5">
-                  <div className="mb-3.5 flex h-10 w-10 items-center justify-center rounded-lg gradient-bg">
+                <div className="p-6 lg:p-7">
+                  <div className="icon-shell h-11 w-11 rounded-2xl">
                     <s.icon size={20} className="text-primary-foreground" />
                   </div>
-                  <h3 className="mb-3 text-base font-semibold leading-snug">{s.title}</h3>
-                  <ul className="space-y-1.5">
+                  <h3 className="mt-7 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h3>
+                  <ul className="mt-5 space-y-2.5">
                     {s.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
-                        <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                      <li key={item} className="flex items-start gap-3 text-sm leading-7 text-muted-foreground">
+                        <span className="mt-3 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
                         <span>{item}</span>
                       </li>
                     ))}
