@@ -25,21 +25,29 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Navbar />
-        <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/a-propos" element={<About />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/produits" element={<Products />} />
-            <Route path="/solutions" element={<Solutions />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/domotique" element={<DomotiquePage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-        <Footer />
+        <div className="min-h-screen" translate="no">
+          <Navbar />
+          <Suspense
+            fallback={
+              <div className="flex min-h-screen items-center justify-center">
+                <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary" />
+              </div>
+            }
+          >
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/a-propos" element={<About />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/produits" element={<Products />} />
+              <Route path="/solutions" element={<Solutions />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/domotique" element={<DomotiquePage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+          <Footer />
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
