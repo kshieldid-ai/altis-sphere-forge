@@ -15,7 +15,7 @@ const servicesList = [
   { icon: Code, title: "Développement Web & Applications", image: serviceDev, items: ["Sites web sur mesure", "Applications métier", "E-commerce", "Applications mobiles"] },
   { icon: Headphones, title: "Support & Maintenance", image: serviceSupport, items: ["Support technique 24/7", "Maintenance préventive", "Infogérance", "Dépannage informatique"] },
   { icon: Monitor, title: "Équipements informatiques", image: serviceEquipements, items: ["Routeurs & switches", "Antennes et matériel réseau", "Serveurs", "Postes de travail"] },
-  { icon: House, title: "Domotique / Maison intelligente", image: serviceDomotique, items: ["Éclairage intelligent", "Sécurité connectée", "Gestion du climat", "Pilotage centralisé"] },
+  { icon: House, title: "Domotique / Maison intelligente", image: serviceDomotique, items: ["Éclairage intelligent", "Sécurité connectée", "Gestion du climat", "Pilotage centralisé"], featured: true },
 ];
 
 const ServicesPage = () => (
@@ -38,29 +38,34 @@ const ServicesPage = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40"
+              className={[
+                "overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40",
+                s.featured ? "md:col-span-2 xl:col-span-4" : "",
+              ].join(" ")}
             >
-              <div className="h-44 overflow-hidden">
-                <img
-                  src={s.image}
-                  alt={s.title}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              <div className="p-5">
-                <div className="mb-3.5 flex h-10 w-10 items-center justify-center rounded-lg gradient-bg">
-                  <s.icon size={20} className="text-primary-foreground" />
+              <div className={s.featured ? "grid xl:grid-cols-[1.2fr_1fr]" : ""}>
+                <div className={s.featured ? "h-52 xl:h-full" : "h-44 overflow-hidden"}>
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                  />
                 </div>
-                <h3 className="mb-3 text-base font-semibold leading-snug">{s.title}</h3>
-                <ul className="space-y-1.5">
-                  {s.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
-                      <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="p-5">
+                  <div className="mb-3.5 flex h-10 w-10 items-center justify-center rounded-lg gradient-bg">
+                    <s.icon size={20} className="text-primary-foreground" />
+                  </div>
+                  <h3 className="mb-3 text-base font-semibold leading-snug">{s.title}</h3>
+                  <ul className="space-y-1.5">
+                    {s.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+                        <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </motion.div>
           ))}
