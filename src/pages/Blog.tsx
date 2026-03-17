@@ -11,38 +11,33 @@ const posts = [
 ];
 
 const Blog = () => (
-  <div className="pt-20">
+  <div className="pt-24">
     <section className="py-24">
       <div className="container">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-          <span className="text-primary text-sm font-medium uppercase tracking-wider">Blog</span>
-          <h1 className="font-heading text-4xl lg:text-5xl font-bold mt-3 mb-4">Actualités & Conseils</h1>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Restez informé des dernières tendances et innovations technologiques.
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 max-w-3xl">
+          <span className="section-kicker">Blog</span>
+          <h1 className="section-title mt-4">Actualités & Conseils</h1>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-muted-foreground">
+            Même contenu, mais avec une lecture plus éditoriale et un rythme visuel plus marqué.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid gap-5 lg:grid-cols-3">
           {posts.map((post, i) => (
             <motion.article
               key={post.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="rounded-xl bg-card border border-border overflow-hidden hover:border-primary/40 transition-colors cursor-pointer"
+              transition={{ delay: i * 0.1 }}
+              className="overflow-hidden rounded-[1.75rem] border border-border/70 bg-card/75 transition-transform duration-300 hover:-translate-y-1"
             >
-              <img
-                src={post.image}
-                alt={post.title}
-                className="w-full h-48 object-cover"
-                loading="lazy"
-              />
+              <img src={post.image} alt={post.title} className="h-56 w-full object-cover" loading="lazy" />
               <div className="p-6">
-                <span className="text-xs font-medium text-primary uppercase tracking-wider">{post.category}</span>
-                <h3 className="font-heading font-semibold text-lg mt-2 mb-3">{post.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{post.excerpt}</p>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">{post.category}</span>
+                <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.03em]">{post.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-muted-foreground">{post.excerpt}</p>
+                <div className="mt-6 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
                   <Calendar size={14} />
                   {post.date}
                 </div>

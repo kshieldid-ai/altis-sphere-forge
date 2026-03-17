@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
 import altisLogo from "@/assets/altis-logo.png";
 
@@ -21,65 +20,67 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass">
-      <div className="container flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="flex items-center gap-2">
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/78 backdrop-blur-2xl">
+      <div className="container flex h-20 items-center justify-between gap-6">
+        <Link to="/" className="flex items-center">
           <img src={altisLogo} alt="ALTIS SPHERE" className="h-10 w-auto" />
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-1">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                location.pathname === item.path
-                  ? "text-primary"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <QuoteRequestModal triggerVariant="hero" triggerSize="sm" triggerClassName="ml-4" />
+        <div className="hidden items-center gap-2 rounded-full border border-border/70 bg-card/60 px-3 py-2 lg:flex">
+          {navItems.map((item) => {
+            const active = location.pathname === item.path;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={[
+                  "rounded-full px-4 py-2 text-sm transition-all duration-300",
+                  active ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" : "text-muted-foreground hover:bg-background/70 hover:text-foreground",
+                ].join(" ")}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="lg:hidden text-foreground p-2"
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
+        <div className="hidden lg:block">
+          <QuoteRequestModal triggerVariant="hero" triggerSize="sm" />
+        </div>
+
+        <button className="rounded-full border border-border/70 bg-card/60 p-2.5 lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass overflow-hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="border-t border-border/60 bg-background/95 backdrop-blur-2xl lg:hidden"
           >
-            <div className="container py-4 flex flex-col gap-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setOpen(false)}
-                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                    location.pathname === item.path
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <QuoteRequestModal triggerVariant="hero" triggerSize="sm" triggerClassName="mt-2 w-full" />
+            <div className="container flex flex-col gap-2 py-5">
+              {navItems.map((item) => {
+                const active = location.pathname === item.path;
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setOpen(false)}
+                    className={[
+                      "rounded-2xl px-4 py-3 text-sm transition-colors",
+                      active ? "bg-primary text-primary-foreground" : "bg-card/65 text-muted-foreground hover:text-foreground",
+                    ].join(" ")}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+              <div className="pt-2">
+                <QuoteRequestModal triggerVariant="hero" triggerSize="sm" triggerClassName="w-full" />
+              </div>
             </div>
           </motion.div>
         )}

@@ -8,32 +8,38 @@ const solutions = [
 ];
 
 const Solutions = () => (
-  <div className="pt-20">
+  <div className="pt-24">
     <section className="py-24">
       <div className="container">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-          <span className="text-primary text-sm font-medium uppercase tracking-wider">Solutions</span>
-          <h1 className="font-heading text-4xl lg:text-5xl font-bold mt-3 mb-4">Solutions pour entreprises</h1>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Des solutions complètes pour accompagner la transformation numérique de votre entreprise.
-          </p>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div>
+            <span className="section-kicker">Solutions</span>
+            <h1 className="section-title mt-4">Solutions pour entreprises</h1>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-muted-foreground">
+              Des solutions complètes pour accompagner la transformation numérique de votre entreprise.
+            </p>
+          </div>
+          <div className="editorial-panel">
+            <p className="text-xs uppercase tracking-[0.3em] text-primary">Approche</p>
+            <p className="mt-3 text-lg leading-8 text-foreground/82">Une lecture plus premium, plus structurée et plus intentionnelle, sans retirer aucun élément du site.</p>
+          </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid gap-5 md:grid-cols-3">
           {solutions.map((s, i) => (
             <motion.div
               key={s.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="p-8 rounded-xl bg-card border border-border hover:border-primary/40 transition-colors"
+              transition={{ delay: i * 0.1 }}
+              className="service-shell"
             >
-              <div className="w-14 h-14 rounded-lg gradient-bg flex items-center justify-center mb-6">
-                <s.icon size={26} className="text-primary-foreground" />
+              <div className="icon-shell">
+                <s.icon size={22} className="text-primary-foreground" />
               </div>
-              <h3 className="font-heading font-semibold text-xl mb-3">{s.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+              <h3 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h3>
+              <p className="mt-4 text-sm leading-7 text-muted-foreground">{s.desc}</p>
             </motion.div>
           ))}
         </div>
