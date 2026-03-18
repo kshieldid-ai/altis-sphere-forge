@@ -119,6 +119,7 @@ const QuoteRequestModal = ({
     if (!nextOpen) {
       setSubmitted(false);
       setLoading(false);
+      antiBot.refreshChallenge();
     }
   };
 
