@@ -151,6 +151,10 @@ const Contact = () => {
                 <Textarea placeholder="Décrivez votre projet ou question..." rows={6} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
               </div>
 
+              <div className="mt-4">
+                <AntiBotFields {...antiBot} />
+              </div>
+
               <Button variant="hero" size="lg" type="submit" disabled={loading} className="mt-6">
                 {loading ? "Envoi..." : "Envoyer"} <Send size={18} />
               </Button>
