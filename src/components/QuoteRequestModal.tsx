@@ -110,6 +110,7 @@ const QuoteRequestModal = ({
 
     setSubmitted(true);
     setForm(initialForm);
+    antiBot.refreshChallenge();
     toast.success("Demande de devis envoyée avec succès.");
   };
 
