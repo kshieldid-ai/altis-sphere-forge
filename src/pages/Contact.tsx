@@ -28,9 +28,19 @@ const contactItems = [
 const Contact = () => {
   const [form, setForm] = useState({ nom: "", email: "", telephone: "", entreprise: "", service: "", description: "" });
   const [loading, setLoading] = useState(false);
+  const antiBot = useAntiBot();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const botError = antiBot.validate();
+    if (botError === "__silent__") return;
+    if (botError) {
+      toast.error(botError);
+      antiBot.refreshChallenge();
+      return;
+    }
+
     const result = contactSchema.safeParse(form);
     if (!result.success) {
       toast.error(result.error.errors[0].message);
