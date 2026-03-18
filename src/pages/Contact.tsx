@@ -7,6 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import { useAntiBot } from "@/hooks/use-anti-bot";
+import AntiBotFields from "@/components/AntiBotFields";
 
 const contactSchema = z.object({
   nom: z.string().trim().min(1, "Nom requis").max(100),
