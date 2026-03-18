@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ExternalLink } from "lucide-react";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
 import altisLogo from "@/assets/altis-logo.png";
 
-const navItems = [
+type NavItem =
+  | { label: string; path: string; external?: false }
+  | { label: string; href: string; external: true };
+
+const navItems: NavItem[] = [
   { label: "Accueil", path: "/" },
   { label: "À propos", path: "/a-propos" },
   { label: "Services", path: "/services" },
   { label: "Produits", path: "/produits" },
   { label: "Solutions", path: "/solutions" },
+  { label: "Domotique", href: "https://app.monsite.com/dashboard", external: true },
   { label: "Blog", path: "/blog" },
   { label: "Contact", path: "/contact" },
 ];
