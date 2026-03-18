@@ -82,6 +82,21 @@ const Navbar = () => {
           >
             <div className="container flex flex-col gap-2 py-5">
               {navItems.map((item) => {
+                if (item.external) {
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-between rounded-2xl bg-card/65 px-4 py-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {item.label}
+                      <ExternalLink size={14} className="opacity-60" />
+                    </a>
+                  );
+                }
                 const active = location.pathname === item.path;
                 return (
                   <Link
