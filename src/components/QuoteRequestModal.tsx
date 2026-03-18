@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { useAntiBot } from "@/hooks/use-anti-bot";
+import AntiBotFields from "@/components/AntiBotFields";
 
 const serviceOptions = [
   "Internet & Connectivité",
@@ -57,6 +59,7 @@ const QuoteRequestModal = ({
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState(initialForm);
+  const antiBot = useAntiBot();
 
   const whatsappMessage = encodeURIComponent(
     "Bonjour, je souhaite demander un devis pour vos services informatiques.",
@@ -64,6 +67,14 @@ const QuoteRequestModal = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const botError = antiBot.validate();
+    if (botError === "__silent__") return;
+    if (botError) {
+      toast.error(botError);
+      antiBot.refreshChallenge();
+      return;
+    }
 
     const result = quoteSchema.safeParse({
       ...form,
@@ -99,6 +110,7 @@ const QuoteRequestModal = ({
 
     setSubmitted(true);
     setForm(initialForm);
+    antiBot.refreshChallenge();
     toast.success("Demande de devis envoyée avec succès.");
   };
 
@@ -107,6 +119,7 @@ const QuoteRequestModal = ({
     if (!nextOpen) {
       setSubmitted(false);
       setLoading(false);
+      antiBot.refreshChallenge();
     }
   };
 
@@ -218,6 +231,10 @@ const QuoteRequestModal = ({
                       <Input id="quote-delai" value={form.delai} onChange={(e) => setForm({ ...form, delai: e.target.value })} placeholder="Ex: Sous 2 semaines" />
                     </div>
                   </div>
+                </div>
+
+                <div className="space-y-4 rounded-2xl border border-border bg-background/70 p-5">
+                  <AntiBotFields {...antiBot} />
                 </div>
 
                 <Button type="submit" variant="hero" size="lg" disabled={loading} className="w-full sm:w-auto">

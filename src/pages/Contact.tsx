@@ -7,6 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import { useAntiBot } from "@/hooks/use-anti-bot";
+import AntiBotFields from "@/components/AntiBotFields";
 
 const contactSchema = z.object({
   nom: z.string().trim().min(1, "Nom requis").max(100),
@@ -26,9 +28,19 @@ const contactItems = [
 const Contact = () => {
   const [form, setForm] = useState({ nom: "", email: "", telephone: "", entreprise: "", service: "", description: "" });
   const [loading, setLoading] = useState(false);
+  const antiBot = useAntiBot();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const botError = antiBot.validate();
+    if (botError === "__silent__") return;
+    if (botError) {
+      toast.error(botError);
+      antiBot.refreshChallenge();
+      return;
+    }
+
     const result = contactSchema.safeParse(form);
     if (!result.success) {
       toast.error(result.error.errors[0].message);
@@ -54,6 +66,7 @@ const Contact = () => {
 
     toast.success("Message envoyé ! Nous vous recontacterons rapidement.");
     setForm({ nom: "", email: "", telephone: "", entreprise: "", service: "", description: "" });
+    antiBot.refreshChallenge();
   };
 
   return (
@@ -136,6 +149,10 @@ const Contact = () => {
               <div className="mt-4 space-y-2">
                 <label className="text-sm font-medium">Message *</label>
                 <Textarea placeholder="Décrivez votre projet ou question..." rows={6} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+              </div>
+
+              <div className="mt-4">
+                <AntiBotFields {...antiBot} />
               </div>
 
               <Button variant="hero" size="lg" type="submit" disabled={loading} className="mt-6">
