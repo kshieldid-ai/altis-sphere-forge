@@ -68,6 +68,14 @@ const QuoteRequestModal = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const botError = antiBot.validate();
+    if (botError === "__silent__") return;
+    if (botError) {
+      toast.error(botError);
+      antiBot.refreshChallenge();
+      return;
+    }
+
     const result = quoteSchema.safeParse({
       ...form,
       entreprise: form.entreprise || undefined,
