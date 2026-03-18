@@ -59,6 +59,7 @@ const QuoteRequestModal = ({
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState(initialForm);
+  const antiBot = useAntiBot();
 
   const whatsappMessage = encodeURIComponent(
     "Bonjour, je souhaite demander un devis pour vos services informatiques.",
