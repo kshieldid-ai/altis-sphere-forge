@@ -15,7 +15,7 @@ const navItems: NavItem[] = [
   { label: "Services", path: "/services" },
   { label: "Produits", path: "/produits" },
   { label: "Solutions", path: "/solutions" },
-  { label: "Domotique", href: "https://app.monsite.com/dashboard", external: true },
+  { label: "Domotique", path: "/domotique" },
   { label: "Blog", path: "/blog" },
   { label: "Contact", path: "/contact" },
 ];
