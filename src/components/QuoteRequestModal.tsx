@@ -233,6 +233,10 @@ const QuoteRequestModal = ({
                   </div>
                 </div>
 
+                <div className="space-y-4 rounded-2xl border border-border bg-background/70 p-5">
+                  <AntiBotFields {...antiBot} />
+                </div>
+
                 <Button type="submit" variant="hero" size="lg" disabled={loading} className="w-full sm:w-auto">
                   {loading ? "Envoi en cours..." : "Envoyer la demande de devis"}
                 </Button>
