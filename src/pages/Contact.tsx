@@ -66,6 +66,7 @@ const Contact = () => {
 
     toast.success("Message envoyé ! Nous vous recontacterons rapidement.");
     setForm({ nom: "", email: "", telephone: "", entreprise: "", service: "", description: "" });
+    antiBot.refreshChallenge();
   };
 
   return (
