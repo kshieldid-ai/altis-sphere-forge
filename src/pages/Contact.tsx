@@ -9,6 +9,7 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { useAntiBot } from "@/hooks/use-anti-bot";
 import AntiBotFields from "@/components/AntiBotFields";
+import Seo from "@/components/Seo";
 
 const contactSchema = z.object({
   nom: z.string().trim().min(1, "Nom requis").max(100),
@@ -71,6 +72,11 @@ const Contact = () => {
 
   return (
     <div className="pt-24">
+      <Seo
+        title="Contact | ALTIS SPHERE — Lubumbashi, RD Congo"
+        description="Contactez ALTIS SPHERE à Lubumbashi : formulaire, téléphone +243 998 914 448, email contact@altissphere.com."
+        path="/contact"
+      />
       <section className="py-24">
         <div className="container">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
@@ -126,29 +132,29 @@ const Contact = () => {
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Nom *</label>
-                  <Input placeholder="Votre nom" value={form.nom} onChange={(e) => setForm({ ...form, nom: e.target.value })} />
+                  <label htmlFor="contact-nom" className="text-sm font-medium">Nom *</label>
+                  <Input id="contact-nom" name="nom" autoComplete="name" placeholder="Votre nom" value={form.nom} onChange={(e) => setForm({ ...form, nom: e.target.value })} />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Email *</label>
-                  <Input type="email" placeholder="votre@email.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+                  <label htmlFor="contact-email" className="text-sm font-medium">Email *</label>
+                  <Input id="contact-email" name="email" type="email" autoComplete="email" placeholder="votre@email.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
                 </div>
               </div>
 
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Téléphone</label>
-                  <Input placeholder="+243 ..." value={form.telephone} onChange={(e) => setForm({ ...form, telephone: e.target.value })} />
+                  <label htmlFor="contact-tel" className="text-sm font-medium">Téléphone</label>
+                  <Input id="contact-tel" name="telephone" type="tel" autoComplete="tel" placeholder="+243 ..." value={form.telephone} onChange={(e) => setForm({ ...form, telephone: e.target.value })} />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Sujet *</label>
-                  <Input placeholder="Sujet du message" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} />
+                  <label htmlFor="contact-sujet" className="text-sm font-medium">Sujet *</label>
+                  <Input id="contact-sujet" name="sujet" placeholder="Sujet du message" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} />
                 </div>
               </div>
 
               <div className="mt-4 space-y-2">
-                <label className="text-sm font-medium">Message *</label>
-                <Textarea placeholder="Décrivez votre projet ou question..." rows={6} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+                <label htmlFor="contact-message" className="text-sm font-medium">Message *</label>
+                <Textarea id="contact-message" name="message" placeholder="Décrivez votre projet ou question..." rows={6} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
               </div>
 
               <div className="mt-4">

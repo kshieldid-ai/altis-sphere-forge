@@ -7,6 +7,7 @@ import serviceDev from "@/assets/service-dev.jpg";
 import serviceSupport from "@/assets/service-support.jpg";
 import serviceEquipements from "@/assets/service-equipements.jpg";
 import serviceDomotique from "@/assets/service-domotique.jpg";
+import Seo from "@/components/Seo";
 
 const servicesList = [
   { icon: Wifi, title: "Internet & Connectivité", image: serviceInternet, items: ["Installation fibre optique", "Solutions Starlink", "Connexion haut débit entreprise", "Réseau Wi-Fi professionnel"] },
@@ -20,6 +21,11 @@ const servicesList = [
 
 const ServicesPage = () => (
   <div className="pt-24">
+    <Seo
+      title="Services IT & Connectivité | ALTIS SPHERE"
+      description="Fibre, Starlink, cybersécurité, développement web, équipements IT, support 24/7 et domotique — les services complets d'ALTIS SPHERE."
+      path="/services"
+    />
     <section className="py-24">
       <div className="container">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
@@ -57,7 +63,7 @@ const ServicesPage = () => (
                   <div className="icon-shell h-11 w-11 rounded-2xl">
                     <s.icon size={20} className="text-primary-foreground" />
                   </div>
-                  <h3 className="mt-7 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h3>
+                  <h2 className="mt-7 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h2>
                   <ul className="mt-5 space-y-2.5">
                     {s.items.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm leading-7 text-muted-foreground">

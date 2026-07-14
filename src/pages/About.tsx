@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Target, Eye, Lightbulb } from "lucide-react";
+import Seo from "@/components/Seo";
 
 const pillars = [
   { icon: Target, title: "Mission", desc: "Fournir des solutions IT et de connectivité performantes, accessibles et sécurisées à tous." },
@@ -9,6 +10,11 @@ const pillars = [
 
 const About = () => (
   <div className="pt-24">
+    <Seo
+      title="À propos d'ALTIS SPHERE | Mission, vision et expertise IT"
+      description="Découvrez ALTIS SPHERE : notre mission, notre vision et notre expertise en services IT et connectivité internet en RD Congo."
+      path="/a-propos"
+    />
     <section className="py-24">
       <div className="container space-y-14">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
@@ -42,7 +48,7 @@ const About = () => (
               <div className="icon-shell h-12 w-12 rounded-2xl">
                 <item.icon size={20} className="text-primary-foreground" />
               </div>
-              <h3 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{item.title}</h3>
+              <h2 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{item.title}</h2>
               <p className="mt-4 text-sm leading-7 text-muted-foreground">{item.desc}</p>
             </motion.div>
           ))}

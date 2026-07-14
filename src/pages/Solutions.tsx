@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Network, Cloud, ShieldCheck } from "lucide-react";
+import Seo from "@/components/Seo";
 
 const solutions = [
   { icon: Network, title: "Réseaux d'entreprise", desc: "Conception, déploiement et gestion de réseaux d'entreprise performants et sécurisés. LAN, WAN, VPN, SD-WAN." },
@@ -9,6 +10,11 @@ const solutions = [
 
 const Solutions = () => (
   <div className="pt-24">
+    <Seo
+      title="Solutions IT pour entreprises | ALTIS SPHERE"
+      description="Réseaux d'entreprise, cloud & infrastructure, sécurité des systèmes — des solutions IT complètes pour la transformation numérique."
+      path="/solutions"
+    />
     <section className="py-24">
       <div className="container">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
@@ -38,7 +44,7 @@ const Solutions = () => (
               <div className="icon-shell">
                 <s.icon size={22} className="text-primary-foreground" />
               </div>
-              <h3 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h3>
+              <h2 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h2>
               <p className="mt-4 text-sm leading-7 text-muted-foreground">{s.desc}</p>
             </motion.div>
           ))}
