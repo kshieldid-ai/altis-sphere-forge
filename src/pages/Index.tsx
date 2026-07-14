@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
 import { Wifi, Shield, Code, Server, Headphones, Monitor, ArrowRight, Star, Zap, Users, Award } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import Seo from "@/components/Seo";
 
 const services = [
   { icon: Wifi, title: "Internet & Connectivité", desc: "Fibre, Starlink et solutions de connectivité sur mesure." },
@@ -224,6 +225,11 @@ const CTA = () => (
 
 const Index = () => (
   <>
+    <Seo
+      title="ALTIS SPHERE | Services IT & Connectivité Internet à Lubumbashi"
+      description="ALTIS SPHERE — services IT, fibre, Starlink, cybersécurité, développement web et domotique pour entreprises et particuliers en RD Congo."
+      path="/"
+    />
     <Hero />
     <Services />
     <WhyUs />

@@ -7,6 +7,7 @@ import serviceDev from "@/assets/service-dev.jpg";
 import serviceSupport from "@/assets/service-support.jpg";
 import serviceEquipements from "@/assets/service-equipements.jpg";
 import serviceDomotique from "@/assets/service-domotique.jpg";
+import Seo from "@/components/Seo";
 
 const servicesList = [
   { icon: Wifi, title: "Internet & Connectivité", image: serviceInternet, items: ["Installation fibre optique", "Solutions Starlink", "Connexion haut débit entreprise", "Réseau Wi-Fi professionnel"] },
@@ -20,6 +21,11 @@ const servicesList = [
 
 const ServicesPage = () => (
   <div className="pt-24">
+    <Seo
+      title="Services IT & Connectivité | ALTIS SPHERE"
+      description="Fibre, Starlink, cybersécurité, développement web, équipements IT, support 24/7 et domotique — les services complets d'ALTIS SPHERE."
+      path="/services"
+    />
     <section className="py-24">
       <div className="container">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">

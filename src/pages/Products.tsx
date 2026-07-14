@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Router, Antenna, HardDrive, Monitor } from "lucide-react";
+import Seo from "@/components/Seo";
 
 const products = [
   { icon: Router, category: "Équipements réseau", items: ["Routeurs professionnels", "Switches managés", "Points d'accès Wi-Fi", "Câblage structuré"] },
@@ -10,6 +11,11 @@ const products = [
 
 const Products = () => (
   <div className="pt-24">
+    <Seo
+      title="Produits & Équipements IT | ALTIS SPHERE"
+      description="Routeurs, switches, antennes Starlink, serveurs, NAS et matériel informatique professionnel sélectionnés par ALTIS SPHERE."
+      path="/produits"
+    />
     <section className="py-24">
       <div className="container">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 max-w-3xl">
