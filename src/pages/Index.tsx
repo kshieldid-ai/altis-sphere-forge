@@ -118,7 +118,7 @@ const Services = () => (
               </div>
               <ArrowRight className="mt-1 text-primary transition-transform duration-300 group-hover:translate-x-1" size={18} />
             </div>
-            <h3 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h3>
+            <h2 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h2>
             <p className="mt-4 text-sm leading-7 text-muted-foreground">{s.desc}</p>
           </motion.div>
         ))}
@@ -151,7 +151,7 @@ const WhyUs = () => (
               <div className="icon-shell h-12 w-12 rounded-2xl">
                 <r.icon size={20} className="text-primary-foreground" />
               </div>
-              <h3 className="mt-6 text-xl font-semibold tracking-[-0.03em]">{r.title}</h3>
+              <h2 className="mt-6 text-xl font-semibold tracking-[-0.03em]">{r.title}</h2>
               <p className="mt-3 text-sm leading-7 text-muted-foreground">{r.desc}</p>
             </motion.div>
           ))}

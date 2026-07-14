@@ -42,7 +42,7 @@ const About = () => (
               <div className="icon-shell h-12 w-12 rounded-2xl">
                 <item.icon size={20} className="text-primary-foreground" />
               </div>
-              <h3 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{item.title}</h3>
+              <h2 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{item.title}</h2>
               <p className="mt-4 text-sm leading-7 text-muted-foreground">{item.desc}</p>
             </motion.div>
           ))}

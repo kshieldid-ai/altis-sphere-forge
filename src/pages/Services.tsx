@@ -57,7 +57,7 @@ const ServicesPage = () => (
                   <div className="icon-shell h-11 w-11 rounded-2xl">
                     <s.icon size={20} className="text-primary-foreground" />
                   </div>
-                  <h3 className="mt-7 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h3>
+                  <h2 className="mt-7 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h2>
                   <ul className="mt-5 space-y-2.5">
                     {s.items.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm leading-7 text-muted-foreground">

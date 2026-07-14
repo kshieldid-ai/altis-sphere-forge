@@ -284,7 +284,7 @@ const DomotiquePage = () => (
                       {f.status}
                     </span>
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold">{f.title}</h3>
+                  <h2 className="mb-2 text-lg font-semibold">{f.title}</h2>
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     {f.description}
                   </p>
@@ -331,7 +331,7 @@ const DomotiquePage = () => (
               <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 transition-colors group-hover:bg-primary/20">
                 <s.icon size={26} className="text-primary" />
               </div>
-              <h3 className="mb-1 font-semibold">{s.label}</h3>
+              <h2 className="mb-1 font-semibold">{s.label}</h2>
               <p className="text-xs leading-relaxed text-muted-foreground">{s.description}</p>
             </motion.div>
           ))}
@@ -376,7 +376,7 @@ const DomotiquePage = () => (
                   <div className="mb-4 icon-shell">
                     <f.icon size={20} className="text-primary-foreground" />
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold">{f.title}</h3>
+                  <h2 className="mb-2 text-lg font-semibold">{f.title}</h2>
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     {f.description}
                   </p>

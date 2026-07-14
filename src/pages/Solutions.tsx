@@ -38,7 +38,7 @@ const Solutions = () => (
               <div className="icon-shell">
                 <s.icon size={22} className="text-primary-foreground" />
               </div>
-              <h3 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h3>
+              <h2 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h2>
               <p className="mt-4 text-sm leading-7 text-muted-foreground">{s.desc}</p>
             </motion.div>
           ))}

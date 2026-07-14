@@ -33,7 +33,7 @@ const Products = () => (
               <div className="icon-shell">
                 <p.icon size={22} className="text-primary-foreground" />
               </div>
-              <h3 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{p.category}</h3>
+              <h2 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{p.category}</h2>
               <ul className="mt-5 space-y-3">
                 {p.items.map((item) => (
                   <li key={item} className="flex items-center gap-3 text-sm leading-7 text-muted-foreground">

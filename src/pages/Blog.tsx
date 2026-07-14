@@ -35,7 +35,7 @@ const Blog = () => (
               <img src={post.image} alt={post.title} className="h-56 w-full object-cover" loading="lazy" />
               <div className="p-6">
                 <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">{post.category}</span>
-                <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.03em]">{post.title}</h3>
+                <h2 className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.03em]">{post.title}</h2>
                 <p className="mt-4 text-sm leading-7 text-muted-foreground">{post.excerpt}</p>
                 <div className="mt-6 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
                   <Calendar size={14} />
