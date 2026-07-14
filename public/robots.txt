@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://altis-sphere-forge.lovable.app/sitemap.xml
