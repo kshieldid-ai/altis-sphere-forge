@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
-import altisLogo from "@/assets/altis-logo.png";
+import altisLogo from "@/assets/altis-logo-transparent.png.asset.json";
 
 const Footer = () => (
   <footer className="relative overflow-hidden border-t border-border/60 bg-card/65">
@@ -9,7 +9,7 @@ const Footer = () => (
       <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1.1fr]">
         <div className="space-y-5">
           <Link to="/" className="flex items-center gap-2">
-            <img src={altisLogo} alt="ALTIS SPHERE" className="h-9 w-auto" />
+            <img src={altisLogo.url} alt="ALTIS SPHERE" className="h-9 w-auto" />
           </Link>
           <p className="max-w-sm text-sm leading-7 text-muted-foreground">
             Solutions informatiques et connectivité internet pour particuliers et entreprises.
