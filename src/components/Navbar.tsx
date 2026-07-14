@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
-import altisLogo from "@/assets/altis-logo.png";
+import altisLogo from "@/assets/altis-logo.png.asset.json";
 
 const navItems = [
   { label: "Accueil", path: "/" },
@@ -24,7 +24,7 @@ const Navbar = () => {
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/78 backdrop-blur-2xl">
       <div className="container flex h-20 items-center justify-between gap-6">
         <Link to="/" className="flex items-center">
-          <img src={altisLogo} alt="ALTIS SPHERE" className="h-10 w-auto" />
+          <img src={altisLogo.url} alt="ALTIS SPHERE" className="h-10 w-auto" />
         </Link>
 
         <div className="hidden items-center gap-2 rounded-full border border-border/70 bg-card/60 px-3 py-2 lg:flex">
