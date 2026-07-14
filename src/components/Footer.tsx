@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
-import altisLogo from "@/assets/altis-logo.png.asset.json";
+import altisLogo from "@/assets/altis-logo-transparent.png.asset.json";
 
 const Footer = () => (
   <footer className="relative overflow-hidden border-t border-border/60 bg-card/65">
