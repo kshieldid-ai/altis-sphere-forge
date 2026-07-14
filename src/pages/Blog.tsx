@@ -3,6 +3,7 @@ import { Calendar } from "lucide-react";
 import blogCyber from "@/assets/blog-cybersecurity.jpg";
 import blogStarlink from "@/assets/blog-starlink-fibre.jpg";
 import blogTendances from "@/assets/blog-tendances-it.jpg";
+import Seo from "@/components/Seo";
 
 const posts = [
   { title: "Comment sécuriser votre réseau d'entreprise en 2026", category: "Cybersécurité", date: "10 mars 2026", excerpt: "Découvrez les meilleures pratiques pour protéger votre infrastructure contre les menaces actuelles.", image: blogCyber },
@@ -12,6 +13,11 @@ const posts = [
 
 const Blog = () => (
   <div className="pt-24">
+    <Seo
+      title="Blog IT & Connectivité | ALTIS SPHERE"
+      description="Actualités, conseils et tendances IT : cybersécurité, Starlink vs fibre, innovations technologiques — le blog ALTIS SPHERE."
+      path="/blog"
+    />
     <section className="py-24">
       <div className="container">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 max-w-3xl">

@@ -30,6 +30,7 @@ import {
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
+import Seo from "@/components/Seo";
 
 /* ── Smart Home features ── */
 const smartHomeFeatures = [
@@ -130,6 +131,11 @@ const fadeUp = {
 
 const DomotiquePage = () => (
   <div className="pt-20">
+    <Seo
+      title="Domotique & Maison Intelligente | ALTIS SPHERE"
+      description="Tableau de bord domotique : éclairage, climat, sécurité, véhicules connectés. Pilotez votre maison intelligente avec ALTIS SPHERE."
+      path="/domotique"
+    />
     {/* ═══ HERO ═══ */}
     <section className="relative overflow-hidden border-b border-border/50">
       <div className="absolute inset-0">
