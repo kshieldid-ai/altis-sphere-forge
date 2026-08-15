@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 
 const SITE_URL = "https://altis-sphere-forge.lovable.app";
-const DEFAULT_IMAGE = `${SITE_URL}/__l5e/assets-v1/fc5e6302-4286-4c52-9600-1e69d62d8d6b/altis-logo.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/__l5e/assets-v1/1aa74791-2c99-4c87-8748-188c99cd2981/altis-logo-2026.png`;
 
 interface SeoProps {
   title: string;

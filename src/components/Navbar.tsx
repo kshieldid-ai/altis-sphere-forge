@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
-import altisLogo from "@/assets/altis-logo-original.png.asset.json";
+import altisLogo from "@/assets/altis-logo-2026.png.asset.json";
 
 const navItems = [
   { label: "Accueil", path: "/" },
