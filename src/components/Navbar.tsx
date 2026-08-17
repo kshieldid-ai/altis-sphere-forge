@@ -50,10 +50,16 @@ const Navbar = () => {
           <QuoteRequestModal triggerVariant="hero" triggerSize="sm" />
         </div>
 
-        <button className="rounded-full border border-border/70 bg-card/60 p-2.5 lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
+        <button
+          className="rounded-full border border-border/70 bg-card/60 p-2.5 lg:hidden"
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-expanded={open}
+          aria-controls="menu-mobile"
+        >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
-      </div>
+      </nav>
 
       <AnimatePresence>
         {open && (
