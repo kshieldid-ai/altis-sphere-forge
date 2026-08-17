@@ -11,12 +11,28 @@ const posts = [
   { title: "Les tendances IT à surveiller cette année", category: "Innovation", date: "28 février 2026", excerpt: "IA, edge computing, 5G privée : les technologies qui vont transformer votre entreprise.", image: blogTendances },
 ];
 
+const blogJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: "Blog ALTIS SPHERE GROUP",
+  url: "https://altis-sphere-forge.lovable.app/blog",
+  inLanguage: "fr",
+  publisher: { "@id": "https://altis-sphere-forge.lovable.app/#organization" },
+  blogPost: posts.map((post) => ({
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    articleSection: post.category,
+  })),
+};
+
 const Blog = () => (
   <div className="pt-24">
     <Seo
-      title="Blog IT & Connectivité | ALTIS SPHERE"
-      description="Actualités, conseils et tendances IT : cybersécurité, Starlink vs fibre, innovations technologiques — le blog ALTIS SPHERE."
+      title="Blog IT & connectivité | ALTIS SPHERE GROUP"
+      description="Actualités, conseils et tendances IT : cybersécurité, Starlink vs fibre, innovations technologiques — le blog d'ALTIS SPHERE GROUP."
       path="/blog"
+      jsonLd={blogJsonLd}
     />
     <section className="py-24">
       <div className="container">
@@ -24,7 +40,7 @@ const Blog = () => (
           <span className="section-kicker">Blog</span>
           <h1 className="section-title mt-4">Actualités & Conseils</h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-muted-foreground">
-            Même contenu, mais avec une lecture plus éditoriale et un rythme visuel plus marqué.
+            Nos analyses sur la connectivité, la cybersécurité et les infrastructures IT en République démocratique du Congo.
           </p>
         </motion.div>
 

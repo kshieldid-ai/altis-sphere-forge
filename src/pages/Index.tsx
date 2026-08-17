@@ -31,7 +31,15 @@ const testimonials = [
 const Hero = () => (
   <section className="relative isolate overflow-hidden pt-28 md:pt-32">
     <div className="absolute inset-0">
-      <img src={heroBg} alt="Infrastructure réseau et connectivité" className="h-full w-full object-cover" />
+      <img
+        src={heroBg}
+        alt="Infrastructure réseau et connectivité déployée par ALTIS SPHERE GROUP"
+        width={1920}
+        height={1080}
+        fetchPriority="high"
+        decoding="async"
+        className="h-full w-full object-cover"
+      />
       <div className="absolute inset-0 bg-background/65" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsl(var(--primary)/0.26),transparent_30%),radial-gradient(circle_at_80%_20%,hsl(var(--accent)/0.18),transparent_24%),linear-gradient(180deg,hsl(var(--background)/0.15),hsl(var(--background)))]" />
       <div className="absolute inset-0 grid-pattern opacity-20" />
@@ -124,6 +132,13 @@ const Services = () => (
           </motion.div>
         ))}
       </div>
+
+      <nav aria-label="Pages clés" className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+        <Link to="/services" className="text-primary underline-offset-4 hover:underline">Découvrir le détail de nos services IT</Link>
+        <Link to="/solutions" className="text-primary underline-offset-4 hover:underline">Voir nos solutions pour entreprises</Link>
+        <Link to="/produits" className="text-primary underline-offset-4 hover:underline">Parcourir nos équipements réseau</Link>
+        <Link to="/domotique" className="text-primary underline-offset-4 hover:underline">Explorer la domotique et la maison intelligente</Link>
+      </nav>
     </div>
   </section>
 );
@@ -223,12 +238,23 @@ const CTA = () => (
   </section>
 );
 
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "ALTIS SPHERE GROUP — Services IT & connectivité internet",
+  url: "https://altis-sphere-forge.lovable.app/",
+  inLanguage: "fr",
+  about: { "@id": "https://altis-sphere-forge.lovable.app/#organization" },
+  publisher: { "@id": "https://altis-sphere-forge.lovable.app/#organization" },
+};
+
 const Index = () => (
   <>
     <Seo
-      title="ALTIS SPHERE | Services IT & Connectivité Internet à Lubumbashi"
-      description="ALTIS SPHERE — services IT, fibre, Starlink, cybersécurité, développement web et domotique pour entreprises et particuliers en RD Congo."
+      title="ALTIS SPHERE GROUP | Services IT & connectivité internet à Lubumbashi"
+      description="ALTIS SPHERE GROUP — services IT, fibre, Starlink, cybersécurité, développement web et domotique pour entreprises et particuliers en RD Congo."
       path="/"
+      jsonLd={homeJsonLd}
     />
     <Hero />
     <Services />
