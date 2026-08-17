@@ -9,7 +9,7 @@ const Footer = () => (
       <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1.1fr]">
         <div className="space-y-5">
           <Link to="/" className="flex items-center gap-2">
-            <img src={altisLogo.url} alt="ALTIS SPHERE" className="h-9 w-auto" />
+            <img src={altisLogo.url} alt="Logo ALTIS SPHERE GROUP" width={144} height={36} loading="lazy" decoding="async" className="h-9 w-auto" />
           </Link>
           <p className="max-w-sm text-sm leading-7 text-muted-foreground">
             Solutions informatiques et connectivité internet pour particuliers et entreprises.
@@ -17,7 +17,7 @@ const Footer = () => (
         </div>
 
         <div className="space-y-4">
-          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Services</h4>
+          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Services</h2>
           <div className="flex flex-col gap-2.5">
             {[
               { label: "Internet & Connectivité", path: "/services" },
@@ -35,7 +35,7 @@ const Footer = () => (
         </div>
 
         <div className="space-y-4">
-          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Entreprise</h4>
+          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Entreprise</h2>
           <div className="flex flex-col gap-2.5">
             {[
               { label: "À propos", path: "/a-propos" },
@@ -50,7 +50,7 @@ const Footer = () => (
         </div>
 
         <div className="space-y-4">
-          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Contact</h4>
+          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Contact</h2>
           <div className="flex flex-col gap-3 text-sm text-muted-foreground">
             <a href="mailto:contact@altissphere.com" className="flex items-center gap-3 transition-colors hover:text-primary">
               <Mail size={16} /> contact@altissphere.com
@@ -69,7 +69,7 @@ const Footer = () => (
       </div>
 
       <div className="mt-12 border-t border-border/60 pt-8 text-center text-sm text-muted-foreground">
-        © {new Date().getFullYear()} ALTIS SPHERE. Tous droits réservés.
+        © {new Date().getFullYear()} ALTIS SPHERE GROUP. Tous droits réservés.
       </div>
     </div>
   </footer>
