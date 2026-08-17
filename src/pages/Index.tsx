@@ -132,6 +132,13 @@ const Services = () => (
           </motion.div>
         ))}
       </div>
+
+      <nav aria-label="Pages clés" className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+        <Link to="/services" className="text-primary underline-offset-4 hover:underline">Découvrir le détail de nos services IT</Link>
+        <Link to="/solutions" className="text-primary underline-offset-4 hover:underline">Voir nos solutions pour entreprises</Link>
+        <Link to="/produits" className="text-primary underline-offset-4 hover:underline">Parcourir nos équipements réseau</Link>
+        <Link to="/domotique" className="text-primary underline-offset-4 hover:underline">Explorer la domotique et la maison intelligente</Link>
+      </nav>
     </div>
   </section>
 );
