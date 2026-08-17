@@ -31,7 +31,15 @@ const testimonials = [
 const Hero = () => (
   <section className="relative isolate overflow-hidden pt-28 md:pt-32">
     <div className="absolute inset-0">
-      <img src={heroBg} alt="Infrastructure réseau et connectivité" className="h-full w-full object-cover" />
+      <img
+        src={heroBg}
+        alt="Infrastructure réseau et connectivité déployée par ALTIS SPHERE GROUP"
+        width={1920}
+        height={1080}
+        fetchPriority="high"
+        decoding="async"
+        className="h-full w-full object-cover"
+      />
       <div className="absolute inset-0 bg-background/65" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsl(var(--primary)/0.26),transparent_30%),radial-gradient(circle_at_80%_20%,hsl(var(--accent)/0.18),transparent_24%),linear-gradient(180deg,hsl(var(--background)/0.15),hsl(var(--background)))]" />
       <div className="absolute inset-0 grid-pattern opacity-20" />
