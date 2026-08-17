@@ -26,26 +26,34 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <div className="min-h-screen" translate="no">
-          <Navbar />
-          <Suspense
-            fallback={
-              <div className="flex min-h-screen items-center justify-center">
-                <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary" />
-              </div>
-            }
+          <a
+            href="#contenu-principal"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-primary focus:px-5 focus:py-2 focus:text-primary-foreground"
           >
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/a-propos" element={<About />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/produits" element={<Products />} />
-              <Route path="/solutions" element={<Solutions />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/domotique" element={<DomotiquePage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
+            Aller au contenu principal
+          </a>
+          <Navbar />
+          <main id="contenu-principal">
+            <Suspense
+              fallback={
+                <div className="flex min-h-screen items-center justify-center">
+                  <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary" />
+                </div>
+              }
+            >
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/a-propos" element={<About />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/produits" element={<Products />} />
+                <Route path="/solutions" element={<Solutions />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/domotique" element={<DomotiquePage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </main>
           <Footer />
         </div>
       </BrowserRouter>
