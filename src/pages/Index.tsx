@@ -231,12 +231,23 @@ const CTA = () => (
   </section>
 );
 
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "ALTIS SPHERE GROUP — Services IT & connectivité internet",
+  url: "https://altis-sphere-forge.lovable.app/",
+  inLanguage: "fr",
+  about: { "@id": "https://altis-sphere-forge.lovable.app/#organization" },
+  publisher: { "@id": "https://altis-sphere-forge.lovable.app/#organization" },
+};
+
 const Index = () => (
   <>
     <Seo
-      title="ALTIS SPHERE | Services IT & Connectivité Internet à Lubumbashi"
-      description="ALTIS SPHERE — services IT, fibre, Starlink, cybersécurité, développement web et domotique pour entreprises et particuliers en RD Congo."
+      title="ALTIS SPHERE GROUP | Services IT & connectivité internet à Lubumbashi"
+      description="ALTIS SPHERE GROUP — services IT, fibre, Starlink, cybersécurité, développement web et domotique pour entreprises et particuliers en RD Congo."
       path="/"
+      jsonLd={homeJsonLd}
     />
     <Hero />
     <Services />
