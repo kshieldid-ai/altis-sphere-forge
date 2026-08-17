@@ -64,12 +64,13 @@ const Navbar = () => {
       <AnimatePresence>
         {open && (
           <motion.div
+            id="menu-mobile"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             className="border-t border-border/60 bg-background/95 backdrop-blur-2xl lg:hidden"
           >
-            <div className="container flex flex-col gap-2 py-5">
+            <nav aria-label="Navigation mobile" className="container flex flex-col gap-2 py-5">
               {navItems.map((item) => {
                 const active = location.pathname === item.path;
                 return (
@@ -77,6 +78,7 @@ const Navbar = () => {
                     key={item.path}
                     to={item.path}
                     onClick={() => setOpen(false)}
+                    aria-current={active ? "page" : undefined}
                     className={[
                       "rounded-2xl px-4 py-3 text-sm transition-colors",
                       active ? "bg-primary text-primary-foreground" : "bg-card/65 text-muted-foreground hover:text-foreground",
@@ -89,11 +91,11 @@ const Navbar = () => {
               <div className="pt-2">
                 <QuoteRequestModal triggerVariant="hero" triggerSize="sm" triggerClassName="w-full" />
               </div>
-            </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </header>
   );
 };
 
