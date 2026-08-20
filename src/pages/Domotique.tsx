@@ -31,6 +31,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
 import Seo from "@/components/Seo";
+import { breadcrumb, serviceSchema } from "@/lib/seo-schemas";
 
 /* ── Smart Home features ── */
 const smartHomeFeatures = [
@@ -129,12 +130,19 @@ const fadeUp = {
   }),
 };
 
+
+const domotiqueJsonLd = [
+  serviceSchema("Domotique & maison intelligente", "Éclairage, climat, sécurité et véhicules connectés pilotés à distance.", "/domotique"),
+  breadcrumb("Domotique", "/domotique"),
+];
+
 const DomotiquePage = () => (
   <div className="pt-20">
     <Seo
       title="Domotique & Maison Intelligente | ALTIS SPHERE"
       description="Tableau de bord domotique : éclairage, climat, sécurité, véhicules connectés. Pilotez votre maison intelligente avec ALTIS SPHERE."
       path="/domotique"
+      jsonLd={domotiqueJsonLd}
     />
     {/* ═══ HERO ═══ */}
     <section className="relative overflow-hidden border-b border-border/50">

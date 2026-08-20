@@ -8,6 +8,7 @@ import serviceSupport from "@/assets/service-support.jpg";
 import serviceEquipements from "@/assets/service-equipements.jpg";
 import serviceDomotique from "@/assets/service-domotique.jpg";
 import Seo from "@/components/Seo";
+import { breadcrumb, serviceSchema } from "@/lib/seo-schemas";
 
 const servicesList = [
   { icon: Wifi, title: "Internet & Connectivité", image: serviceInternet, items: ["Installation fibre optique", "Solutions Starlink", "Connexion haut débit entreprise", "Réseau Wi-Fi professionnel"] },
@@ -19,12 +20,19 @@ const servicesList = [
   { icon: House, title: "Domotique / Maison intelligente", image: serviceDomotique, items: ["Éclairage intelligent", "Sécurité connectée", "Gestion du climat", "Pilotage centralisé"], featured: true },
 ];
 
+
+const servicesJsonLd = [
+  serviceSchema("Services IT & connectivité", "Fibre, Starlink, cybersécurité, développement web, équipements IT, support 24/7 et domotique.", "/services"),
+  breadcrumb("Services", "/services"),
+];
+
 const ServicesPage = () => (
   <div className="pt-24">
     <Seo
       title="Services IT & Connectivité | ALTIS SPHERE"
       description="Fibre, Starlink, cybersécurité, développement web, équipements IT, support 24/7 et domotique — les services complets d'ALTIS SPHERE."
       path="/services"
+      jsonLd={servicesJsonLd}
     />
     <section className="py-24">
       <div className="container">

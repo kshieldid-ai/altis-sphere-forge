@@ -1,11 +1,18 @@
 import { motion } from "framer-motion";
 import { Network, Cloud, ShieldCheck } from "lucide-react";
 import Seo from "@/components/Seo";
+import { breadcrumb, serviceSchema } from "@/lib/seo-schemas";
 
 const solutions = [
   { icon: Network, title: "Réseaux d'entreprise", desc: "Conception, déploiement et gestion de réseaux d'entreprise performants et sécurisés. LAN, WAN, VPN, SD-WAN." },
   { icon: Cloud, title: "Cloud & Infrastructure IT", desc: "Migration cloud, hébergement, infrastructure as a service. Solutions Azure, AWS et cloud privé." },
   { icon: ShieldCheck, title: "Sécurité des systèmes", desc: "Audit, monitoring, SOC managé, conformité RGPD. Protection complète de votre système d'information." },
+];
+
+
+const solutionsJsonLd = [
+  serviceSchema("Solutions IT pour entreprises", "Réseaux d'entreprise, cloud & infrastructure, sécurité des systèmes.", "/solutions"),
+  breadcrumb("Solutions", "/solutions"),
 ];
 
 const Solutions = () => (
@@ -14,6 +21,7 @@ const Solutions = () => (
       title="Solutions IT pour entreprises | ALTIS SPHERE"
       description="Réseaux d'entreprise, cloud & infrastructure, sécurité des systèmes — des solutions IT complètes pour la transformation numérique."
       path="/solutions"
+      jsonLd={solutionsJsonLd}
     />
     <section className="py-24">
       <div className="container">
