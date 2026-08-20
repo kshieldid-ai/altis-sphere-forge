@@ -89,7 +89,6 @@ export type Database = {
         }
         Returns: boolean
       }
-      is_visitor: { Args: never; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
