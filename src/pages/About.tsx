@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Target, Eye, Lightbulb } from "lucide-react";
 import Seo from "@/components/Seo";
-import { breadcrumb, serviceSchema, webPage } from "@/lib/seo-schemas";
+import { breadcrumb, webPage } from "@/lib/seo-schemas";
 
 const pillars = [
   { icon: Target, title: "Mission", desc: "Fournir des solutions IT et de connectivité performantes, accessibles et sécurisées à tous." },

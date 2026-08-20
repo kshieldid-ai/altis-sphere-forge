@@ -31,7 +31,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
 import Seo from "@/components/Seo";
-import { breadcrumb, serviceSchema, webPage } from "@/lib/seo-schemas";
+import { breadcrumb, serviceSchema } from "@/lib/seo-schemas";
 
 /* ── Smart Home features ── */
 const smartHomeFeatures = [

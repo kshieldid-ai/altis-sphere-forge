@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Router, Antenna, HardDrive, Monitor } from "lucide-react";
 import Seo from "@/components/Seo";
-import { breadcrumb, serviceSchema, webPage } from "@/lib/seo-schemas";
+import { breadcrumb, webPage } from "@/lib/seo-schemas";
 
 const products = [
   { icon: Router, category: "Équipements réseau", items: ["Routeurs professionnels", "Switches managés", "Points d'accès Wi-Fi", "Câblage structuré"] },

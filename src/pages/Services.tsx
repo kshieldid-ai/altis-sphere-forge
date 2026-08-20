@@ -8,7 +8,7 @@ import serviceSupport from "@/assets/service-support.jpg";
 import serviceEquipements from "@/assets/service-equipements.jpg";
 import serviceDomotique from "@/assets/service-domotique.jpg";
 import Seo from "@/components/Seo";
-import { breadcrumb, serviceSchema, webPage } from "@/lib/seo-schemas";
+import { breadcrumb, serviceSchema } from "@/lib/seo-schemas";
 
 const servicesList = [
   { icon: Wifi, title: "Internet & Connectivité", image: serviceInternet, items: ["Installation fibre optique", "Solutions Starlink", "Connexion haut débit entreprise", "Réseau Wi-Fi professionnel"] },

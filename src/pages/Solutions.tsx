@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Network, Cloud, ShieldCheck } from "lucide-react";
 import Seo from "@/components/Seo";
-import { breadcrumb, serviceSchema, webPage } from "@/lib/seo-schemas";
+import { breadcrumb, serviceSchema } from "@/lib/seo-schemas";
 
 const solutions = [
   { icon: Network, title: "Réseaux d'entreprise", desc: "Conception, déploiement et gestion de réseaux d'entreprise performants et sécurisés. LAN, WAN, VPN, SD-WAN." },

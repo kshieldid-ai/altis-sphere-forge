@@ -10,7 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAntiBot } from "@/hooks/use-anti-bot";
 import AntiBotFields from "@/components/AntiBotFields";
 import Seo from "@/components/Seo";
-import { breadcrumb, serviceSchema, webPage } from "@/lib/seo-schemas";
+import { breadcrumb, webPage } from "@/lib/seo-schemas";
 
 const contactSchema = z.object({
   nom: z.string().trim().min(1, "Nom requis").max(100),
