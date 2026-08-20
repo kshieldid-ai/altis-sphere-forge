@@ -1,11 +1,18 @@
 import { motion } from "framer-motion";
 import { Target, Eye, Lightbulb } from "lucide-react";
 import Seo from "@/components/Seo";
+import { breadcrumb, serviceSchema, webPage } from "@/lib/seo-schemas";
 
 const pillars = [
   { icon: Target, title: "Mission", desc: "Fournir des solutions IT et de connectivité performantes, accessibles et sécurisées à tous." },
   { icon: Eye, title: "Vision", desc: "Devenir le partenaire technologique de référence, en connectant chaque entreprise au monde numérique." },
   { icon: Lightbulb, title: "Expertise", desc: "Une équipe certifiée avec plus de 10 ans d'expérience dans les technologies de l'information et les réseaux." },
+];
+
+
+const aboutJsonLd = [
+  webPage("À propos d'ALTIS SPHERE GROUP", "/a-propos", "Mission, vision et expertise IT d'ALTIS SPHERE GROUP en RD Congo."),
+  breadcrumb("À propos", "/a-propos"),
 ];
 
 const About = () => (
@@ -14,6 +21,7 @@ const About = () => (
       title="À propos d'ALTIS SPHERE | Mission, vision et expertise IT"
       description="Découvrez ALTIS SPHERE : notre mission, notre vision et notre expertise en services IT et connectivité internet en RD Congo."
       path="/a-propos"
+      jsonLd={aboutJsonLd}
     />
     <section className="py-24">
       <div className="container space-y-14">

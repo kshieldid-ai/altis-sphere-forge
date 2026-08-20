@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAntiBot } from "@/hooks/use-anti-bot";
 import AntiBotFields from "@/components/AntiBotFields";
 import Seo from "@/components/Seo";
+import { breadcrumb, serviceSchema, webPage } from "@/lib/seo-schemas";
 
 const contactSchema = z.object({
   nom: z.string().trim().min(1, "Nom requis").max(100),
@@ -24,6 +25,12 @@ const contactItems = [
   { icon: Mail, label: "Email", value: "contact@altissphere.com", href: "mailto:contact@altissphere.com" },
   { icon: Phone, label: "Téléphone", value: "+243 998 914 448 / +243 993 653 332", href: "tel:+243998914448" },
   { icon: MapPin, label: "Adresse", value: "10, Avenue Biayi, Kalubwe, Lubumbashi, RD Congo" },
+];
+
+
+const contactJsonLd = [
+  webPage("Contact ALTIS SPHERE GROUP", "/contact", "Formulaire de contact, adresse et téléphones d'ALTIS SPHERE GROUP à Lubumbashi."),
+  breadcrumb("Contact", "/contact"),
 ];
 
 const Contact = () => {
@@ -76,6 +83,7 @@ const Contact = () => {
         title="Contact | ALTIS SPHERE — Lubumbashi, RD Congo"
         description="Contactez ALTIS SPHERE à Lubumbashi : formulaire, téléphone +243 998 914 448, email contact@altissphere.com."
         path="/contact"
+        jsonLd={contactJsonLd}
       />
       <section className="py-24">
         <div className="container">

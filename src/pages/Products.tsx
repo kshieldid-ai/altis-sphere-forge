@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Router, Antenna, HardDrive, Monitor } from "lucide-react";
 import Seo from "@/components/Seo";
+import { breadcrumb, serviceSchema, webPage } from "@/lib/seo-schemas";
 
 const products = [
   { icon: Router, category: "Équipements réseau", items: ["Routeurs professionnels", "Switches managés", "Points d'accès Wi-Fi", "Câblage structuré"] },
@@ -9,12 +10,19 @@ const products = [
   { icon: HardDrive, category: "Stockage & Serveurs", items: ["Serveurs rack", "NAS entreprise", "Solutions de sauvegarde", "Disques SSD/HDD"] },
 ];
 
+
+const productsJsonLd = [
+  webPage("Produits & équipements IT", "/produits", "Routeurs, switches, antennes Starlink, serveurs, NAS et matériel informatique professionnel."),
+  breadcrumb("Produits", "/produits"),
+];
+
 const Products = () => (
   <div className="pt-24">
     <Seo
       title="Produits & Équipements IT | ALTIS SPHERE"
       description="Routeurs, switches, antennes Starlink, serveurs, NAS et matériel informatique professionnel sélectionnés par ALTIS SPHERE."
       path="/produits"
+      jsonLd={productsJsonLd}
     />
     <section className="py-24">
       <div className="container">
