@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         heading: ['"Times New Roman"', 'Times', 'serif'],
-        body: ['"Times New Roman"', 'Times', 'serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
