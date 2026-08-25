@@ -1,3 +1,4 @@
+import PageBackground from "@/components/PageBackground";
 import { motion } from "framer-motion";
 import { Router, Antenna, HardDrive, Monitor } from "lucide-react";
 import Seo from "@/components/Seo";
@@ -17,7 +18,8 @@ const productsJsonLd = [
 ];
 
 const Products = () => (
-  <div className="pt-24">
+  <div className="relative isolate pt-24">
+      <PageBackground />
     <Seo
       title="Produits & Équipements IT | ALTIS SPHERE"
       description="Routeurs, switches, antennes Starlink, serveurs, NAS et matériel informatique professionnel sélectionnés par ALTIS SPHERE."

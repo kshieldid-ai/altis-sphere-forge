@@ -1,3 +1,4 @@
+import PageBackground from "@/components/PageBackground";
 import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
 import blogCyber from "@/assets/blog-cybersecurity.jpg";
@@ -27,7 +28,8 @@ const blogJsonLd = {
 };
 
 const Blog = () => (
-  <div className="pt-24">
+  <div className="relative isolate pt-24">
+      <PageBackground />
     <Seo
       title="Blog IT & connectivité | ALTIS SPHERE GROUP"
       description="Actualités, conseils et tendances IT : cybersécurité, Starlink vs fibre, innovations technologiques — le blog d'ALTIS SPHERE GROUP."
