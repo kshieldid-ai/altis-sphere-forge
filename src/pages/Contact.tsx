@@ -79,7 +79,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="pt-24">
+    <div className="relative isolate pt-24">
+      <PageBackground />
       <Seo
         title="Contact | ALTIS SPHERE — Lubumbashi, RD Congo"
         description="Contactez ALTIS SPHERE à Lubumbashi : formulaire, téléphone +243 998 914 448, email contact@altissphere.com."

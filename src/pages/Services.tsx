@@ -28,7 +28,8 @@ const servicesJsonLd = [
 ];
 
 const ServicesPage = () => (
-  <div className="pt-24">
+  <div className="relative isolate pt-24">
+      <PageBackground />
     <Seo
       title="Services IT & Connectivité | ALTIS SPHERE"
       description="Fibre, Starlink, cybersécurité, développement web, équipements IT, support 24/7 et domotique — les services complets d'ALTIS SPHERE."

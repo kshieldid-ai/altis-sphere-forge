@@ -17,7 +17,8 @@ const solutionsJsonLd = [
 ];
 
 const Solutions = () => (
-  <div className="pt-24">
+  <div className="relative isolate pt-24">
+      <PageBackground />
     <Seo
       title="Solutions IT pour entreprises | ALTIS SPHERE"
       description="Réseaux d'entreprise, cloud & infrastructure, sécurité des systèmes — des solutions IT complètes pour la transformation numérique."

@@ -17,7 +17,8 @@ const aboutJsonLd = [
 ];
 
 const About = () => (
-  <div className="pt-24">
+  <div className="relative isolate pt-24">
+      <PageBackground />
     <Seo
       title="À propos d'ALTIS SPHERE | Mission, vision et expertise IT"
       description="Découvrez ALTIS SPHERE : notre mission, notre vision et notre expertise en services IT et connectivité internet en RD Congo."

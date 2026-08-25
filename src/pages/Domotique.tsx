@@ -138,7 +138,8 @@ const domotiqueJsonLd = [
 ];
 
 const DomotiquePage = () => (
-  <div className="pt-20">
+  <div className="relative isolate pt-20">
+      <PageBackground />
     <Seo
       title="Domotique & Maison Intelligente | ALTIS SPHERE"
       description="Tableau de bord domotique : éclairage, climat, sécurité, véhicules connectés. Pilotez votre maison intelligente avec ALTIS SPHERE."
