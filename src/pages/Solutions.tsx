@@ -35,7 +35,7 @@ const Solutions = () => (
           </div>
           <div className="editorial-panel">
             <p className="text-xs uppercase tracking-[0.3em] text-primary">Approche</p>
-            <p className="mt-3 text-lg leading-8 text-foreground/82">Une lecture plus premium, plus structurée et plus intentionnelle, sans retirer aucun élément du site.</p>
+            <p className="mt-3 text-lg leading-8 text-foreground/90">Une lecture plus premium, plus structurée et plus intentionnelle, sans retirer aucun élément du site.</p>
           </div>
         </motion.div>
 

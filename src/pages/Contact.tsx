@@ -97,7 +97,7 @@ const Contact = () => {
             </div>
             <div className="editorial-panel">
               <p className="text-xs uppercase tracking-[0.3em] text-primary">Échange direct</p>
-              <p className="mt-3 text-lg leading-8 text-foreground/82">Même formulaire, même contenu, avec une lecture plus premium et plus rassurante.</p>
+              <p className="mt-3 text-lg leading-8 text-foreground/90">Même formulaire, même contenu, avec une lecture plus premium et plus rassurante.</p>
             </div>
           </motion.div>
 
