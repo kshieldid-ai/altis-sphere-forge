@@ -59,7 +59,7 @@ const Hero = () => (
           <h1 className="mt-6 max-w-4xl text-5xl font-bold leading-[0.95] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
             Une présence digitale plus <span className="gradient-text">forte</span>, plus rapide, plus sûre.
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-foreground/78 sm:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-8 text-foreground/90 sm:text-lg">
             ALTIS SPHERE conçoit des expériences connectées, des infrastructures IT fiables et des solutions web premium pour entreprises et particuliers.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -199,7 +199,7 @@ const Testimonials = () => (
                 <Star key={j} size={16} className="fill-primary text-primary" />
               ))}
             </div>
-            <p className="mt-5 text-sm leading-7 text-foreground/82">“{t.text}”</p>
+            <p className="mt-5 text-sm leading-7 text-foreground/90">“{t.text}”</p>
             <div className="mt-8 border-t border-border/70 pt-5">
               <p className="text-sm font-semibold">{t.name}</p>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{t.role}</p>
@@ -225,7 +225,7 @@ const CTA = () => (
           <div className="max-w-2xl">
             <span className="section-kicker">Passons à l’action</span>
             <h2 className="section-title mt-4">Prêt à transformer votre infrastructure IT&nbsp;?</h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-foreground/78 sm:text-base">
+            <p className="mt-4 max-w-xl text-sm leading-7 text-foreground/90 sm:text-base">
               Contactez-nous pour un diagnostic gratuit, un cadrage précis et un devis personnalisé adapté à votre contexte.
             </p>
           </div>

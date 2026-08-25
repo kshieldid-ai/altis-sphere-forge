@@ -46,7 +46,7 @@ const ServicesPage = () => (
           </div>
           <div className="editorial-panel">
             <p className="text-xs uppercase tracking-[0.3em] text-primary">Signature</p>
-            <p className="mt-3 text-lg leading-8 text-foreground/82">Une mise en page plus affirmée, plus luxueuse et plus équilibrée, sans retirer le moindre service.</p>
+            <p className="mt-3 text-lg leading-8 text-foreground/90">Une mise en page plus affirmée, plus luxueuse et plus équilibrée, sans retirer le moindre service.</p>
           </div>
         </motion.div>
 

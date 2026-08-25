@@ -29,7 +29,7 @@ const About = () => (
           <div className="max-w-3xl">
             <span className="section-kicker">À propos</span>
             <h1 className="section-title mt-4">Qui est <span className="gradient-text">ALTIS SPHERE</span> ?</h1>
-            <p className="mt-6 text-base leading-8 text-foreground/78">
+            <p className="mt-6 text-base leading-8 text-foreground/90">
               ALTIS SPHERE est une entreprise spécialisée dans les services informatiques et les solutions de connectivité internet.
               Nous accompagnons les particuliers et les entreprises dans leur transformation numérique avec des solutions sur mesure,
               fiables et innovantes.
@@ -37,7 +37,7 @@ const About = () => (
           </div>
           <div className="editorial-panel">
             <p className="text-xs uppercase tracking-[0.3em] text-primary">Positionnement</p>
-            <p className="mt-3 text-lg leading-8 text-foreground/82">
+            <p className="mt-3 text-lg leading-8 text-foreground/90">
               Une présence technique crédible, portée par une esthétique exigeante et un accompagnement concret.
             </p>
           </div>
