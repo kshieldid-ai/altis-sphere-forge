@@ -1,3 +1,4 @@
+import PageBackground from "@/components/PageBackground";
 import { motion } from "framer-motion";
 import { Router, Antenna, HardDrive, Monitor } from "lucide-react";
 import Seo from "@/components/Seo";

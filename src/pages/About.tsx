@@ -1,3 +1,4 @@
+import PageBackground from "@/components/PageBackground";
 import { motion } from "framer-motion";
 import { Target, Eye, Lightbulb } from "lucide-react";
 import Seo from "@/components/Seo";

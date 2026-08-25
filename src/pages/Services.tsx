@@ -1,3 +1,4 @@
+import PageBackground from "@/components/PageBackground";
 import { motion } from "framer-motion";
 import { Wifi, Server, Shield, Code, Headphones, Monitor, House } from "lucide-react";
 import serviceInternet from "@/assets/service-internet.jpg";
