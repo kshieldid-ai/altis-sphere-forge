@@ -1,73 +1,26 @@
-# Welcome to your Lovable project
+# ALTIS SPHERE Digital Presence
 
-## Project info
+Voici un **prompt clair, structuré et professionnel** que tu peux utiliser dans une IA (comme ChatGPT, un générateur de site ou un outil de design) pour **créer le site web de l’entreprise ALTIS SPHERE**. --- ## Prompt structuré pour générer le site web **Prompt :** > Crée un site web professionnel, moderne et responsive pour une entreprise appelée **ALTIS SPHERE**. > > ALTIS SPHERE est une entreprise spécialisée dans les **services informatiques et les solutions de connectivité internet** pour particuliers et entreprises. L’entreprise offre notamment : > > **Services principaux :** > > * Fourniture et installation de connexion internet (ex : fibre, Starlink ou autres solutions). > * Services IT pour entreprises. > * Installation et maintenance de réseaux informatiques. > * Sécurité informatique et cybersécurité. > * Développement de sites web et applications. > * Support technique et maintenance informatique. > * Vente d’équipements informatiques (routeurs, antennes, serveurs, etc.). > > **Structure du site web :** > > 1. **Page d’accueil** > > * Présentation de ALTIS SPHERE > > * Mise en avant des services principaux > > * Section "Pourquoi nous choisir" > > * Témoignages clients > > * Call-to-action : Demander un devis / Nous contacter > > 2. **À propos** > > * Présentation de l’entreprise > > * Vision et mission > > * Expertise dans les technologies IT et internet > > 3. **Nos services** > > * Internet et connectivité > > * Solutions IT pour entreprises > > * Cybersécurité > > * Développement web et applications > > * Maintenance et support technique > > 4. **Produits** > > * Équipements réseau > > * Matériel informatique > > * Solutions de connectivité > > 5. **Solutions pour entreprises** > > * Réseaux d’entreprise > > * Cloud et infrastructure IT > > * Sécurité des systèmes > > 6. **Blog / Actualités** > > * Conseils IT > > * Innovations technologiques > > * Sécurité informatique > > 7. **Contact** > > * Formulaire de contact > * Email et téléphone > * Localisation > > **Fonctionnalités du site :** > > * Design moderne et professionnel > * Site responsive (mobile, tablette, desktop) > * Formulaire de demande de devis > * Chat support ou assistance > * Intégration réseaux sociaux > * Optimisation SEO > > **Style du design :** > > * Couleurs technologiques (bleu, noir, blanc) > * Interface moderne inspirée des entreprises IT > * Icônes et illustrations technologiques > * Navigation simple et claire > > Le site doit inspirer **confiance, expertise technologique et innovation**.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+This project was built with [Lovable](https://lovable.dev).
 
-## How can I edit this code?
+**Live app**: https://altis-sphere-forge.lovable.app
 
-There are several ways of editing your application.
+## Build with Lovable
 
-**Use Lovable**
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/2a3cdd40-a82e-4ff1-a5e7-20f1480f4fcf).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
-Changes made via Lovable will be committed automatically to this repo.
+## Development
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
