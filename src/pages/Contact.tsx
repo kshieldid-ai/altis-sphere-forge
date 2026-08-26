@@ -25,7 +25,7 @@ const contactSchema = z.object({
 const contactItems = [
   { icon: Mail, label: "Email", value: "contact@altissphere.com", href: "mailto:contact@altissphere.com" },
   { icon: Phone, label: "Téléphone", value: "+243 998 914 448 / +243 993 653 332", href: "tel:+243998914448" },
-  { icon: MapPin, label: "Adresse", value: "10, Avenue Biayi, Kalubwe, Lubumbashi, RD Congo" },
+  { icon: MapPin, label: "Adresse", value: "110, Av. Biayi, Kalubwe, Lubumbashi, RD Congo" },
 ];
 
 

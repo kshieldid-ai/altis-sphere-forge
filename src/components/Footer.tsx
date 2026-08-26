@@ -62,7 +62,7 @@ const Footer = () => (
               <Phone size={16} /> +243 993 653 332
             </a>
             <span className="flex items-start gap-3 leading-7">
-              <MapPin size={16} className="mt-1 flex-shrink-0" /> 10, Avenue Biayi, Kalubwe, Lubumbashi, RD Congo
+              <MapPin size={16} className="mt-1 flex-shrink-0" /> 110, Av. Biayi, Kalubwe, Lubumbashi, RD Congo
             </span>
           </div>
         </div>
