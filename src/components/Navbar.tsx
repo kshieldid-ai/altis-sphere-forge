@@ -24,7 +24,7 @@ const Navbar = () => {
       <nav aria-label="Navigation principale" className="container flex h-20 items-center justify-between gap-6">
         <Link to="/" aria-label="ALTIS SPHERE GROUP — accueil" className="flex items-center">
               <img
-                src="/logo.png"
+                src="/altis-logo.png"
                 alt="Logo ALTIS SPHERE GROUP"
                 width={160}
                 height={40}
