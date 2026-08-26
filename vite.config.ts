@@ -6,7 +6,8 @@ import { componentTagger } from "lovable-tagger";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   // GitHub Pages
-  base: "/altis-sphere-forge/",
+  base: "/",
+  //  base: "/altis-sphere-forge/",
 
   server: {
     host: "::",
