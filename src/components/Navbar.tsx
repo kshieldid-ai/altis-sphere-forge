@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
-//import altisLogo from "@/assets/altis-logo-2026.png.asset.json";
+import altisLogo from "@/assets/altis-logo-2026.png.asset.json";
+
 const navItems = [
   { label: "Accueil", path: "/" },
   { label: "À propos", path: "/a-propos" },
@@ -23,13 +24,7 @@ const Navbar = () => {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/78 backdrop-blur-2xl">
       <nav aria-label="Navigation principale" className="container flex h-20 items-center justify-between gap-6">
         <Link to="/" aria-label="ALTIS SPHERE GROUP — accueil" className="flex items-center">
-              <img
-                src="/altis-logo.png"
-                alt="Logo ALTIS SPHERE GROUP"
-                width={160}
-                height={40}
-                className="h-10 w-auto"
-                />
+          <img src={altisLogo.url} alt="Logo ALTIS SPHERE GROUP" width={160} height={40} className="h-10 w-auto" />
         </Link>
 
         <div className="hidden items-center gap-2 rounded-full border border-border/70 bg-card/60 px-3 py-2 lg:flex">
