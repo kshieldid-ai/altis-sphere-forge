@@ -61,7 +61,7 @@ const Footer = () => (
           <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Contact</h2>
           <div className="flex flex-col gap-3 text-sm text-muted-foreground">
             <a href="mailto:contact@altisphere-group.com" className="flex items-center gap-3 transition-colors hover:text-primary">
-              <Mail size={16} /> contact@altisphere-group.com
+              <Mail size={16} /> support@altisphere-group.com
             </a>
             <a href="tel:+243998914448" className="flex items-center gap-3 transition-colors hover:text-primary">
               <Phone size={16} /> +243 998 914 448
