@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
-import altisLogo from "@/assets/altis-logo-2026.png.asset.json";
+import altisLogo from "@/assets/altis-logo.png";
 
 const Footer = () => (
   <footer className="relative overflow-hidden border-t border-border/60 bg-card/65">
@@ -9,7 +9,15 @@ const Footer = () => (
       <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1.1fr]">
         <div className="space-y-5">
           <Link to="/" className="flex items-center gap-2">
-            <img src={altisLogo.url} alt="Logo ALTIS SPHERE GROUP" width={144} height={36} loading="lazy" decoding="async" className="h-9 w-auto" />
+            <img
+              src={altisLogo}
+              alt="Logo ALTIS SPHERE GROUP"
+              width={105}
+              height={36}
+              loading="lazy"
+              decoding="async"
+              className="h-9 w-auto"
+            />
           </Link>
           <p className="max-w-sm text-sm leading-7 text-muted-foreground">
             Solutions informatiques et connectivité internet pour particuliers et entreprises.
@@ -52,8 +60,8 @@ const Footer = () => (
         <div className="space-y-4">
           <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Contact</h2>
           <div className="flex flex-col gap-3 text-sm text-muted-foreground">
-            <a href="mailto:contact@altissphere.com" className="flex items-center gap-3 transition-colors hover:text-primary">
-              <Mail size={16} /> contact@altissphere.com
+            <a href="mailto:contact@altisphere-group.com" className="flex items-center gap-3 transition-colors hover:text-primary">
+              <Mail size={16} /> contact@altisphere-group.com
             </a>
             <a href="tel:+243998914448" className="flex items-center gap-3 transition-colors hover:text-primary">
               <Phone size={16} /> +243 998 914 448

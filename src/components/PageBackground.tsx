@@ -1,4 +1,4 @@
-import networkBg from "@/assets/network-bg.jpg.asset.json";
+import networkBg from "@/assets/hero-bg.jpg";
 
 /**
  * Décor de fond partagé aux pages internes.
@@ -8,7 +8,7 @@ import networkBg from "@/assets/network-bg.jpg.asset.json";
 const PageBackground = () => (
   <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
     <img
-      src={networkBg.url}
+      src={networkBg}
       alt=""
       loading="lazy"
       decoding="async"

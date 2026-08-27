@@ -1,7 +1,10 @@
 import { Helmet } from "react-helmet-async";
+import { SITE_URL } from "@/lib/site";
+import altisLogo from "@/assets/altis-logo.png";
 
-const SITE_URL = "https://altis-sphere-forge.lovable.app";
-const DEFAULT_IMAGE = `${SITE_URL}/__l5e/assets-v1/1aa74791-2c99-4c87-8748-188c99cd2981/altis-logo-2026.png`;
+// altisLogo est un chemin relatif genere par Vite ("/assets/altis-logo-<hash>.png").
+// Les crawlers Open Graph exigent une URL absolue.
+const DEFAULT_IMAGE = `${SITE_URL}${altisLogo}`;
 
 interface SeoProps {
   title: string;

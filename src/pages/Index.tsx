@@ -5,6 +5,7 @@ import QuoteRequestModal from "@/components/QuoteRequestModal";
 import { Wifi, Shield, Code, Server, Headphones, Monitor, ArrowRight, Star, Zap, Users, Award } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import Seo from "@/components/Seo";
+import { SITE_URL, ORG_ID } from "@/lib/site";
 
 const services = [
   { icon: Wifi, title: "Internet & Connectivité", desc: "Fibre, Starlink et solutions de connectivité sur mesure." },
@@ -242,10 +243,10 @@ const homeJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "ALTIS SPHERE GROUP — Services IT & connectivité internet",
-  url: "https://altis-sphere-forge.lovable.app/",
+  url: `${SITE_URL}/`,
   inLanguage: "fr",
-  about: { "@id": "https://altis-sphere-forge.lovable.app/#organization" },
-  publisher: { "@id": "https://altis-sphere-forge.lovable.app/#organization" },
+  about: { "@id": ORG_ID },
+  publisher: { "@id": ORG_ID },
 };
 
 const Index = () => (

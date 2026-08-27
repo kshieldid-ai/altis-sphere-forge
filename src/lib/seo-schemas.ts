@@ -1,7 +1,8 @@
-export const SITE_URL = "https://altis-sphere-forge.lovable.app";
-export const ORG_ID = `${SITE_URL}/#organization`;
+import { SITE_URL, ORG_ID, SITE_ID } from "@/lib/site";
 
-/** Fil d'Ariane structuré : Accueil > Page courante */
+export { SITE_URL, ORG_ID };
+
+/** Fil d'Ariane structure : Accueil > Page courante */
 export const breadcrumb = (name: string, path: string) => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -11,7 +12,7 @@ export const breadcrumb = (name: string, path: string) => ({
   ],
 });
 
-/** Schéma de page générique rattaché à l'organisation */
+/** Schema de page generique rattache a l'organisation */
 export const webPage = (name: string, path: string, description: string) => ({
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -19,12 +20,12 @@ export const webPage = (name: string, path: string, description: string) => ({
   description,
   url: `${SITE_URL}${path}`,
   inLanguage: "fr",
-  isPartOf: { "@id": `${SITE_URL}/#website` },
+  isPartOf: { "@id": SITE_ID },
   about: { "@id": ORG_ID },
   publisher: { "@id": ORG_ID },
 });
 
-/** Offre de service rattachée à l'organisation */
+/** Offre de service rattachee a l'organisation */
 export const serviceSchema = (name: string, description: string, path: string) => ({
   "@context": "https://schema.org",
   "@type": "Service",
@@ -33,5 +34,5 @@ export const serviceSchema = (name: string, description: string, path: string) =
   serviceType: name,
   url: `${SITE_URL}${path}`,
   provider: { "@id": ORG_ID },
-  areaServed: { "@type": "Country", name: "République démocratique du Congo" },
+  areaServed: { "@type": "Country", name: "Republique democratique du Congo" },
 });

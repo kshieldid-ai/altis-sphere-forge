@@ -12,6 +12,24 @@ dist
 dist-ssr
 *.local
 
+# NOTE : .env EST volontairement versionne.
+# L'appli est 100% statique (GitHub Pages) : Vite doit inliner
+# VITE_SUPABASE_* au moment du build. La cle anon est publique par
+# conception (elle est lisible dans le bundle) ; la securite repose
+# sur les policies RLS Supabase, pas sur le secret de cette cle.
+# NE PAS ajouter .env ici sans configurer les secrets GitHub Actions.
+
+# Artefacts Lovable (manifestes d'assets non versionnables)
+*.asset.json
+
+# Lockfiles alternatifs : le CI utilise npm ci
+bun.lock
+bun.lockb
+
+# Playwright / tests
+test-results
+playwright-report
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

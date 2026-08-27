@@ -5,6 +5,7 @@ import blogCyber from "@/assets/blog-cybersecurity.jpg";
 import blogStarlink from "@/assets/blog-starlink-fibre.jpg";
 import blogTendances from "@/assets/blog-tendances-it.jpg";
 import Seo from "@/components/Seo";
+import { SITE_URL, ORG_ID } from "@/lib/site";
 
 const posts = [
   { title: "Comment sécuriser votre réseau d'entreprise en 2026", category: "Cybersécurité", date: "10 mars 2026", excerpt: "Découvrez les meilleures pratiques pour protéger votre infrastructure contre les menaces actuelles.", image: blogCyber },
@@ -16,9 +17,9 @@ const blogJsonLd = {
   "@context": "https://schema.org",
   "@type": "Blog",
   name: "Blog ALTIS SPHERE GROUP",
-  url: "https://altis-sphere-forge.lovable.app/blog",
+  url: `${SITE_URL}/blog`,
   inLanguage: "fr",
-  publisher: { "@id": "https://altis-sphere-forge.lovable.app/#organization" },
+  publisher: { "@id": ORG_ID },
   blogPost: posts.map((post) => ({
     "@type": "BlogPosting",
     headline: post.title,

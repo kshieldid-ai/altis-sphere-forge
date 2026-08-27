@@ -32,8 +32,38 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # IMPORTANT : aucune variable VITE_* n'est injectee ici.
+      # Elles proviennent du fichier .env versionne.
+      # Ne PAS ajouter `env: VITE_SUPABASE_URL: ${{ secrets.X }}` :
+      # si le secret n'existe pas, GitHub rend une chaine VIDE qui
+      # ecrase la valeur du .env (process.env est prioritaire sur .env
+      # dans Vite) -> createClient("","") -> PAGE BLANCHE.
       - name: Build
         run: npm run build
+
+      - name: Verify build (fail fast)
+        run: |
+          test -f dist/index.html   || { echo "index.html manquant"; exit 1; }
+          test -f dist/CNAME        || { echo "CNAME manquant"; exit 1; }
+          test -f dist/og-image.png || { echo "og-image.png manquant"; exit 1; }
+          ls dist/assets/altis-logo-*.png >/dev/null \
+            || { echo "LOGO ABSENT DU BUNDLE"; exit 1; }
+          grep -rq "supabase.co" dist/assets/ \
+            || { echo "URL SUPABASE ABSENTE DU BUNDLE -> page blanche garantie"; exit 1; }
+          grep -rq "altisphere-group.com" dist/index.html \
+            || { echo "Domaine de production absent de index.html"; exit 1; }
+          ! grep -rq "__l5e" dist/ \
+            || { echo "URL Lovable (__l5e) residuelle dans dist/"; exit 1; }
+          ! grep -rq "altis-sphere-forge.lovable.app" dist/ \
+            || { echo "Domaine Lovable residuel dans dist/"; exit 1; }
+          ! grep -rq "altissphere.com" dist/ \
+            || { echo "Ancien email hors domaine dans dist/"; exit 1; }
+          echo "Build verifie."
+
+      - name: SPA fallback + disable Jekyll
+        run: |
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

@@ -23,7 +23,7 @@ const contactSchema = z.object({
 });
 
 const contactItems = [
-  { icon: Mail, label: "Email", value: "contact@altissphere.com", href: "mailto:contact@altissphere.com" },
+  { icon: Mail, label: "Email", value: "contact@altisphere-group.com", href: "mailto:contact@altisphere-group.com" },
   { icon: Phone, label: "Téléphone", value: "+243 998 914 448 / +243 993 653 332", href: "tel:+243998914448" },
   { icon: MapPin, label: "Adresse", value: "110, Av. Biayi, Kalubwe, Lubumbashi, RD Congo" },
 ];
@@ -83,7 +83,7 @@ const Contact = () => {
       <PageBackground />
       <Seo
         title="Contact | ALTIS SPHERE — Lubumbashi, RD Congo"
-        description="Contactez ALTIS SPHERE à Lubumbashi : formulaire, téléphone +243 998 914 448, email contact@altissphere.com."
+        description="Contactez ALTIS SPHERE à Lubumbashi : formulaire, téléphone +243 998 914 448, email contact@altisphere-group.com."
         path="/contact"
         jsonLd={contactJsonLd}
       />
