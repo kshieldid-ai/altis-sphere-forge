@@ -33,11 +33,12 @@ jobs:
         run: npm ci
 
       # IMPORTANT : aucune variable VITE_* n'est injectee ici.
-      # Elles proviennent du fichier .env versionne.
-      # Ne PAS ajouter `env: VITE_SUPABASE_URL: ${{ secrets.X }}` :
+      # Elles proviennent des fichiers .env versionnes
+      # (.env + .env.production, fusionnes par Vite en mode build).
+      # Ne PAS ajouter `env: VITE_API_URL: ${{ secrets.X }}` :
       # si le secret n'existe pas, GitHub rend une chaine VIDE qui
       # ecrase la valeur du .env (process.env est prioritaire sur .env
-      # dans Vite) -> createClient("","") -> PAGE BLANCHE.
+      # dans Vite) -> URL d'API vide -> formulaires casses.
       - name: Build
         run: npm run build
 
@@ -48,8 +49,14 @@ jobs:
           test -f dist/og-image.png || { echo "og-image.png manquant"; exit 1; }
           ls dist/assets/altis-logo-*.png >/dev/null \
             || { echo "LOGO ABSENT DU BUNDLE"; exit 1; }
-          grep -rq "supabase.co" dist/assets/ \
-            || { echo "URL SUPABASE ABSENTE DU BUNDLE -> page blanche garantie"; exit 1; }
+
+          # --- Backend Django : l'URL de prod doit etre inlinee ---
+          grep -rq "affagripel-lualaba.com/api/altis" dist/assets/ \
+            || { echo "URL API ABSENTE DU BUNDLE -> formulaires HS"; exit 1; }
+          ! grep -rq "localhost:8000" dist/assets/ \
+            || { echo "URL LOCALE DANS LE BUNDLE -> .env.production ignore"; exit 1; }
+
+          # --- Domaine et residus ---
           grep -rq "altisphere-group.com" dist/index.html \
             || { echo "Domaine de production absent de index.html"; exit 1; }
           ! grep -rq "__l5e" dist/ \
@@ -58,6 +65,9 @@ jobs:
             || { echo "Domaine Lovable residuel dans dist/"; exit 1; }
           ! grep -rq "altissphere.com" dist/ \
             || { echo "Ancien email hors domaine dans dist/"; exit 1; }
+          ! grep -rq "supabase.co" dist/assets/ \
+            || { echo "RESIDU SUPABASE dans le bundle"; exit 1; }
+
           echo "Build verifie."
 
       - name: SPA fallback + disable Jekyll
