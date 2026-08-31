@@ -252,7 +252,7 @@ const DomotiquePage = () => (
               </div>
             </div>
             {/* Glow behind card */}
-            <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-primary/20 to-accent/10 blur-2xl" />
+            <div className="absolute -inset-4 -z-10 rounded-none bg-gradient-to-br from-primary/20 to-accent/10 blur-2xl" />
           </motion.div>
         </div>
       </div>

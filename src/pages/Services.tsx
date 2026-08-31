@@ -61,7 +61,7 @@ const ServicesPage = () => (
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
               className={[
-                "overflow-hidden rounded-[1.75rem] border border-border/70 bg-card/78 transition-transform duration-300 hover:-translate-y-1",
+                "overflow-hidden rounded-none border border-border/70 bg-card/78 transition-transform duration-300 hover:-translate-y-1",
                 s.featured ? "md:col-span-2 xl:col-span-4" : "",
               ].join(" ")}
             >

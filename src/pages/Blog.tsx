@@ -55,7 +55,7 @@ const Blog = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="overflow-hidden rounded-[1.75rem] border border-border/70 bg-card/75 transition-transform duration-300 hover:-translate-y-1"
+              className="overflow-hidden rounded-none border border-border/70 bg-card/75 transition-transform duration-300 hover:-translate-y-1"
             >
               <img src={post.image} alt={post.title} className="h-56 w-full object-cover" loading="lazy" />
               <div className="p-6">

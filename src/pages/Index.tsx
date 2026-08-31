@@ -147,7 +147,7 @@ const Services = () => (
 const WhyUs = () => (
   <section className="py-24">
     <div className="container">
-      <div className="feature-grid rounded-[2rem] border border-border/70 bg-card/60 p-8 backdrop-blur-xl lg:p-10">
+      <div className="feature-grid rounded-none border border-border/70 bg-card/60 p-8 backdrop-blur-xl lg:p-10">
         <div className="max-w-xl">
           <span className="section-kicker">Pourquoi nous</span>
           <h2 className="section-title mt-4">Une direction technique solide, avec une exécution visible dès le premier regard.</h2>
@@ -193,7 +193,7 @@ const Testimonials = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="rounded-[1.75rem] border border-border/70 bg-card/75 p-7 backdrop-blur-xl"
+            className="rounded-none border border-border/70 bg-card/75 p-7 backdrop-blur-xl"
           >
             <div className="flex gap-1 text-primary">
               {[...Array(5)].map((_, j) => (
@@ -219,7 +219,7 @@ const CTA = () => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="relative overflow-hidden rounded-[2rem] border border-primary/20 bg-[linear-gradient(135deg,hsl(var(--primary)/0.18),hsl(var(--accent)/0.08),hsl(var(--card)/0.96))] p-10 md:p-14"
+        className="relative overflow-hidden rounded-none border border-primary/20 bg-[linear-gradient(135deg,hsl(var(--primary)/0.18),hsl(var(--accent)/0.08),hsl(var(--card)/0.96))] p-10 md:p-14"
       >
         <div className="absolute inset-0 grid-pattern opacity-15" />
         <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">

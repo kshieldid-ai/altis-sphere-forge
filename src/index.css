@@ -25,7 +25,7 @@
     --border: 214 28% 88%;
     --input: 214 28% 88%;
     --ring: 220 88% 42%;
-    --radius: 1rem;
+    --radius: 0rem;
     --glow-primary: 220 88% 42%;
     --glow-accent: 199 95% 62%;
     --surface-elevated: 210 45% 99%;
@@ -78,12 +78,12 @@
   }
 
   .service-shell {
-    @apply rounded-[1.75rem] border border-border/70 p-6 backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1 lg:p-7;
+    @apply rounded-none border border-border/70 p-6 backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1 lg:p-7;
     background-color: hsl(var(--card) / 0.78);
   }
 
   .editorial-panel {
-    @apply rounded-[1.75rem] border border-border/70 bg-card/70 p-6 backdrop-blur-xl lg:p-7;
+    @apply rounded-none border border-border/70 bg-card/70 p-6 backdrop-blur-xl lg:p-7;
     box-shadow: 0 24px 80px -48px hsl(var(--glow-primary) / 0.35);
   }
 

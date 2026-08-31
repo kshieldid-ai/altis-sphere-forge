@@ -192,7 +192,7 @@ const Contact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.08 }}
-                  className="rounded-[1.5rem] border border-border/70 bg-card/75 p-5"
+                  className="rounded-none border border-border/70 bg-card/75 p-5"
                 >
                   <div className="flex items-start gap-4">
                     <div className="icon-shell h-11 w-11 rounded-2xl">
@@ -218,7 +218,7 @@ const Contact = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-[1.75rem] border border-primary/25 bg-primary/5 p-7 backdrop-blur-xl lg:p-9"
+                className="rounded-none border border-primary/25 bg-primary/5 p-7 backdrop-blur-xl lg:p-9"
               >
                 <div className="text-center">
                   <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary/15 text-primary">
@@ -285,7 +285,7 @@ const Contact = () => {
                 transition={{ delay: 0.15 }}
                 onSubmit={handleSubmit}
                 noValidate
-                className="rounded-[1.75rem] border border-border/70 bg-card/82 p-7 backdrop-blur-xl lg:p-9"
+                className="rounded-none border border-border/70 bg-card/82 p-7 backdrop-blur-xl lg:p-9"
               >
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
