@@ -1,9 +1,10 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
+import HeroPingPongVideo from "@/components/HeroPingPongVideo";
 import { Wifi, Shield, Code, Server, Headphones, Monitor, ArrowRight, Star, Zap, Users, Award } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroVideo from "@/assets/dernier.mp4";
 import Seo from "@/components/Seo";
 import { SITE_URL, ORG_ID } from "@/lib/site";
 
@@ -29,75 +30,73 @@ const testimonials = [
   { name: "Sophie M.", role: "DSI, Groupe industriel", text: "Leur expertise en cybersécurité nous a permis de sécuriser l'ensemble de nos systèmes." },
 ];
 
-const Hero = () => (
-  <section className="relative isolate overflow-hidden pt-28 md:pt-32">
-    <div className="absolute inset-0">
-      <img
-        src={heroBg}
-        alt="Infrastructure réseau et connectivité déployée par ALTIS SPHERE GROUP"
-        width={1920}
-        height={1080}
-        fetchPriority="high"
-        decoding="async"
-        className="h-full w-full object-cover"
-      />
-      <div className="absolute inset-0 bg-background/65" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsl(var(--primary)/0.26),transparent_30%),radial-gradient(circle_at_80%_20%,hsl(var(--accent)/0.18),transparent_24%),linear-gradient(180deg,hsl(var(--background)/0.15),hsl(var(--background)))]" />
-      <div className="absolute inset-0 grid-pattern opacity-20" />
-    </div>
+const Hero = () => {
+  const reduceMotion = useReducedMotion();
 
-    <div className="container relative z-10 pb-20 pt-8 md:pb-28">
-      <div className="grid gap-10 xl:grid-cols-[minmax(0,1.35fr)_22rem] xl:items-end">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="max-w-4xl"
-        >
-          <span className="inline-flex rounded-full border border-primary/20 bg-card/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-primary backdrop-blur-xl">
-            Services IT & Connectivité Internet
-          </span>
-          <h1 className="mt-6 max-w-4xl text-5xl font-bold leading-[0.95] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
-            Une présence digitale plus <span className="gradient-text">forte</span>, plus rapide, plus sûre.
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-foreground/90 sm:text-lg">
-            ALTIS SPHERE conçoit des expériences connectées, des infrastructures IT fiables et des solutions web premium pour entreprises et particuliers.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <QuoteRequestModal triggerVariant="hero" triggerSize="lg" />
-            <Button variant="hero-outline" size="lg" asChild>
-              <Link to="/services">Explorer nos services</Link>
-            </Button>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 24 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.15, duration: 0.7 }}
-          className="editorial-panel space-y-5"
-        >
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-primary">Impact</p>
-            <p className="mt-3 text-3xl font-bold">Connectivité, sécurité et performance réunies.</p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
-            {[
-              ["24/7", "Support réactif"],
-              ["360°", "Couverture IT"],
-              ["Premium", "Exécution soignée"],
-            ].map(([value, label]) => (
-              <div key={label} className="rounded-2xl border border-border/70 bg-background/55 p-4">
-                <p className="text-2xl font-bold text-foreground">{value}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{label}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+  return (
+    <section className="relative isolate flex min-h-[32rem] flex-col overflow-hidden pt-28 md:min-h-[42rem] md:pt-32 lg:min-h-[100svh]">
+      <div className="absolute inset-0" aria-hidden="true">
+        <HeroPingPongVideo src={heroVideo} reduceMotion={!!reduceMotion} />
+        <div className="absolute inset-0 bg-background/28" />
+        <div className="absolute inset-0 bg-[linear-gradient(105deg,hsl(var(--background)/0.82)_0%,hsl(var(--background)/0.48)_44%,hsl(var(--background)/0.22)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsl(var(--primary)/0.22),transparent_32%),radial-gradient(circle_at_82%_18%,hsl(var(--accent)/0.16),transparent_26%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,hsl(var(--background)/0.22)_0%,transparent_28%,hsl(var(--background)/0.55)_84%,hsl(var(--background)))]" />
+        <div className="absolute inset-0 grid-pattern opacity-15" />
       </div>
-    </div>
-  </section>
-);
+
+      <div className="container relative z-10 flex flex-1 flex-col justify-center pb-20 pt-8 md:pb-28">
+        <div className="grid gap-10 xl:grid-cols-[minmax(0,1.35fr)_22rem] xl:items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="max-w-4xl"
+          >
+            <span className="inline-flex rounded-full border border-primary/20 bg-card/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-primary backdrop-blur-xl">
+              Services IT & Connectivité Internet
+            </span>
+            <h1 className="mt-6 max-w-4xl text-5xl font-bold leading-[0.95] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
+              Une présence digitale plus <span className="gradient-text">forte</span>, plus rapide, plus sûre.
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-foreground/90 sm:text-lg">
+              ALTIS SPHERE conçoit des expériences connectées, des infrastructures IT fiables et des solutions web premium pour entreprises et particuliers.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <QuoteRequestModal triggerVariant="hero" triggerSize="lg" />
+              <Button variant="hero-outline" size="lg" asChild>
+                <Link to="/services">Explorer nos services</Link>
+              </Button>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.15, duration: 0.7 }}
+            className="editorial-panel space-y-5"
+          >
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-primary">Impact</p>
+              <p className="mt-3 text-3xl font-bold">Connectivité, sécurité et performance réunies.</p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
+              {[
+                ["24/7", "Support réactif"],
+                ["360°", "Couverture IT"],
+                ["Premium", "Exécution soignée"],
+              ].map(([value, label]) => (
+                <div key={label} className="rounded-2xl border border-border/70 bg-background/55 p-4">
+                  <p className="text-2xl font-bold text-foreground">{value}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{label}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const Services = () => (
   <section className="py-24">

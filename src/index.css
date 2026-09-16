@@ -130,4 +130,14 @@
       linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
     background-size: 60px 60px;
   }
+
+  @keyframes hero-zoom-pingpong {
+    0%,
+    100% {
+      transform: scale(1.06);
+    }
+    50% {
+      transform: scale(1.24);
+    }
+  }
 }
