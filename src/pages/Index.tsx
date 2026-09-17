@@ -1,33 +1,21 @@
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
 import HeroPingPongVideo from "@/components/HeroPingPongVideo";
-import { Wifi, Shield, Code, Server, Headphones, Monitor, ArrowRight, Star, Zap, Users, Award } from "lucide-react";
+import ServiceExpandCard from "@/components/ServiceExpandCard";
+import { Star, Zap, Users, Award, ArrowUpRight } from "lucide-react";
 import heroVideo from "@/assets/dernier.mp4";
 import Seo from "@/components/Seo";
 import { SITE_URL, ORG_ID } from "@/lib/site";
-
-const services = [
-  { icon: Wifi, title: "Internet & Connectivité", desc: "Fibre, Starlink et solutions de connectivité sur mesure." },
-  { icon: Server, title: "Solutions IT", desc: "Infrastructure réseau, cloud et services managés." },
-  { icon: Shield, title: "Cybersécurité", desc: "Protection avancée de vos systèmes et données." },
-  { icon: Code, title: "Développement Web", desc: "Sites web et applications performantes." },
-  { icon: Headphones, title: "Support Technique", desc: "Maintenance et assistance informatique 24/7." },
-  { icon: Monitor, title: "Équipements IT", desc: "Routeurs, serveurs, antennes et matériel réseau." },
-];
+import { serviceOffers, clientTestimonials } from "@/data/services";
 
 const reasons = [
   { icon: Zap, title: "Rapidité", desc: "Déploiement rapide et support réactif." },
   { icon: Award, title: "Expertise", desc: "Équipe certifiée avec +10 ans d'expérience." },
   { icon: Users, title: "Proximité", desc: "Un interlocuteur dédié pour chaque client." },
   { icon: Star, title: "Qualité", desc: "Solutions premium et garantie de satisfaction." },
-];
-
-const testimonials = [
-  { name: "Marie D.", role: "Directrice, PME", text: "ALTIS SPHERE a transformé notre infrastructure réseau. Service impeccable et équipe réactive." },
-  { name: "Thomas L.", role: "Entrepreneur", text: "Installation Starlink ultra rapide. Enfin une connexion fiable pour notre zone rurale !" },
-  { name: "Sophie M.", role: "DSI, Groupe industriel", text: "Leur expertise en cybersécurité nous a permis de sécuriser l'ensemble de nos systèmes." },
 ];
 
 const Hero = () => {
@@ -98,7 +86,10 @@ const Hero = () => {
   );
 };
 
-const Services = () => (
+const Services = () => {
+  const [openService, setOpenService] = useState<string | null>(null);
+
+  return (
   <section className="py-24">
     <div className="container">
       <div className="mb-12 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
@@ -111,24 +102,20 @@ const Services = () => (
         </p>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {services.map((s, i) => (
+      <div className="grid items-start gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {serviceOffers.map((s, i) => (
           <motion.div
-            key={s.title}
+            key={s.id}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08 }}
-            className="service-shell group"
           >
-            <div className="flex items-start justify-between gap-4">
-              <div className="icon-shell">
-                <s.icon size={22} className="text-primary-foreground" />
-              </div>
-              <ArrowRight className="mt-1 text-primary transition-transform duration-300 group-hover:translate-x-1" size={18} />
-            </div>
-            <h2 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h2>
-            <p className="mt-4 text-sm leading-7 text-muted-foreground">{s.desc}</p>
+            <ServiceExpandCard
+              service={s}
+              open={openService === s.id}
+              onOpenChange={(next) => setOpenService(next ? s.id : null)}
+            />
           </motion.div>
         ))}
       </div>
@@ -141,7 +128,8 @@ const Services = () => (
       </nav>
     </div>
   </section>
-);
+  );
+};
 
 const WhyUs = () => (
   <section className="py-24">
@@ -185,7 +173,7 @@ const Testimonials = () => (
         <h2 className="section-title mt-4">Des retours clients qui confirment la promesse.</h2>
       </div>
       <div className="grid gap-5 lg:grid-cols-3">
-        {testimonials.map((t, i) => (
+        {clientTestimonials.map((t, i) => (
           <motion.article
             key={t.name}
             initial={{ opacity: 0, y: 20 }}
@@ -201,8 +189,16 @@ const Testimonials = () => (
             </div>
             <p className="mt-5 text-sm leading-7 text-foreground/90">“{t.text}”</p>
             <div className="mt-8 border-t border-border/70 pt-5">
-              <p className="text-sm font-semibold">{t.name}</p>
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{t.role}</p>
+              <a
+                href={t.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary"
+              >
+                {t.name}
+                <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+              <p className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">{t.role}</p>
             </div>
           </motion.article>
         ))}
