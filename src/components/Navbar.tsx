@@ -1,7 +1,8 @@
-import { useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence, useReducedMotion, useAnimation } from "framer-motion";
+import { useTheme } from "next-themes";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
 import altisLogo from "@/assets/altis-logo.png";
 
@@ -13,29 +14,114 @@ const navItems = [
   { label: "Solutions", path: "/solutions" },
   { label: "Domotique", path: "/domotique" },
   { label: "Blog", path: "/blog" },
+  { label: "Téléchargement", path: "/altis-download" },
   { label: "Contact", path: "/contact" },
 ];
+
+/** Bouton de bascule entre le thème clair et sombre. */
+const ThemeToggle = ({ className = "" }: { className?: string }) => {
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const current = mounted ? (theme === "system" ? resolvedTheme : theme) : "light";
+  const isDark = current === "dark";
+
+  return (
+    <button
+      type="button"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label={isDark ? "Passer au thème clair" : "Passer au thème sombre"}
+      title={isDark ? "Thème clair" : "Thème sombre"}
+      className={[
+        "inline-flex h-10 w-10 items-center justify-center rounded-full border border-foreground/[0.08] bg-foreground/[0.04] text-foreground/70 transition-all duration-300 hover:bg-foreground/[0.08] hover:text-foreground",
+        className,
+      ].join(" ")}
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        {isDark ? (
+          <motion.span
+            key="moon"
+            initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
+            animate={{ opacity: 1, rotate: 0, scale: 1 }}
+            exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
+            transition={{ duration: 0.25 }}
+          >
+            <Moon size={18} />
+          </motion.span>
+        ) : (
+          <motion.span
+            key="sun"
+            initial={{ opacity: 0, rotate: 90, scale: 0.5 }}
+            animate={{ opacity: 1, rotate: 0, scale: 1 }}
+            exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
+            transition={{ duration: 0.25 }}
+          >
+            <Sun size={18} />
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </button>
+  );
+};
+
+/**
+ * Enveloppe le logo et lui applique une animation de rotation à 360 degrés.
+ */
+const AnimatedLogo = () => {
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const startAnimation = async () => {
+      while (true) {
+        await controls.start({ rotateY: 360, transition: { duration: 2, ease: "easeInOut" } });
+        controls.set({ rotateY: 0 }); // Reset to 0 before repeating
+        
+        // First bounce
+        await controls.start({ y: -20, transition: { duration: 0.3, ease: "easeOut" } });
+        await controls.start({ y: 0, transition: { duration: 0.3, ease: "easeIn" } });
+        // Second bounce
+        await controls.start({ y: -10, transition: { duration: 0.2, ease: "easeOut" } });
+        await controls.start({ y: 0, transition: { duration: 0.2, ease: "easeIn" } });
+
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Pause for 1 second after last bounce
+      }
+    };
+    startAnimation();
+  }, [controls]);
+
+  return (
+    <motion.div
+      animate={controls}
+      className="relative flex items-center"
+    >
+      <img
+        src={altisLogo}
+        alt="Logo ALTIS SPHERE GROUP"
+        width={117}
+        height={40}
+        fetchpriority="high"
+        decoding="async"
+        className="relative z-10 h-10 w-auto"
+      />
+      <div className="absolute bottom-[-5px] left-1/2 -translate-x-1/2 h-2 w-20 rounded-full bg-black/30 blur-sm z-0" />
+    </motion.div>
+  );
+};
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/78 backdrop-blur-2xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-foreground/[0.06] bg-background/60 backdrop-blur-2xl">
       <nav aria-label="Navigation principale" className="container flex h-20 items-center justify-between gap-6">
         <Link to="/" aria-label="ALTIS SPHERE GROUP — accueil" className="flex items-center">
-          <img
-            src={altisLogo}
-            alt="Logo ALTIS SPHERE GROUP"
-            width={117}
-            height={40}
-            fetchPriority="high"
-            decoding="async"
-            className="h-10 w-auto"
-          />
+          <AnimatedLogo />
         </Link>
 
-        <div className="hidden items-center gap-2 rounded-full border border-border/70 bg-card/60 px-3 py-2 lg:flex">
+        <div className="hidden items-center gap-2 rounded-full border border-foreground/[0.08] bg-foreground/[0.04] px-3 py-2 lg:flex">
           {navItems.map((item) => {
             const active = location.pathname === item.path;
             return (
@@ -45,7 +131,7 @@ const Navbar = () => {
                 aria-current={active ? "page" : undefined}
                 className={[
                   "rounded-full px-4 py-2 text-sm transition-all duration-300",
-                  active ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" : "text-muted-foreground hover:bg-background/70 hover:text-foreground",
+                  active ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30" : "text-foreground/50 hover:bg-foreground/[0.06] hover:text-foreground/80",
                 ].join(" ")}
               >
                 {item.label}
@@ -54,19 +140,23 @@ const Navbar = () => {
           })}
         </div>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-3 lg:flex">
+          <ThemeToggle />
           <QuoteRequestModal triggerVariant="hero" triggerSize="sm" />
         </div>
 
-        <button
-          className="rounded-full border border-border/70 bg-card/60 p-2.5 lg:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-          aria-expanded={open}
-          aria-controls="menu-mobile"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            className="rounded-full border border-foreground/[0.08] bg-foreground/[0.04] p-2.5"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={open}
+            aria-controls="menu-mobile"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -76,7 +166,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="border-t border-border/60 bg-background/95 backdrop-blur-2xl lg:hidden"
+            className="border-t border-foreground/[0.06] bg-background/95 backdrop-blur-2xl lg:hidden"
           >
             <nav aria-label="Navigation mobile" className="container flex flex-col gap-2 py-5">
               {navItems.map((item) => {
@@ -89,7 +179,7 @@ const Navbar = () => {
                     aria-current={active ? "page" : undefined}
                     className={[
                       "rounded-2xl px-4 py-3 text-sm transition-colors",
-                      active ? "bg-primary text-primary-foreground" : "bg-card/65 text-muted-foreground hover:text-foreground",
+                      active ? "bg-primary text-primary-foreground" : "bg-foreground/[0.04] text-foreground/50 hover:text-foreground/80",
                     ].join(" ")}
                   >
                     {item.label}

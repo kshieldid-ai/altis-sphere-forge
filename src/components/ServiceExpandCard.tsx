@@ -29,7 +29,7 @@ const ServiceExpandCard = ({ service, open, onOpenChange }: Props) => {
             <button
               type="button"
               aria-label={open ? `Masquer le détail de ${service.title}` : `Voir le détail de ${service.title}`}
-              className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-primary/20 bg-background/70 text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+              className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/[0.08] bg-foreground/[0.04] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
             >
               <ChevronDown
                 size={18}
@@ -43,29 +43,32 @@ const ServiceExpandCard = ({ service, open, onOpenChange }: Props) => {
         <p className="mt-4 text-sm leading-7 text-muted-foreground">{service.desc}</p>
 
         <CollapsibleContent className="overflow-hidden">
-          <div className="mt-6 border-t border-border/70 pt-6">
+          <div className="mt-6 border-t border-foreground/[0.08] pt-6">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">{service.subtitle}</p>
 
             <div className={cn("mt-4 grid gap-2", service.images.length > 1 ? "grid-cols-2" : "grid-cols-1")}>
-              {service.images.map((image, index) => (
-                <figure
-                  key={image.src}
-                  className={cn(
-                    "overflow-hidden border border-border/70 bg-background/40",
-                    service.images.length === 3 && index === 0 && "col-span-2",
-                  )}
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    loading="lazy"
+              {service.images.map((image, index) => {
+                const isHero = service.images.length === 3 && index === 0;
+                return (
+                  <figure
+                    key={image.src}
                     className={cn(
-                      "h-28 w-full object-cover sm:h-32",
-                      service.images.length === 3 && index === 0 && "h-36 sm:h-40",
+                      "overflow-hidden border border-foreground/[0.08] bg-foreground/[0.03]",
+                      isHero && "col-span-2",
                     )}
-                  />
-                </figure>
-              ))}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      loading="lazy"
+                      className={cn(
+                        "h-28 w-full object-cover sm:h-32",
+                        isHero && "h-40 sm:h-48",
+                      )}
+                    />
+                  </figure>
+                );
+              })}
             </div>
 
             <ul className="mt-5 space-y-2.5">

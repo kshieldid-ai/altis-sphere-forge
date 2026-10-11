@@ -1,44 +1,80 @@
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 62% 10%;
+    /* Thème clair (défaut) */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 222 62% 10%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 62% 10%;
-    --primary: 220 88% 42%;
-    --primary-foreground: 210 40% 99%;
-    --secondary: 213 40% 94%;
-    --secondary-foreground: 222 58% 14%;
-    --muted: 213 32% 93%;
-    --muted-foreground: 218 22% 28%;
-    --accent: 205 92% 55%;
-    --accent-foreground: 222 62% 10%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 200 18% 46%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 200 40% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 88%;
+    --input: 214 32% 88%;
+    --ring: 200 18% 46%;
+    --radius: 0rem;
+    --glow-primary: 200 18% 46%;
+    --glow-accent: 200 50% 60%;
+    --surface-elevated: 210 40% 98%;
+    --gradient-start: 200 18% 46%;
+    --gradient-end: 229 100% 13%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 200 18% 46%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 88%;
+    --sidebar-ring: 200 18% 46%;
+  }
+
+  .dark {
+    /* Thème sombre */
+    --background: 229 80% 6%;
+    --foreground: 220 20% 95%;
+    --card: 229 40% 10%;
+    --card-foreground: 220 20% 95%;
+    --popover: 229 40% 10%;
+    --popover-foreground: 220 20% 95%;
+    --primary: 200 18% 46%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 229 30% 15%;
+    --secondary-foreground: 220 20% 90%;
+    --muted: 229 25% 16%;
+    --muted-foreground: 220 15% 55%;
+    --accent: 200 40% 55%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 78% 52%;
     --destructive-foreground: 0 0% 100%;
-    --border: 214 28% 88%;
-    --input: 214 28% 88%;
-    --ring: 220 88% 42%;
+    --border: 229 20% 18%;
+    --input: 229 20% 20%;
+    --ring: 200 18% 46%;
     --radius: 0rem;
-    --glow-primary: 220 88% 42%;
-    --glow-accent: 199 95% 62%;
-    --surface-elevated: 210 45% 99%;
-    --gradient-start: 224 84% 36%;
-    --gradient-end: 199 95% 60%;
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 222 58% 14%;
-    --sidebar-primary: 220 88% 42%;
-    --sidebar-primary-foreground: 210 40% 99%;
-    --sidebar-accent: 213 40% 94%;
-    --sidebar-accent-foreground: 222 58% 14%;
-    --sidebar-border: 214 28% 88%;
-    --sidebar-ring: 220 88% 42%;
+    --glow-primary: 200 18% 46%;
+    --glow-accent: 200 50% 60%;
+    --surface-elevated: 229 35% 9%;
+    --gradient-start: 200 18% 46%;
+    --gradient-end: 229 100% 13%;
+    --sidebar-background: 229 80% 6%;
+    --sidebar-foreground: 220 20% 95%;
+    --sidebar-primary: 200 18% 46%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 229 30% 15%;
+    --sidebar-accent-foreground: 220 20% 90%;
+    --sidebar-border: 229 20% 18%;
+    --sidebar-ring: 200 18% 46%;
   }
 
   * {
@@ -64,7 +100,7 @@
 
 @layer components {
   .section-kicker {
-    @apply inline-flex rounded-full border border-primary/20 bg-card/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-primary backdrop-blur-xl;
+    @apply inline-flex rounded-full border border-foreground/[0.12] bg-foreground/[0.04] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-primary backdrop-blur-xl;
   }
 
   .section-title {
@@ -78,13 +114,12 @@
   }
 
   .service-shell {
-    @apply rounded-none border border-border/70 p-6 backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1 lg:p-7;
-    background-color: hsl(var(--card) / 0.78);
+    @apply rounded-none border border-foreground/[0.08] bg-foreground/[0.03] p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-foreground/[0.16] hover:shadow-[0_0_25px_-5px_hsl(var(--glow-primary)/0.35)] lg:p-7;
   }
 
   .editorial-panel {
-    @apply rounded-none border border-border/70 bg-card/70 p-6 backdrop-blur-xl lg:p-7;
-    box-shadow: 0 24px 80px -48px hsl(var(--glow-primary) / 0.35);
+    @apply rounded-none border border-foreground/[0.08] bg-foreground/[0.03] p-6 backdrop-blur-xl lg:p-7;
+    box-shadow: 0 24px 80px -24px hsl(var(--glow-primary) / 0.4);
   }
 
   .feature-grid {
@@ -103,7 +138,7 @@
 @layer utilities {
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+    background-image: linear-gradient(135deg, hsl(200 45% 55%), hsl(200 60% 45%), hsl(229 70% 50%));
   }
 
   .gradient-bg {
@@ -119,16 +154,38 @@
   }
 
   .glass {
-    @apply backdrop-blur-xl;
-    background: hsl(var(--card) / 0.6);
-    border: 1px solid hsl(var(--border) / 0.5);
+    @apply backdrop-blur-xl border border-foreground/[0.08] bg-foreground/[0.03];
   }
 
   .grid-pattern {
     background-image:
-      linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
+      linear-gradient(hsl(var(--border) / 0.25) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.25) 1px, transparent 1px);
     background-size: 60px 60px;
+  }
+
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      110deg,
+      transparent 25%,
+      hsl(var(--primary) / 0.10) 37%,
+      transparent 63%
+    );
+    background-size: 200% 100%;
+    animation: shimmer-slide 3s ease-in-out infinite;
   }
 
   @keyframes hero-zoom-pingpong {
@@ -139,5 +196,16 @@
     50% {
       transform: scale(1.24);
     }
+  }
+
+  @keyframes shimmer-slide {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  @keyframes float-subtle {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-4px) rotate(0.5deg); }
+    66% { transform: translateY(2px) rotate(-0.3deg); }
   }
 }

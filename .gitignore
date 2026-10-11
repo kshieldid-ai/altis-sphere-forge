@@ -14,9 +14,9 @@ dist-ssr
 
 # NOTE : .env EST volontairement versionne.
 # L'appli est 100% statique (GitHub Pages) : Vite doit inliner
-# VITE_SUPABASE_* au moment du build. La cle anon est publique par
-# conception (elle est lisible dans le bundle) ; la securite repose
-# sur les policies RLS Supabase, pas sur le secret de cette cle.
+# les variables VITE_* au moment du build. Les variables exposees
+# au client sont publiques par conception (elles sont lisibles dans
+# le bundle). Aucune cle secrete (backend) ne doit etre placee ici.
 # NE PAS ajouter .env ici sans configurer les secrets GitHub Actions.
 
 # Artefacts Lovable (manifestes d'assets non versionnables)

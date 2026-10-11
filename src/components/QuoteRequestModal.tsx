@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { CheckCircle2, Clock, Mail, MessageCircle } from "lucide-react";
 import { z } from "zod";
 import { altisApi, ApiError, type DevisResponse } from "@/services/altisApi";
@@ -197,9 +197,9 @@ const QuoteRequestModal = ({
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto border-border bg-card p-0 shadow-2xl">
+      <DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto border border-foreground/[0.08] bg-background/95 backdrop-blur-2xl p-0 shadow-2xl">
         <div className="grid-pattern absolute inset-0 opacity-10" />
-        <div className="relative rounded-xl border border-border/60 bg-card/95 p-6 sm:p-8">
+        <div className="relative rounded-xl border border-foreground/[0.08] bg-foreground/[0.02] p-6 sm:p-8">
           <DialogHeader className="mb-6 space-y-3 text-left">
             <div>
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary">Devis</p>
@@ -232,7 +232,7 @@ const QuoteRequestModal = ({
                 </p>
 
                 <div className="mx-auto mt-6 grid max-w-md gap-3 text-left">
-                  <div className="flex items-center gap-3 rounded-xl border border-border bg-background/70 px-4 py-3">
+                  <div className="flex items-center gap-3 rounded-xl border border-foreground/[0.08] bg-foreground/[0.03] px-4 py-3">
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       <span className="text-sm font-bold">#</span>
                     </span>
@@ -246,7 +246,7 @@ const QuoteRequestModal = ({
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 rounded-xl border border-border bg-background/70 px-4 py-3">
+                  <div className="flex items-center gap-3 rounded-xl border border-foreground/[0.08] bg-foreground/[0.03] px-4 py-3">
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       <Mail size={16} />
                     </span>
@@ -258,7 +258,7 @@ const QuoteRequestModal = ({
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 rounded-xl border border-border bg-background/70 px-4 py-3">
+                  <div className="flex items-center gap-3 rounded-xl border border-foreground/[0.08] bg-foreground/[0.03] px-4 py-3">
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       <Clock size={16} />
                     </span>
@@ -285,7 +285,7 @@ const QuoteRequestModal = ({
                 </Button>
               </div>
 
-              <div className="rounded-2xl border border-border bg-background/70 p-5">
+              <div className="rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] p-5">
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   Besoin d'une réponse immédiate ? Écrivez-nous directement sur WhatsApp.
                 </p>
@@ -300,7 +300,7 @@ const QuoteRequestModal = ({
             /* ══════════ FORMULAIRE ══════════ */
             <div className="grid gap-8 lg:grid-cols-[1.35fr_0.85fr]">
               <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                <div className="space-y-4 rounded-2xl border border-border bg-background/70 p-5">
+                <div className="space-y-4 rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] p-5">
                   <div>
                     <h3 className="text-lg font-semibold">Informations client</h3>
                     <p className="text-sm text-muted-foreground">Renseignez vos coordonnées pour être recontacté.</p>
@@ -351,7 +351,7 @@ const QuoteRequestModal = ({
                   </div>
                 </div>
 
-                <div className="space-y-4 rounded-2xl border border-border bg-background/70 p-5">
+                <div className="space-y-4 rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] p-5">
                   <div>
                     <h3 className="text-lg font-semibold">Informations sur la demande</h3>
                     <p className="text-sm text-muted-foreground">Décrivez le service souhaité et le contexte de votre projet.</p>
@@ -420,7 +420,7 @@ const QuoteRequestModal = ({
                 </div>
 
                 {/* Honeypot (caché) + CAPTCHA arithmétique */}
-                <div className="space-y-4 rounded-2xl border border-border bg-background/70 p-5">
+                <div className="space-y-4 rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] p-5">
                   <AntiBotFields {...antiBot} />
                 </div>
 
@@ -429,7 +429,7 @@ const QuoteRequestModal = ({
                 </Button>
               </form>
 
-              <aside className="flex h-full flex-col justify-between rounded-2xl border border-border bg-background/70 p-5">
+              <aside className="flex h-full flex-col justify-between rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] p-5">
                 <div className="space-y-4">
                   <div>
                     <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary">Contact rapide</p>

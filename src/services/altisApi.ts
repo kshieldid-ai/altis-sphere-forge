@@ -11,7 +11,7 @@ const FALLBACK_URL = "https://affagripel-lualaba.com/api/altis";
 
 const BASE_URL = (import.meta.env.VITE_API_URL as string | undefined) || FALLBACK_URL;
 
-if (!import.meta.env.VITE_API_URL) {
+if (import.meta.env.DEV && !import.meta.env.VITE_API_URL) {
   console.warn(
     `[altisApi] VITE_API_URL absente — repli sur ${FALLBACK_URL}. ` +
       "Vérifier .env.development / .env.production.",

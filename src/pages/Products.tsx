@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Router, Antenna, HardDrive, Monitor } from "lucide-react";
 import Seo from "@/components/Seo";
 import { breadcrumb, webPage } from "@/lib/seo-schemas";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const products = [
   { icon: Router, category: "Équipements réseau", items: ["Routeurs professionnels", "Switches managés", "Points d'accès Wi-Fi", "Câblage structuré"] },
@@ -27,12 +28,13 @@ const Products = () => (
       jsonLd={productsJsonLd}
     />
     <section className="py-24">
-      <div className="container">
+      <ScrollReveal>
+        <div className="container">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 max-w-3xl">
           <span className="section-kicker">Produits</span>
           <h1 className="section-title mt-4">Des équipements sélectionnés pour des infrastructures exigeantes.</h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-muted-foreground">
-            Équipements de qualité professionnelle pour vos infrastructures IT, avec une présentation plus premium et structurée.
+            Équipements de qualité professionnelle pour vos infrastructures IT, sélectionnés pour leur fiabilité et leur performance.
           </p>
         </motion.div>
 
@@ -61,7 +63,8 @@ const Products = () => (
             </motion.div>
           ))}
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
   </div>
 );

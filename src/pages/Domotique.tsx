@@ -1,4 +1,4 @@
-import PageBackground from "@/components/PageBackground";
+﻿import PageBackground from "@/components/PageBackground";
 import { motion } from "framer-motion";
 import {
   Home,
@@ -23,16 +23,18 @@ import {
   Plug,
   Clock,
   Eye,
-  ExternalLink,
+  ChevronDown,
   Gauge,
   Activity,
   Signal,
+  ArrowRight,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
 import Seo from "@/components/Seo";
 import { breadcrumb, serviceSchema } from "@/lib/seo-schemas";
+import ScrollReveal from "@/components/ScrollReveal";
 
 /* ── Smart Home features ── */
 const smartHomeFeatures = [
@@ -147,7 +149,7 @@ const DomotiquePage = () => (
       jsonLd={domotiqueJsonLd}
     />
     {/* ═══ HERO ═══ */}
-    <section className="relative overflow-hidden border-b border-border/50">
+    <section className="relative overflow-hidden border-b border-foreground/[0.06]">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-background to-accent/10" />
         <div className="grid-pattern absolute inset-0 opacity-15" />
@@ -175,16 +177,14 @@ const DomotiquePage = () => (
               véhicules connectés — en temps réel, depuis n'importe où dans le monde.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href="https://app.monsite.com/dashboard"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl gradient-bg px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg transition-transform hover:scale-[1.03]"
-              >
-                Lancer l'application
-                <ExternalLink size={16} />
-              </a>
               <QuoteRequestModal triggerVariant="hero" triggerSize="lg" />
+              <a
+                href="#features"
+                className="inline-flex items-center gap-2 rounded-xl border border-foreground/15 bg-foreground/5 px-7 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition-colors hover:bg-foreground/10"
+              >
+                Découvrir les fonctionnalités
+                <ChevronDown size={16} />
+              </a>
             </div>
           </motion.div>
 
@@ -195,7 +195,7 @@ const DomotiquePage = () => (
             transition={{ duration: 0.7, delay: 0.2 }}
             className="relative"
           >
-            <div className="rounded-3xl border border-border/70 bg-card/80 p-6 backdrop-blur-2xl shadow-2xl">
+            <div className="rounded-3xl border border-foreground/[0.08] bg-foreground/[0.04] p-6 backdrop-blur-2xl shadow-2xl">
               {/* Mini header */}
               <div className="mb-5 flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -221,7 +221,7 @@ const DomotiquePage = () => (
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="rounded-xl border border-border/60 bg-secondary/50 p-3 text-center"
+                    className="rounded-xl border border-foreground/[0.08] bg-foreground/[0.03] p-3 text-center"
                   >
                     <stat.icon size={16} className="mx-auto mb-1 text-primary" />
                     <p className="text-lg font-bold">{stat.value}</p>
@@ -238,7 +238,7 @@ const DomotiquePage = () => (
                 ].map((d) => (
                   <div
                     key={d.name}
-                    className="flex items-center justify-between rounded-xl border border-border/40 bg-muted/30 px-4 py-2.5"
+                    className="flex items-center justify-between rounded-xl border border-foreground/[0.06] bg-foreground/[0.02] px-4 py-2.5"
                   >
                     <div className="flex items-center gap-3">
                       <d.icon size={16} className="text-muted-foreground" />
@@ -260,7 +260,8 @@ const DomotiquePage = () => (
 
     {/* ═══ SMART HOME DASHBOARD ═══ */}
     <section className="py-24">
-      <div className="container">
+      <ScrollReveal>
+        <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -290,7 +291,7 @@ const DomotiquePage = () => (
               viewport={{ once: true }}
               variants={fadeUp}
             >
-              <Card className="group h-full border-border/60 bg-card/70 backdrop-blur-xl transition-all duration-300 hover:border-primary/40 hover:-translate-y-1">
+              <Card className="group h-full border-foreground/[0.08] bg-foreground/[0.04] backdrop-blur-xl transition-all duration-300 hover:border-foreground/[0.16] hover:-translate-y-1">
                 <CardContent className="p-6">
                   <div className="mb-4 flex items-center justify-between">
                     <div className="icon-shell">
@@ -309,12 +310,14 @@ const DomotiquePage = () => (
             </motion.div>
           ))}
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
 
     {/* ═══ SCENARIOS ═══ */}
-    <section className="border-y border-border/50 bg-secondary/20 py-24">
-      <div className="container">
+    <section className="border-y border-foreground/[0.06] bg-foreground/[0.02] py-24">
+      <ScrollReveal>
+        <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -342,7 +345,7 @@ const DomotiquePage = () => (
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="group cursor-pointer rounded-2xl border border-border/60 bg-card/60 p-6 text-center backdrop-blur-xl transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10"
+              className="group cursor-pointer rounded-2xl border border-foreground/[0.08] bg-foreground/[0.04] p-6 text-center backdrop-blur-xl transition-all duration-300 hover:border-foreground/[0.16] hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10"
             >
               <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 transition-colors group-hover:bg-primary/20">
                 <s.icon size={26} className="text-primary" />
@@ -352,12 +355,14 @@ const DomotiquePage = () => (
             </motion.div>
           ))}
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
 
     {/* ═══ CONNECTED VEHICLE ═══ */}
     <section className="py-24">
-      <div className="container">
+      <ScrollReveal>
+        <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -387,7 +392,7 @@ const DomotiquePage = () => (
               viewport={{ once: true }}
               variants={fadeUp}
             >
-              <Card className="group h-full border-border/60 bg-card/70 backdrop-blur-xl transition-all duration-300 hover:border-accent/40 hover:-translate-y-1">
+              <Card className="group h-full border-foreground/[0.08] bg-foreground/[0.04] backdrop-blur-xl transition-all duration-300 hover:border-foreground/[0.16] hover:-translate-y-1">
                 <CardContent className="p-6">
                   <div className="mb-4 icon-shell">
                     <f.icon size={20} className="text-primary-foreground" />
@@ -401,14 +406,16 @@ const DomotiquePage = () => (
             </motion.div>
           ))}
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
 
     {/* ═══ CTA — Lancer l'application ═══ */}
-    <section className="relative overflow-hidden border-t border-border/50 py-24">
+    <section className="relative overflow-hidden border-t border-foreground/[0.06] py-24">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/8" />
       <div className="grid-pattern absolute inset-0 opacity-10" />
-      <div className="container relative">
+      <ScrollReveal>
+        <div className="container relative">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -426,28 +433,28 @@ const DomotiquePage = () => (
             vos équipements et vos véhicules connectés — en un seul endroit.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="https://app.monsite.com/dashboard"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl gradient-bg px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:scale-[1.03]"
-            >
-              Lancer l'application de contrôle
-              <ExternalLink size={18} />
-            </a>
             <QuoteRequestModal triggerVariant="hero" triggerSize="lg" />
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-xl border border-foreground/15 bg-foreground/5 px-8 py-4 text-base font-semibold text-foreground backdrop-blur transition-colors hover:bg-foreground/10"
+            >
+              Contacter un conseiller
+              <ArrowRight size={18} />
+            </a>
           </div>
           <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
             <ShieldCheck size={14} className="text-primary" />
             Connexion sécurisée — Vos données sont protégées
           </div>
         </motion.div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
 
     {/* ═══ Avantages ═══ */}
-    <section className="border-t border-border/50 bg-card/40 py-24">
-      <div className="container">
+    <section className="border-t border-foreground/[0.06] bg-foreground/[0.02] py-24">
+      <ScrollReveal>
+        <div className="container">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <motion.div
             initial={{ opacity: 0, x: -24 }}
@@ -516,7 +523,8 @@ const DomotiquePage = () => (
             </div>
           </motion.div>
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
   </div>
 );

@@ -13,9 +13,14 @@ const ServicesPage = lazy(() => import("./pages/Services"));
 const Products = lazy(() => import("./pages/Products"));
 const Solutions = lazy(() => import("./pages/Solutions"));
 const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const DomotiquePage = lazy(() => import("./pages/Domotique"));
+const MentionsLegales = lazy(() => import("./pages/MentionsLegales"));
+const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite"));
+const CGV = lazy(() => import("./pages/CGV"));
+const AltisDownload = lazy(() => import("./pages/AltisDownload"));
 
 const queryClient = new QueryClient();
 
@@ -48,8 +53,13 @@ const App = () => (
                 <Route path="/produits" element={<Products />} />
                 <Route path="/solutions" element={<Solutions />} />
                 <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/domotique" element={<DomotiquePage />} />
+                <Route path="/mentions-legales" element={<MentionsLegales />} />
+                <Route path="/politique-de-confidentialite" element={<PolitiqueConfidentialite />} />
+                <Route path="/cgv" element={<CGV />} />
+                <Route path="/altis-download" element={<AltisDownload />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import { useEffect } from "react";
 import Seo from "@/components/Seo";
 import { Button } from "@/components/ui/button";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const helpfulLinks = [
   { label: "Nos services IT et connectivité", path: "/services" },
@@ -13,10 +13,6 @@ const helpfulLinks = [
 const NotFound = () => {
   const location = useLocation();
 
-  useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
-
   return (
     <>
       <Seo
@@ -26,7 +22,8 @@ const NotFound = () => {
         noindex
       />
       <section className="flex min-h-screen items-center justify-center py-32">
-        <div className="container max-w-2xl text-center">
+        <ScrollReveal>
+          <div className="container max-w-2xl text-center">
           <span className="section-kicker">Erreur 404</span>
           <h1 className="section-title mt-4">Cette page n'existe pas.</h1>
           <p className="mt-5 text-base leading-8 text-muted-foreground">
@@ -50,7 +47,8 @@ const NotFound = () => {
               <Link to="/">Revenir à l'accueil</Link>
             </Button>
           </div>
-        </div>
+          </div>
+        </ScrollReveal>
       </section>
     </>
   );

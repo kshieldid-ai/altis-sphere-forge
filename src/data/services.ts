@@ -10,6 +10,14 @@ import fibreSoudure from "@/assets/IMG-20260607-WA0035.jpg";
 import fibreChantier from "@/assets/IMG-20260627-WA0116.jpg";
 import fibreSwitch from "@/assets/blog-starlink-fibre.jpg";
 import cyberShield from "@/assets/blog-cybersecurity.jpg";
+import connectivityDeco from "@/assets/connectivity/deco 1.jpeg";
+import connectivityEquipement1 from "@/assets/connectivity/equipement 1.jpeg";
+import connectivityEquipement from "@/assets/connectivity/equipement.jpeg";
+import connectivityModuleFibre2 from "@/assets/connectivity/module fibre 2.jpeg";
+import connectivityModuleFibre1 from "@/assets/connectivity/module fibre optique 1.jpeg";
+import connectivityModuleFibre3 from "@/assets/connectivity/module fibre optique 3.jpeg";
+import connectivityModuleFibre from "@/assets/connectivity/module fibre optique.jpeg";
+import connectivitySwitchCisco from "@/assets/connectivity/switch cisco.jpeg";
 
 export type ServiceImage = {
   src: string;
@@ -80,6 +88,14 @@ export const serviceOffers: ServiceOffer[] = [
       { src: fibreSoudure, alt: "Soudure de fibre optique sur un chantier ALTIS SPHERE" },
       { src: fibreChantier, alt: "Préparation d’un manchon fibre sur site" },
       { src: serviceInternet, alt: "Installation Starlink sur toiture" },
+      { src: connectivityModuleFibre1, alt: "Module fibre optique installé en baie de brassage" },
+      { src: connectivityModuleFibre2, alt: "Raccordement de module fibre optique" },
+      { src: connectivityModuleFibre3, alt: "Module fibre optique et gestion des câbles" },
+      { src: connectivityModuleFibre, alt: "Module fibre optique en cours de déploiement" },
+      { src: connectivitySwitchCisco, alt: "Switch Cisco cœur de réseau professionnel" },
+      { src: connectivityEquipement, alt: "Équipements réseau et connectivité professionnelle" },
+      { src: connectivityEquipement1, alt: "Équipements de connectivité réseau déployés" },
+      { src: connectivityDeco, alt: "Décoration et finition d’une installation réseau" },
     ],
   },
   {

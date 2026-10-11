@@ -12,6 +12,7 @@ import { useAntiBot } from "@/hooks/use-anti-bot";
 import AntiBotFields from "@/components/AntiBotFields";
 import Seo from "@/components/Seo";
 import { breadcrumb, webPage } from "@/lib/seo-schemas";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const contactSchema = z.object({
   nom: z.string().trim().min(1, "Nom requis").max(100),
@@ -166,7 +167,8 @@ const Contact = () => {
         jsonLd={contactJsonLd}
       />
       <section className="py-24">
-        <div className="container">
+        <ScrollReveal>
+          <div className="container">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
             <div>
               <span className="section-kicker">Contact</span>
@@ -192,7 +194,7 @@ const Contact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.08 }}
-                  className="rounded-none border border-border/70 bg-card/75 p-5"
+                  className="rounded-none border border-foreground/[0.08] bg-foreground/[0.04] p-5"
                 >
                   <div className="flex items-start gap-4">
                     <div className="icon-shell h-11 w-11 rounded-2xl">
@@ -236,7 +238,7 @@ const Contact = () => {
                 </div>
 
                 <div className="mx-auto mt-7 grid max-w-md gap-3 text-left">
-                  <div className="flex items-center gap-3 rounded-xl border border-border bg-background/70 px-4 py-3">
+                  <div className="flex items-center gap-3 rounded-xl border border-foreground/[0.08] bg-foreground/[0.04] px-4 py-3">
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       <span className="text-sm font-bold">#</span>
                     </span>
@@ -248,7 +250,7 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 rounded-xl border border-border bg-background/70 px-4 py-3">
+                  <div className="flex items-center gap-3 rounded-xl border border-foreground/[0.08] bg-foreground/[0.04] px-4 py-3">
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       <Mail size={16} />
                     </span>
@@ -258,7 +260,7 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 rounded-xl border border-border bg-background/70 px-4 py-3">
+                  <div className="flex items-center gap-3 rounded-xl border border-foreground/[0.08] bg-foreground/[0.04] px-4 py-3">
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       <Clock size={16} />
                     </span>
@@ -285,7 +287,7 @@ const Contact = () => {
                 transition={{ delay: 0.15 }}
                 onSubmit={handleSubmit}
                 noValidate
-                className="rounded-none border border-border/70 bg-card/82 p-7 backdrop-blur-xl lg:p-9"
+                className="rounded-none border border-foreground/[0.08] bg-foreground/[0.04] p-7 backdrop-blur-xl lg:p-9"
               >
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
@@ -381,7 +383,8 @@ const Contact = () => {
               </motion.form>
             )}
           </div>
-        </div>
+          </div>
+        </ScrollReveal>
       </section>
     </div>
   );

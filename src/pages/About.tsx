@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Target, Eye, Lightbulb } from "lucide-react";
 import Seo from "@/components/Seo";
 import { breadcrumb, webPage } from "@/lib/seo-schemas";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const pillars = [
   { icon: Target, title: "Mission", desc: "Fournir des solutions IT et de connectivité performantes, accessibles et sécurisées à tous." },
@@ -26,7 +27,8 @@ const About = () => (
       jsonLd={aboutJsonLd}
     />
     <section className="py-24">
-      <div className="container space-y-14">
+      <ScrollReveal>
+        <div className="container space-y-14">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div className="max-w-3xl">
             <span className="section-kicker">À propos</span>
@@ -63,7 +65,8 @@ const About = () => (
             </motion.div>
           ))}
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
   </div>
 );
