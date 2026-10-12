@@ -6,6 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
+import BackToTop from "@/components/BackToTop";
 
 const Index = lazy(() => import("./pages/Index"));
 const About = lazy(() => import("./pages/About"));
@@ -17,7 +19,6 @@ const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const DomotiquePage = lazy(() => import("./pages/Domotique"));
-const MentionsLegales = lazy(() => import("./pages/MentionsLegales"));
 const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite"));
 const CGV = lazy(() => import("./pages/CGV"));
 const AltisDownload = lazy(() => import("./pages/AltisDownload"));
@@ -30,6 +31,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <div className="min-h-screen" translate="no">
           <a
             href="#contenu-principal"
@@ -56,7 +58,6 @@ const App = () => (
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/domotique" element={<DomotiquePage />} />
-                <Route path="/mentions-legales" element={<MentionsLegales />} />
                 <Route path="/politique-de-confidentialite" element={<PolitiqueConfidentialite />} />
                 <Route path="/cgv" element={<CGV />} />
                 <Route path="/altis-download" element={<AltisDownload />} />
@@ -65,6 +66,7 @@ const App = () => (
             </Suspense>
           </main>
           <Footer />
+          <BackToTop />
         </div>
       </BrowserRouter>
     </TooltipProvider>

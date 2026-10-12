@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import altisLogo from "@/assets/altis-logo.png";
 
@@ -78,8 +78,6 @@ const Footer = () => (
 
       <div className="mt-12 border-t border-foreground/[0.06] pt-8 text-center text-sm text-foreground/40">
         <div className="mb-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          <Link to="/mentions-legales" className="transition-colors hover:text-primary">Mentions légales</Link>
-          <span className="text-foreground/20">•</span>
           <Link to="/politique-de-confidentialite" className="transition-colors hover:text-primary">Confidentialité</Link>
           <span className="text-foreground/20">•</span>
           <Link to="/cgv" className="transition-colors hover:text-primary">CGV</Link>
