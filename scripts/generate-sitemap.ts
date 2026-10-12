@@ -19,6 +19,7 @@ const entries: SitemapEntry[] = [
   { path: "/solutions", changefreq: "monthly", priority: "0.8" },
   { path: "/domotique", changefreq: "monthly", priority: "0.8" },
   { path: "/blog", changefreq: "weekly", priority: "0.7" },
+  { path: "/altis-download", changefreq: "weekly", priority: "0.8" },
   { path: "/contact", changefreq: "yearly", priority: "0.6" },
 ];
 
