@@ -89,7 +89,6 @@ const ScrollReveal = ({
     const chosen = animation ?? pickRandom(ANIMATION_KEYS);
     const baseDelay = Math.random() * 0.25;
     return { chosen, baseDelay };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animation]);
 
   if (reduceMotion) {

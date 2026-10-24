@@ -1,6 +1,6 @@
 // Runs before `vite dev` and `vite build` (predev/prebuild hooks).
 // Writes public/sitemap.xml AND public/robots.txt from a single source of truth.
-import { writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 const BASE_URL = (process.env.VITE_SITE_URL ?? "https://altisphere-group.com").replace(/\/$/, "");
@@ -22,6 +22,13 @@ const entries: SitemapEntry[] = [
   { path: "/altis-download", changefreq: "weekly", priority: "0.8" },
   { path: "/contact", changefreq: "yearly", priority: "0.6" },
 ];
+
+// Articles de blog : slugs lus dans src/data/blog.ts (non importable ici,
+// le module importe des images que tsx ne sait pas charger).
+const blogSource = readFileSync(resolve("src/data/blog.ts"), "utf8");
+for (const [, slug] of blogSource.matchAll(/slug:\s*"([^"]+)"/g)) {
+  entries.push({ path: `/blog/${slug}`, changefreq: "yearly", priority: "0.6" });
+}
 
 const lastmod = new Date().toISOString().slice(0, 10);
 

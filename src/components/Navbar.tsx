@@ -101,7 +101,7 @@ const AnimatedLogo = () => {
         alt="Logo ALTIS SPHERE GROUP"
         width={117}
         height={40}
-        fetchpriority="high"
+        fetchPriority="high"
         decoding="async"
         className="relative z-10 h-10 w-auto"
       />
