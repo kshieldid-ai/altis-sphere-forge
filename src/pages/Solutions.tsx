@@ -1,16 +1,21 @@
-import PageBackground from "@/components/PageBackground";
-import { motion } from "framer-motion";
 import { Network, Cloud, ShieldCheck } from "lucide-react";
 import Seo from "@/components/Seo";
-import { breadcrumb, serviceSchema } from "@/lib/seo-schemas";
+import PageHeader from "@/components/PageHeader";
 import ScrollReveal from "@/components/ScrollReveal";
+import { breadcrumb, serviceSchema } from "@/lib/seo-schemas";
 
 const solutions = [
   { icon: Network, title: "Réseaux d'entreprise", desc: "Conception, déploiement et gestion de réseaux d'entreprise performants et sécurisés. LAN, WAN, VPN, SD-WAN." },
-  { icon: Cloud, title: "Cloud & Infrastructure IT", desc: "Migration cloud, hébergement, infrastructure as a service. Solutions Azure, AWS et cloud privé." },
+  { icon: Cloud, title: "Cloud & infrastructure IT", desc: "Migration cloud, hébergement, infrastructure as a service. Solutions Azure, AWS et cloud privé." },
   { icon: ShieldCheck, title: "Sécurité des systèmes", desc: "Audit, monitoring, SOC managé, conformité RGPD. Protection complète de votre système d'information." },
 ];
 
+const steps = [
+  { title: "Diagnostic", desc: "Visite sur site et analyse de l'existant." },
+  { title: "Proposition", desc: "Architecture, matériel et chiffrage détaillé." },
+  { title: "Déploiement", desc: "Installation, configuration et tests." },
+  { title: "Suivi", desc: "Maintenance, supervision et assistance." },
+];
 
 const solutionsJsonLd = [
   serviceSchema("Solutions IT pour entreprises", "Réseaux d'entreprise, cloud & infrastructure, sécurité des systèmes.", "/solutions"),
@@ -18,53 +23,51 @@ const solutionsJsonLd = [
 ];
 
 const Solutions = () => (
-  <div className="relative isolate pt-24">
-      <PageBackground />
+  <>
     <Seo
       title="Solutions IT pour entreprises | ALTIS SPHERE"
       description="Réseaux d'entreprise, cloud & infrastructure, sécurité des systèmes — des solutions IT complètes pour la transformation numérique."
       path="/solutions"
       jsonLd={solutionsJsonLd}
     />
-    <section className="py-24">
-      <ScrollReveal>
-        <div className="container">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-          <div>
-            <span className="section-kicker">Solutions</span>
-            <h1 className="section-title mt-4">Solutions pour entreprises</h1>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-muted-foreground">
-              Des solutions complètes pour accompagner la transformation numérique de votre entreprise.
-            </p>
-          </div>
-          <div className="editorial-panel">
-            <p className="text-xs uppercase tracking-[0.3em] text-primary">Approche</p>
-            <p className="mt-3 text-lg leading-8 text-foreground/90">Une méthodologie claire, du diagnostic au déploiement, pour des résultats mesurables et durables.</p>
-          </div>
-        </motion.div>
+    <PageHeader
+      crumb="Solutions"
+      title="Solutions pour entreprises"
+      lead="Des projets complets pour structurer, héberger et sécuriser le système d'information de votre entreprise."
+    />
 
-        <div className="grid gap-5 md:grid-cols-3">
-          {solutions.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="service-shell"
-            >
-              <div className="icon-shell">
-                <s.icon size={22} className="text-primary-foreground" />
-              </div>
-              <h2 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h2>
-              <p className="mt-4 text-sm leading-7 text-muted-foreground">{s.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-        </div>
-      </ScrollReveal>
+    <section className="py-16 lg:py-20">
+      <div className="container grid gap-6 md:grid-cols-3">
+        {solutions.map((s, i) => (
+          <ScrollReveal key={s.title} delay={i * 0.05}>
+            <div className="service-shell h-full">
+              <span className="icon-shell">
+                <s.icon size={20} aria-hidden="true" />
+              </span>
+              <h2 className="mt-5 text-xl font-semibold">{s.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">{s.desc}</p>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
     </section>
-  </div>
+
+    <section className="border-t bg-muted py-16 lg:py-20">
+      <div className="container">
+        <p className="section-kicker">Méthode</p>
+        <h2 className="section-title mt-3">Comment nous travaillons</h2>
+        <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((step, i) => (
+            <li key={step.title} className="border-t-2 border-primary pt-5">
+              <span className="text-sm font-semibold tabular-nums text-primary">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="mt-2 text-lg font-semibold">{step.title}</h3>
+              <p className="mt-1.5 text-sm leading-6 text-muted-foreground">{step.desc}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  </>
 );
 
 export default Solutions;

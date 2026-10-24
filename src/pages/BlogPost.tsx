@@ -1,12 +1,10 @@
-﻿import PageBackground from "@/components/PageBackground";
-import { motion } from "framer-motion";
-import { Calendar, ArrowLeft } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+﻿import { Link, useParams } from "react-router-dom";
+import { ArrowLeft, ChevronRight } from "lucide-react";
 import { getPostBySlug } from "@/data/blog";
 import Seo from "@/components/Seo";
+import { Button } from "@/components/ui/button";
 import { breadcrumb, webPage } from "@/lib/seo-schemas";
 import NotFound from "./NotFound";
-import ScrollReveal from "@/components/ScrollReveal";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -22,57 +20,56 @@ const BlogPost = () => {
   ];
 
   return (
-    <div className="relative isolate pt-24">
-      <PageBackground />
+    <>
       <Seo
         title={`${post.title} | ALTIS SPHERE GROUP`}
         description={post.excerpt}
         path={`/blog/${post.slug}`}
         jsonLd={postJsonLd}
       />
-      <article className="py-24">
-        <ScrollReveal>
-          <div className="container max-w-3xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
-              <ArrowLeft size={16} /> Retour au blog
-            </Link>
-            <span className="section-kicker mt-8 inline-block">{post.category}</span>
-            <h1 className="section-title mt-4">{post.title}</h1>
-            <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
-              <Calendar size={16} />
-              {post.date}
-            </div>
-          </motion.div>
+      <article className="pb-20 pt-16 lg:pt-[4.5rem]">
+        <header className="border-b bg-muted">
+          <div className="container max-w-3xl py-12 lg:py-14">
+            <nav aria-label="Fil d'Ariane" className="flex items-center gap-1.5 text-sm text-muted-foreground">
+              <Link to="/" className="hover:text-primary">Accueil</Link>
+              <ChevronRight size={14} aria-hidden="true" />
+              <Link to="/blog" className="hover:text-primary">Blog</Link>
+            </nav>
+            <p className="mt-6 text-sm text-muted-foreground">
+              <span className="font-semibold text-primary">{post.category}</span>
+              <span aria-hidden="true"> · </span>
+              <time>{post.date}</time>
+            </p>
+            <h1 className="mt-3 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{post.title}</h1>
+            <p className="mt-4 text-lg leading-8 text-muted-foreground">{post.excerpt}</p>
+          </div>
+        </header>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mt-10"
-          >
-            <img src={post.image} alt={post.title} className="aspect-video w-full rounded-lg object-cover" />
-          </motion.div>
+        <div className="container max-w-3xl">
+          <img src={post.image} alt="" className="mt-10 aspect-video w-full rounded-lg object-cover" />
 
-          <div className="mt-10 space-y-6 text-base leading-8 text-foreground/90">
+          <div className="mt-10 space-y-6 text-[1.0625rem] leading-8 text-foreground/90">
             {post.content.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
             ))}
           </div>
 
-          <div className="mt-12 rounded-lg border border-foreground/[0.08] bg-foreground/[0.04] p-8">
-            <h3 className="text-xl font-semibold">Vous avez un projet similaire ?</h3>
-            <p className="mt-3 text-muted-foreground">
-              Nos experts vous accompagnons pour sécuriser et optimiser votre infrastructure.
+          <aside className="mt-14 rounded-lg border bg-muted p-7">
+            <h2 className="text-lg font-semibold">Vous avez un projet similaire ?</h2>
+            <p className="mt-2 text-muted-foreground">
+              Nos techniciens vous accompagnent pour sécuriser et optimiser votre infrastructure.
             </p>
-            <Link to="/contact" className="mt-6 inline-flex items-center gap-2 rounded-lg gradient-bg px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]">
-              Nous contacter
-            </Link>
-          </div>
-          </div>
-        </ScrollReveal>
+            <Button variant="hero" className="mt-5" asChild>
+              <Link to="/contact">Nous contacter</Link>
+            </Button>
+          </aside>
+
+          <Link to="/blog" className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary">
+            <ArrowLeft size={16} /> Tous les articles
+          </Link>
+        </div>
       </article>
-    </div>
+    </>
   );
 };
 

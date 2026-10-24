@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import {
   Carousel,
   CarouselContent,
@@ -12,9 +11,9 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
-import HeroPingPongVideo from "@/components/HeroPingPongVideo";
-import { Star, Zap, Users, Award, ArrowUpRight, House } from "lucide-react";
+import { Check, Clock, Award, Users, Wrench, ArrowRight, ArrowUpRight, House, Phone } from "lucide-react";
 import heroVideo from "@/assets/dernier.mp4";
+import heroPoster from "@/assets/hero-bg.jpg";
 import serviceDomotique from "@/assets/service-domotique.jpg";
 import Seo from "@/components/Seo";
 import { SITE_URL, ORG_ID } from "@/lib/site";
@@ -30,75 +29,77 @@ const featuredDomotique = {
 };
 
 const reasons = [
-  { icon: Zap, title: "Rapidité", desc: "Déploiement rapide et support réactif." },
-  { icon: Award, title: "Expertise", desc: "Équipe certifiée avec +10 ans d'expérience." },
-  { icon: Users, title: "Proximité", desc: "Un interlocuteur dédié pour chaque client." },
-  { icon: Star, title: "Qualité", desc: "Solutions premium et garantie de satisfaction." },
+  { icon: Clock, title: "Réactivité", desc: "Déploiement rapide et support joignable quand vous en avez besoin." },
+  { icon: Award, title: "Expérience", desc: "Une équipe certifiée, plus de 10 ans dans les réseaux et l'informatique." },
+  { icon: Users, title: "Proximité", desc: "Un interlocuteur dédié qui suit votre dossier de bout en bout." },
+  { icon: Wrench, title: "Travail soigné", desc: "Matériel professionnel, installations propres et documentées." },
+];
+
+const heroDomains = [
+  { label: "Fibre optique & Starlink", href: "/services#internet" },
+  { label: "Réseaux & infrastructure IT", href: "/services#it" },
+  { label: "Cybersécurité", href: "/services#cyber" },
+  { label: "Développement web", href: "/services#web" },
+  { label: "Domotique", href: "/domotique" },
 ];
 
 const Hero = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative isolate flex min-h-[32rem] flex-col overflow-hidden pt-28 md:min-h-[42rem] md:pt-32 lg:min-h-[100svh]">
-      <div className="absolute inset-0" aria-hidden="true">
-        <HeroPingPongVideo src={heroVideo} reduceMotion={!!reduceMotion} />
-        <div className="absolute inset-0 bg-background/40" />
-        <div className="absolute inset-0 bg-[linear-gradient(105deg,hsl(var(--background)/0.88)_0%,hsl(var(--background)/0.55)_44%,hsl(var(--background)/0.30)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsl(var(--primary)/0.15),transparent_35%),radial-gradient(circle_at_82%_18%,hsl(var(--accent)/0.10),transparent_30%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,hsl(var(--background)/0.30)_0%,transparent_28%,hsl(var(--background)/0.65)_84%,hsl(var(--background)))]" />
-        <div className="absolute inset-0 grid-pattern opacity-10" />
+    <section className="relative isolate overflow-hidden bg-navy pt-16 text-white lg:pt-[4.5rem]">
+      <div className="absolute inset-0 -z-10" aria-hidden="true">
+        {reduceMotion ? (
+          <img src={heroPoster} alt="" className="h-full w-full object-cover" />
+        ) : (
+          <video
+            className="h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={heroPoster}
+            disablePictureInPicture
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
+        )}
+        {/* Voile uni : garantit le contraste du texte blanc */}
+        <div className="absolute inset-0 bg-navy/80" />
       </div>
 
-      <div className="container relative z-10 flex flex-1 flex-col justify-center pb-20 pt-8 md:pb-28">
-        <div className="grid gap-10 xl:grid-cols-[minmax(0,1.35fr)_22rem] xl:items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="max-w-4xl"
-          >
-            <span className="inline-flex rounded-full border border-foreground/[0.12] bg-foreground/[0.06] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-primary backdrop-blur-xl">
-              Services IT & Connectivité Internet
-            </span>
-            <h1 className="mt-6 max-w-4xl text-5xl font-bold leading-[0.95] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
-              Une présence digitale plus <span className="gradient-text">forte</span>, plus rapide, plus sûre.
-            </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-foreground/90 sm:text-lg">
-              ALTIS SPHERE conçoit des expériences connectées, des infrastructures IT fiables et des solutions web premium pour entreprises et particuliers.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <QuoteRequestModal triggerVariant="hero" triggerSize="lg" />
-              <Button variant="hero-outline" size="lg" asChild>
-                <Link to="/services">Explorer nos services</Link>
-              </Button>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.15, duration: 0.7 }}
-            className="editorial-panel space-y-5"
-          >
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-primary">Impact</p>
-              <p className="mt-3 text-3xl font-bold">Connectivité, sécurité et performance réunies.</p>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
-              {[
-                ["24/7", "Support réactif"],
-                ["360°", "Couverture IT"],
-                ["Premium", "Exécution soignée"],
-              ].map(([value, label]) => (
-                <div key={label} className="rounded-2xl border border-foreground/[0.08] bg-foreground/[0.04] p-4">
-                  <p className="text-2xl font-bold text-foreground">{value}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{label}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+      <div className="container grid gap-12 py-20 md:py-28 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-center lg:py-32">
+        <div className="max-w-3xl">
+          <p className="text-sm font-medium text-white/75">Lubumbashi · République démocratique du Congo</p>
+          <h1 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">
+            Services informatiques et connectivité internet pour les entreprises.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85">
+            ALTIS SPHERE GROUP conçoit, installe et maintient vos réseaux, vos accès internet (fibre, Starlink),
+            votre sécurité informatique et vos sites web, pour les professionnels comme pour les particuliers.
+          </p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <QuoteRequestModal triggerVariant="hero" triggerSize="lg" triggerClassName="bg-white text-primary hover:bg-white/90" />
+            <Button variant="on-dark" size="lg" asChild>
+              <Link to="/services">Voir nos services</Link>
+            </Button>
+          </div>
         </div>
+
+        <nav aria-label="Nos domaines" className="hidden border-l border-white/25 pl-8 lg:block">
+          <p className="text-sm font-semibold text-white">Nos domaines</p>
+          <ul className="mt-4 space-y-1">
+            {heroDomains.map((d) => (
+              <li key={d.href}>
+                <Link to={d.href} className="group flex items-center justify-between py-2 text-[0.9375rem] text-white/80 hover:text-white">
+                  {d.label}
+                  <ArrowRight size={16} className="opacity-0 transition-opacity group-hover:opacity-100" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </section>
   );
@@ -116,249 +117,193 @@ const ServiceGallery = ({ images }: { images: { src: string; alt: string }[] }) 
   }, [api]);
 
   return (
-    <Carousel
-      opts={{ align: "start", duration: reduceMotion ? 0 : 28 }}
-      setApi={setApi}
-      className="w-full"
-    >
+    <Carousel opts={{ align: "start", duration: reduceMotion ? 0 : 28 }} setApi={setApi} className="w-full">
       <CarouselContent>
         {images.map((image) => (
           <CarouselItem key={image.src}>
-            <div className="h-64 overflow-hidden md:h-80">
-              <img
-                src={image.src}
-                alt={image.alt}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
+            <div className="h-60 overflow-hidden md:h-72">
+              <img src={image.src} alt={image.alt} loading="lazy" className="h-full w-full object-cover" />
             </div>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="left-3 z-10 h-9 w-9 border-foreground/20 bg-background/80 text-foreground backdrop-blur hover:bg-background" />
-      <CarouselNext className="right-3 z-10 h-9 w-9 border-foreground/20 bg-background/80 text-foreground backdrop-blur hover:bg-background" />
-      <div className="mt-3 flex items-center justify-center gap-1.5">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            aria-label={`Aller à l’image ${index + 1}`}
-            onClick={() => api?.scrollTo(index)}
-            className={cn(
-              "h-1.5 rounded-full transition-all duration-300",
-              current === index ? "w-6 bg-primary" : "w-1.5 bg-foreground/25 hover:bg-foreground/40",
-            )}
-          />
-        ))}
-      </div>
+      <CarouselPrevious className="left-3 z-10 h-9 w-9 rounded-md border bg-background text-foreground hover:bg-secondary" />
+      <CarouselNext className="right-3 z-10 h-9 w-9 rounded-md border bg-background text-foreground hover:bg-secondary" />
+      <p className="absolute bottom-3 right-3 rounded bg-navy/80 px-2 py-0.5 text-xs tabular-nums text-white">
+        {current + 1} / {images.length}
+      </p>
     </Carousel>
   );
 };
 
+const CheckList = ({ items }: { items: string[] }) => (
+  <ul className="mt-5 space-y-2">
+    {items.map((item) => (
+      <li key={item} className="flex items-start gap-2.5 text-sm leading-6 text-muted-foreground">
+        <Check size={16} className="mt-1 shrink-0 text-primary" aria-hidden="true" />
+        <span>{item}</span>
+      </li>
+    ))}
+  </ul>
+);
+
 const Services = () => (
-  <section className="py-24">
-    <ScrollReveal>
-      <div className="container">
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+  <section className="py-20 lg:py-24">
+    <div className="container">
+      <ScrollReveal className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <span className="section-kicker">Nos Services</span>
-          <h2 className="section-title mt-4">Un écosystème de services pensé comme une signature de marque.</h2>
-          <p className="mt-5 max-w-2xl text-base leading-8 text-muted-foreground">
-            Une gamme complète de services informatiques et de connectivité pour répondre à tous vos besoins.
+          <p className="section-kicker">Nos services</p>
+          <h2 className="section-title mt-3">Ce que nous faisons</h2>
+          <p className="section-lead">
+            Connectivité, infrastructure, sécurité, web et support : un seul prestataire pour l'ensemble de votre système d'information.
           </p>
         </div>
-        <div className="editorial-panel">
-          <p className="text-xs uppercase tracking-[0.3em] text-primary">Signature</p>
-          <p className="mt-3 text-lg leading-8 text-foreground/90">Des services pensés pour la performance, la sécurité et la continuité de vos activités.</p>
-        </div>
-      </motion.div>
+        <Link to="/services" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+          Tous les services <ArrowRight size={16} />
+        </Link>
+      </ScrollReveal>
 
-      <div className="grid gap-5 md:grid-cols-2">
-        {serviceOffers.map((s, i) => (
-          <motion.article
-            key={s.id}
-            id={s.id}
-            scroll-mt-24
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.08 }}
-            className="overflow-hidden rounded-none border border-foreground/[0.08] bg-foreground/[0.04]"
-          >
-            {s.images.length > 3 ? (
-              <ServiceGallery images={s.images} />
-            ) : (
-              <div className={s.images.length > 1 ? "grid grid-cols-2" : ""}>
-                {s.images.map((image, index) => {
-                  const isHero = s.images.length === 3 && index === 0;
-                  return (
-                    <div
-                      key={image.src}
-                      className={isHero ? "col-span-2 h-52 overflow-hidden" : "h-44 overflow-hidden"}
-                    >
-                      <img src={image.src} alt={image.alt} loading="lazy" className="h-full w-full object-cover" />
-                    </div>
-                  );
-                })}
+      <div className="grid gap-6 md:grid-cols-2">
+        {serviceOffers.map((s) => (
+          <ScrollReveal key={s.id}>
+            <article id={s.id} className="h-full scroll-mt-24 overflow-hidden rounded-lg border bg-card shadow-sm">
+              {s.images.length > 3 ? (
+                <div className="relative">
+                  <ServiceGallery images={s.images} />
+                </div>
+              ) : (
+                <div className={s.images.length > 1 ? "grid grid-cols-2 gap-px bg-border" : ""}>
+                  {s.images.map((image, index) => {
+                    const isHero = s.images.length === 3 && index === 0;
+                    return (
+                      <div key={image.src} className={isHero ? "col-span-2 h-52 overflow-hidden" : "h-44 overflow-hidden"}>
+                        <img src={image.src} alt={image.alt} loading="lazy" className="h-full w-full object-cover" />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              <div className="p-6 lg:p-7">
+                <div className="flex items-center gap-3">
+                  <span className="icon-shell h-10 w-10">
+                    <s.icon size={20} aria-hidden="true" />
+                  </span>
+                  <h3 className="text-xl font-semibold">{s.title}</h3>
+                </div>
+                <p className="mt-3 text-sm text-muted-foreground">{s.subtitle}</p>
+                <CheckList items={s.items} />
+                {s.projects ? <ServiceProjects projects={s.projects} /> : null}
               </div>
-            )}
-            <div className="p-6 lg:p-7">
-              <div className="icon-shell h-11 w-11 rounded-2xl">
-                <s.icon size={20} className="text-primary-foreground" />
-              </div>
-              <h3 className="mt-7 text-2xl font-semibold tracking-[-0.03em]">{s.title}</h3>
-              <p className="mt-3 text-sm font-medium text-primary">{s.subtitle}</p>
-              <ul className="mt-5 space-y-2.5">
-                {s.items.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm leading-7 text-muted-foreground">
-                    <span className="mt-3 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              {s.projects ? <ServiceProjects projects={s.projects} /> : null}
-            </div>
-          </motion.article>
+            </article>
+          </ScrollReveal>
         ))}
 
-        <motion.article
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="overflow-hidden rounded-none border border-foreground/[0.08] bg-foreground/[0.04] md:col-span-2"
-        >
-          <div className="grid xl:grid-cols-[1.15fr_0.85fr]">
-            <div className="h-64 xl:h-full">
+        <ScrollReveal className="md:col-span-2">
+          <article className="grid overflow-hidden rounded-lg border bg-card shadow-sm lg:grid-cols-2">
+            <div className="h-64 lg:h-full">
               <img src={featuredDomotique.image} alt={featuredDomotique.title} loading="lazy" className="h-full w-full object-cover" />
             </div>
-            <div className="p-6 lg:p-7">
-              <div className="icon-shell h-11 w-11 rounded-2xl">
-                <featuredDomotique.icon size={20} className="text-primary-foreground" />
+            <div className="p-6 lg:p-8">
+              <div className="flex items-center gap-3">
+                <span className="icon-shell h-10 w-10">
+                  <featuredDomotique.icon size={20} aria-hidden="true" />
+                </span>
+                <h3 className="text-xl font-semibold">{featuredDomotique.title}</h3>
               </div>
-              <h3 className="mt-7 text-2xl font-semibold tracking-[-0.03em]">{featuredDomotique.title}</h3>
-              <ul className="mt-5 space-y-2.5">
-                {featuredDomotique.items.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm leading-7 text-muted-foreground">
-                    <span className="mt-3 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <CheckList items={featuredDomotique.items} />
+              <Link to="/domotique" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+                Découvrir la domotique <ArrowRight size={16} />
+              </Link>
             </div>
-          </div>
-        </motion.article>
+          </article>
+        </ScrollReveal>
       </div>
-      </div>
-    </ScrollReveal>
+    </div>
   </section>
 );
 
 const WhyUs = () => (
-  <section className="py-24">
-    <ScrollReveal>
-      <div className="container">
-      <div className="feature-grid rounded-none border border-foreground/[0.08] bg-foreground/[0.04] p-8 backdrop-blur-xl lg:p-10">
-        <div className="max-w-xl">
-          <span className="section-kicker">Pourquoi nous</span>
-          <h2 className="section-title mt-4">Une direction technique solide, avec une exécution visible dès le premier regard.</h2>
-          <p className="mt-5 text-sm leading-7 text-muted-foreground sm:text-base">
-            Nous combinons expertise technique, accompagnement humain et exigences de qualité pour créer des solutions qui tiennent dans le temps.
-          </p>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {reasons.map((r, i) => (
-            <motion.div
-              key={r.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="rounded-3xl border border-foreground/[0.08] bg-foreground/[0.03] p-6"
-            >
-              <div className="icon-shell h-12 w-12 rounded-2xl">
-                <r.icon size={20} className="text-primary-foreground" />
-              </div>
-              <h2 className="mt-6 text-xl font-semibold tracking-[-0.03em]">{r.title}</h2>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">{r.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+  <section className="border-y bg-muted py-20 lg:py-24">
+    <div className="container feature-grid lg:items-center">
+      <ScrollReveal className="max-w-xl">
+        <p className="section-kicker">Pourquoi nous choisir</p>
+        <h2 className="section-title mt-3">Un partenaire technique local, joignable et rigoureux.</h2>
+        <p className="section-lead">
+          Nous intervenons de l'étude à la maintenance, avec le même interlocuteur. Chaque installation est
+          dimensionnée pour durer et documentée pour vos équipes.
+        </p>
+      </ScrollReveal>
+      <div className="grid gap-4 sm:grid-cols-2">
+        {reasons.map((r, i) => (
+          <ScrollReveal key={r.title} delay={i * 0.05}>
+            <div className="h-full rounded-lg border bg-card p-6">
+              <span className="icon-shell">
+                <r.icon size={20} aria-hidden="true" />
+              </span>
+              <h3 className="mt-5 text-lg font-semibold">{r.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">{r.desc}</p>
+            </div>
+          </ScrollReveal>
+        ))}
       </div>
-      </div>
-    </ScrollReveal>
+    </div>
   </section>
 );
 
 const Testimonials = () => (
-  <section className="py-24">
-    <ScrollReveal>
-      <div className="container">
-      <div className="mb-12 max-w-2xl">
-        <span className="section-kicker">Témoignages</span>
-        <h2 className="section-title mt-4">Des retours clients qui confirment la promesse.</h2>
-      </div>
-      <div className="grid gap-5 lg:grid-cols-3">
-        {clientTestimonials.map((t, i) => (
-          <motion.article
-            key={t.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="rounded-none border border-foreground/[0.08] bg-foreground/[0.04] p-7 backdrop-blur-xl"
-          >
-            <div className="flex gap-1 text-primary">
-              {[...Array(5)].map((_, j) => (
-                <Star key={j} size={16} className="fill-primary text-primary" />
-              ))}
-            </div>
-            <p className="mt-5 text-sm leading-7 text-foreground/90">“{t.text}”</p>
-            <div className="mt-8 border-t border-foreground/[0.08] pt-5">
-              <a
-                href={t.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary"
-              >
-                {t.name}
-                <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
-              <p className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">{t.role}</p>
-            </div>
-          </motion.article>
+  <section className="py-20 lg:py-24">
+    <div className="container">
+      <ScrollReveal className="mb-12 max-w-2xl">
+        <p className="section-kicker">Références</p>
+        <h2 className="section-title mt-3">Ils nous ont confié leur projet</h2>
+      </ScrollReveal>
+      <div className="grid gap-6 lg:grid-cols-3">
+        {clientTestimonials.map((t) => (
+          <ScrollReveal key={t.name}>
+            <figure className="flex h-full flex-col rounded-lg border bg-card p-7">
+              <blockquote className="flex-1 text-[0.9375rem] leading-7 text-foreground/90">
+                <p>« {t.text} »</p>
+              </blockquote>
+              <figcaption className="mt-6 border-t pt-5">
+                <a
+                  href={t.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-primary"
+                >
+                  {t.name}
+                  <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
+                <p className="mt-1 text-sm text-muted-foreground">{t.role}</p>
+              </figcaption>
+            </figure>
+          </ScrollReveal>
         ))}
       </div>
-      </div>
-    </ScrollReveal>
+    </div>
   </section>
 );
 
 const CTA = () => (
-  <section className="pb-24 pt-12">
-    <ScrollReveal>
-      <div className="container">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="relative overflow-hidden rounded-none border border-foreground/[0.12] bg-[linear-gradient(135deg,hsl(var(--primary)/0.15),hsl(var(--accent)/0.06),hsl(var(--background)/0.90))] p-10 md:p-14"
-      >
-        <div className="absolute inset-0 grid-pattern opacity-10" />
-        <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <span className="section-kicker">Passons à l’action</span>
-            <h2 className="section-title mt-4">Prêt à transformer votre infrastructure IT&nbsp;?</h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-foreground/90 sm:text-base">
-              Contactez-nous pour un diagnostic gratuit, un cadrage précis et un devis personnalisé adapté à votre contexte.
-            </p>
-          </div>
-          <Button variant="hero" size="lg" asChild>
-            <Link to="/contact">Nous contacter</Link>
-          </Button>
-        </div>
-      </motion.div>
+  <section className="bg-primary text-primary-foreground">
+    <div className="container flex flex-col gap-8 py-14 lg:flex-row lg:items-center lg:justify-between lg:py-16">
+      <div className="max-w-2xl">
+        <h2 className="text-2xl font-semibold text-white sm:text-3xl">Un projet réseau, internet ou web ?</h2>
+        <p className="mt-3 text-base leading-7 text-white/85">
+          Décrivez-nous votre besoin : nous revenons vers vous avec un diagnostic et un devis détaillé, sans engagement.
+        </p>
       </div>
-    </ScrollReveal>
+      <div className="flex flex-wrap items-center gap-3">
+        <Button size="lg" asChild className="bg-white font-semibold text-primary hover:bg-white/90">
+          <Link to="/contact">Nous contacter</Link>
+        </Button>
+        <Button variant="on-dark" size="lg" asChild>
+          <a href="tel:+243998914448">
+            <Phone size={16} /> +243 998 914 448
+          </a>
+        </Button>
+      </div>
+    </div>
   </section>
 );
 

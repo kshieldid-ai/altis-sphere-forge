@@ -4,77 +4,70 @@
 
 @layer base {
   :root {
-    /* Thème clair (défaut) */
+    /* Bleu de marque (logo ALTIS SPHERE) : #0B4EA2 */
     --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --foreground: 220 30% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 220 30% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 200 18% 46%;
+    --popover-foreground: 220 30% 12%;
+    --primary: 213 87% 34%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 200 40% 55%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
+    --secondary: 216 30% 96%;
+    --secondary-foreground: 220 30% 12%;
+    --muted: 216 30% 97%;
+    --muted-foreground: 218 12% 38%;
+    --accent: 213 60% 94%;
+    --accent-foreground: 213 87% 26%;
+    --destructive: 0 72% 46%;
     --destructive-foreground: 0 0% 100%;
-    --border: 214 32% 88%;
-    --input: 214 32% 88%;
-    --ring: 200 18% 46%;
-    --radius: 0rem;
-    --glow-primary: 200 18% 46%;
-    --glow-accent: 200 50% 60%;
-    --surface-elevated: 210 40% 98%;
-    --gradient-start: 200 18% 46%;
-    --gradient-end: 229 100% 13%;
+    --border: 216 20% 88%;
+    --input: 216 20% 82%;
+    --ring: 213 87% 34%;
+    --radius: 0.375rem;
+    --surface-elevated: 216 30% 97%;
+    /* Bleu nuit des bandeaux sombres (hero) */
+    --navy: 214 64% 14%;
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 200 18% 46%;
+    --sidebar-foreground: 220 30% 12%;
+    --sidebar-primary: 213 87% 34%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 40% 96%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 214 32% 88%;
-    --sidebar-ring: 200 18% 46%;
+    --sidebar-accent: 216 30% 96%;
+    --sidebar-accent-foreground: 220 30% 12%;
+    --sidebar-border: 216 20% 88%;
+    --sidebar-ring: 213 87% 34%;
   }
 
   .dark {
-    /* Thème sombre */
-    --background: 229 80% 6%;
-    --foreground: 220 20% 95%;
-    --card: 229 40% 10%;
-    --card-foreground: 220 20% 95%;
-    --popover: 229 40% 10%;
-    --popover-foreground: 220 20% 95%;
-    --primary: 200 18% 46%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 229 30% 15%;
-    --secondary-foreground: 220 20% 90%;
-    --muted: 229 25% 16%;
-    --muted-foreground: 220 15% 55%;
-    --accent: 200 40% 55%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 78% 52%;
+    --background: 220 18% 9%;
+    --foreground: 216 20% 92%;
+    --card: 220 16% 12%;
+    --card-foreground: 216 20% 92%;
+    --popover: 220 16% 12%;
+    --popover-foreground: 216 20% 92%;
+    --primary: 213 80% 60%;
+    --primary-foreground: 220 30% 8%;
+    --secondary: 220 14% 16%;
+    --secondary-foreground: 216 20% 92%;
+    --muted: 220 16% 12%;
+    --muted-foreground: 216 10% 64%;
+    --accent: 213 40% 18%;
+    --accent-foreground: 213 80% 78%;
+    --destructive: 0 65% 55%;
     --destructive-foreground: 0 0% 100%;
-    --border: 229 20% 18%;
-    --input: 229 20% 20%;
-    --ring: 200 18% 46%;
-    --radius: 0rem;
-    --glow-primary: 200 18% 46%;
-    --glow-accent: 200 50% 60%;
-    --surface-elevated: 229 35% 9%;
-    --gradient-start: 200 18% 46%;
-    --gradient-end: 229 100% 13%;
-    --sidebar-background: 229 80% 6%;
-    --sidebar-foreground: 220 20% 95%;
-    --sidebar-primary: 200 18% 46%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 229 30% 15%;
-    --sidebar-accent-foreground: 220 20% 90%;
-    --sidebar-border: 229 20% 18%;
-    --sidebar-ring: 200 18% 46%;
+    --border: 220 12% 20%;
+    --input: 220 12% 26%;
+    --ring: 213 80% 60%;
+    --surface-elevated: 220 16% 12%;
+    --navy: 216 40% 7%;
+    --sidebar-background: 220 18% 9%;
+    --sidebar-foreground: 216 20% 92%;
+    --sidebar-primary: 213 80% 60%;
+    --sidebar-primary-foreground: 220 30% 8%;
+    --sidebar-accent: 220 14% 16%;
+    --sidebar-accent-foreground: 216 20% 92%;
+    --sidebar-border: 220 12% 20%;
+    --sidebar-ring: 213 80% 60%;
   }
 
   * {
@@ -86,126 +79,57 @@
   }
 
   body {
-    @apply bg-background font-body text-foreground antialiased;
-    background-image:
-      radial-gradient(circle at top left, hsl(var(--primary) / 0.10), transparent 30%),
-      radial-gradient(circle at 80% 10%, hsl(var(--accent) / 0.10), transparent 24%),
-      linear-gradient(180deg, hsl(var(--background)), hsl(var(--surface-elevated)) 45%, hsl(var(--background)) 100%);
+    @apply bg-background font-sans text-foreground antialiased;
+    font-feature-settings: "kern", "liga";
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    @apply font-semibold tracking-tight text-foreground;
+  }
+
+  ::selection {
+    @apply bg-primary text-primary-foreground;
   }
 }
 
 @layer components {
+  /* Petit libellé au-dessus d'un titre de section */
   .section-kicker {
-    @apply inline-flex rounded-full border border-foreground/[0.12] bg-foreground/[0.04] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-primary backdrop-blur-xl;
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-primary;
   }
 
   .section-title {
-    @apply text-4xl font-bold leading-[0.98] tracking-[-0.04em] sm:text-5xl lg:text-6xl;
+    @apply text-3xl font-semibold leading-tight tracking-tight sm:text-4xl;
   }
 
+  .section-lead {
+    @apply mt-4 max-w-2xl text-base leading-7 text-muted-foreground;
+  }
+
+  /* Pastille d'icône : fond bleu clair, icône bleu marque */
   .icon-shell {
-    @apply flex h-12 w-12 items-center justify-center rounded-2xl;
-    background-image: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
-    box-shadow: 0 18px 30px -18px hsl(var(--glow-primary) / 0.55);
+    @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-accent text-primary;
   }
 
+  /* Carte standard (services, produits, piliers…) */
   .service-shell {
-    @apply rounded-none border border-foreground/[0.08] bg-foreground/[0.03] p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-foreground/[0.16] hover:shadow-[0_0_25px_-5px_hsl(var(--glow-primary)/0.35)] lg:p-7;
+    @apply rounded-lg border bg-card p-6 shadow-sm transition-colors duration-200 hover:border-primary/40 lg:p-7;
   }
 
+  /* Bloc de contenu neutre (textes légaux, encadrés) */
   .editorial-panel {
-    @apply rounded-none border border-foreground/[0.08] bg-foreground/[0.03] p-6 backdrop-blur-xl lg:p-7;
-    box-shadow: 0 24px 80px -24px hsl(var(--glow-primary) / 0.4);
+    @apply rounded-lg border bg-card p-6 lg:p-7;
   }
 
   .feature-grid {
     display: grid;
-    gap: 1.25rem;
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 2.5rem;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   }
 
   @media (max-width: 1023px) {
     .feature-grid {
       grid-template-columns: 1fr;
     }
-  }
-}
-
-@layer utilities {
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(200 45% 55%), hsl(200 60% 45%), hsl(229 70% 50%));
-  }
-
-  .gradient-bg {
-    background-image: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
-  }
-
-  .glow-primary {
-    box-shadow: 0 0 40px -10px hsl(var(--glow-primary) / 0.4);
-  }
-
-  .glow-accent {
-    box-shadow: 0 0 40px -10px hsl(var(--glow-accent) / 0.4);
-  }
-
-  .glass {
-    @apply backdrop-blur-xl border border-foreground/[0.08] bg-foreground/[0.03];
-  }
-
-  .grid-pattern {
-    background-image:
-      linear-gradient(hsl(var(--border) / 0.25) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border) / 0.25) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-
-  .noise-overlay {
-    position: relative;
-  }
-  .noise-overlay::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .shimmer {
-    background: linear-gradient(
-      110deg,
-      transparent 25%,
-      hsl(var(--primary) / 0.10) 37%,
-      transparent 63%
-    );
-    background-size: 200% 100%;
-    animation: shimmer-slide 3s ease-in-out infinite;
-  }
-
-  @keyframes hero-zoom-pingpong {
-    0%,
-    100% {
-      transform: scale(1.06);
-    }
-    50% {
-      transform: scale(1.24);
-    }
-  }
-
-  @keyframes shimmer-slide {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
-
-  @keyframes float-subtle {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    33% { transform: translateY(-4px) rotate(0.5deg); }
-    66% { transform: translateY(2px) rotate(-0.3deg); }
   }
 }

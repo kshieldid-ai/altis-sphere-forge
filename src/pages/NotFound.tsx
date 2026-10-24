@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import Seo from "@/components/Seo";
 import { Button } from "@/components/ui/button";
-import ScrollReveal from "@/components/ScrollReveal";
 
 const helpfulLinks = [
   { label: "Nos services IT et connectivité", path: "/services" },
@@ -21,34 +21,31 @@ const NotFound = () => {
         path={location.pathname}
         noindex
       />
-      <section className="flex min-h-screen items-center justify-center py-32">
-        <ScrollReveal>
-          <div className="container max-w-2xl text-center">
-          <span className="section-kicker">Erreur 404</span>
-          <h1 className="section-title mt-4">Cette page n'existe pas.</h1>
-          <p className="mt-5 text-base leading-8 text-muted-foreground">
+      <section className="flex min-h-[80vh] items-center pb-20 pt-32">
+        <div className="container max-w-2xl">
+          <p className="text-sm font-semibold text-primary">Erreur 404</p>
+          <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Cette page n'existe pas.</h1>
+          <p className="mt-4 text-base leading-7 text-muted-foreground">
             Le lien est peut-être obsolète ou l'adresse mal saisie. Voici quelques pages utiles pour poursuivre votre visite.
           </p>
 
-          <nav aria-label="Liens utiles" className="mt-10 grid gap-3 sm:grid-cols-2">
+          <nav aria-label="Liens utiles" className="mt-8 divide-y border-y">
             {helpfulLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className="rounded-2xl border border-border/70 bg-card/70 px-5 py-4 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                className="flex items-center justify-between py-3.5 text-[0.9375rem] font-medium hover:text-primary"
               >
                 {link.label}
+                <ArrowRight size={16} className="text-muted-foreground" />
               </Link>
             ))}
           </nav>
 
-          <div className="mt-10">
-            <Button variant="hero" size="lg" asChild>
-              <Link to="/">Revenir à l'accueil</Link>
-            </Button>
-          </div>
-          </div>
-        </ScrollReveal>
+          <Button variant="hero" size="lg" className="mt-8" asChild>
+            <Link to="/">Revenir à l'accueil</Link>
+          </Button>
+        </div>
       </section>
     </>
   );

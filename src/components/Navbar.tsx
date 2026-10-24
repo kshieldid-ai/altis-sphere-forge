@@ -1,25 +1,26 @@
 ﻿import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence, useReducedMotion, useAnimation } from "framer-motion";
 import { useTheme } from "next-themes";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
 import altisLogo from "@/assets/altis-logo.png";
+import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "Accueil", path: "/" },
   { label: "À propos", path: "/a-propos" },
   { label: "Services", path: "/services" },
   { label: "Produits", path: "/produits" },
   { label: "Solutions", path: "/solutions" },
   { label: "Domotique", path: "/domotique" },
   { label: "Blog", path: "/blog" },
-  { label: "Téléchargement", path: "/altis-download" },
   { label: "Contact", path: "/contact" },
 ];
 
+const isActive = (pathname: string, path: string) =>
+  pathname === path || pathname.startsWith(`${path}/`);
+
 /** Bouton de bascule entre le thème clair et sombre. */
-const ThemeToggle = ({ className = "" }: { className?: string }) => {
+const ThemeToggle = () => {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -34,121 +35,66 @@ const ThemeToggle = ({ className = "" }: { className?: string }) => {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Passer au thème clair" : "Passer au thème sombre"}
       title={isDark ? "Thème clair" : "Thème sombre"}
-      className={[
-        "inline-flex h-10 w-10 items-center justify-center rounded-full border border-foreground/[0.08] bg-foreground/[0.04] text-foreground/70 transition-all duration-300 hover:bg-foreground/[0.08] hover:text-foreground",
-        className,
-      ].join(" ")}
+      className="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
     >
-      <AnimatePresence mode="wait" initial={false}>
-        {isDark ? (
-          <motion.span
-            key="moon"
-            initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
-            animate={{ opacity: 1, rotate: 0, scale: 1 }}
-            exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
-            transition={{ duration: 0.25 }}
-          >
-            <Moon size={18} />
-          </motion.span>
-        ) : (
-          <motion.span
-            key="sun"
-            initial={{ opacity: 0, rotate: 90, scale: 0.5 }}
-            animate={{ opacity: 1, rotate: 0, scale: 1 }}
-            exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
-            transition={{ duration: 0.25 }}
-          >
-            <Sun size={18} />
-          </motion.span>
-        )}
-      </AnimatePresence>
+      {isDark ? <Sun size={18} /> : <Moon size={18} />}
     </button>
-  );
-};
-
-/**
- * Enveloppe le logo et lui applique une animation de rotation à 360 degrés.
- */
-const AnimatedLogo = () => {
-  const controls = useAnimation();
-
-  useEffect(() => {
-    const startAnimation = async () => {
-      while (true) {
-        await controls.start({ rotateY: 360, transition: { duration: 2, ease: "easeInOut" } });
-        controls.set({ rotateY: 0 }); // Reset to 0 before repeating
-        
-        // First bounce
-        await controls.start({ y: -20, transition: { duration: 0.3, ease: "easeOut" } });
-        await controls.start({ y: 0, transition: { duration: 0.3, ease: "easeIn" } });
-        // Second bounce
-        await controls.start({ y: -10, transition: { duration: 0.2, ease: "easeOut" } });
-        await controls.start({ y: 0, transition: { duration: 0.2, ease: "easeIn" } });
-
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Pause for 1 second after last bounce
-      }
-    };
-    startAnimation();
-  }, [controls]);
-
-  return (
-    <motion.div
-      animate={controls}
-      className="relative flex items-center"
-    >
-      <img
-        src={altisLogo}
-        alt="Logo ALTIS SPHERE GROUP"
-        width={117}
-        height={40}
-        fetchPriority="high"
-        decoding="async"
-        className="relative z-10 h-10 w-auto"
-      />
-      <div className="absolute bottom-[-5px] left-1/2 -translate-x-1/2 h-2 w-20 rounded-full bg-black/30 blur-sm z-0" />
-    </motion.div>
   );
 };
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const location = useLocation();
+  const { pathname } = useLocation();
+
+  // Referme le menu mobile à chaque changement de page
+  useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-foreground/[0.06] bg-background/60 backdrop-blur-2xl">
-      <nav aria-label="Navigation principale" className="container flex h-20 items-center justify-between gap-6">
-        <Link to="/" aria-label="ALTIS SPHERE GROUP — accueil" className="flex items-center">
-          <AnimatedLogo />
+    <header className="fixed inset-x-0 top-0 z-50 border-b bg-background">
+      <nav aria-label="Navigation principale" className="container flex h-16 items-center justify-between gap-6 lg:h-[4.5rem]">
+        <Link to="/" aria-label="ALTIS SPHERE GROUP — accueil" className="flex shrink-0 items-center">
+          <img
+            src={altisLogo}
+            alt="ALTIS SPHERE GROUP"
+            width={117}
+            height={40}
+            fetchPriority="high"
+            decoding="async"
+            className="h-9 w-auto lg:h-10"
+          />
         </Link>
 
-        <div className="hidden items-center gap-2 rounded-full border border-foreground/[0.08] bg-foreground/[0.04] px-3 py-2 lg:flex">
+        <ul className="hidden items-center gap-1 xl:flex">
           {navItems.map((item) => {
-            const active = location.pathname === item.path;
+            const active = isActive(pathname, item.path);
             return (
-              <Link
-                key={item.path}
-                to={item.path}
-                aria-current={active ? "page" : undefined}
-                className={[
-                  "rounded-full px-4 py-2 text-sm transition-all duration-300",
-                  active ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30" : "text-foreground/50 hover:bg-foreground/[0.06] hover:text-foreground/80",
-                ].join(" ")}
-              >
-                {item.label}
-              </Link>
+              <li key={item.path}>
+                <Link
+                  to={item.path}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "relative px-3 py-2 text-[0.9375rem] font-medium transition-colors",
+                    "after:absolute after:inset-x-3 after:-bottom-[17px] after:h-0.5 after:bg-primary after:opacity-0 after:transition-opacity",
+                    active ? "text-primary after:opacity-100" : "text-foreground/75 hover:text-foreground",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              </li>
             );
           })}
-        </div>
+        </ul>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-2 xl:flex">
           <ThemeToggle />
           <QuoteRequestModal triggerVariant="hero" triggerSize="sm" />
         </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-1 xl:hidden">
           <ThemeToggle />
           <button
-            className="rounded-full border border-foreground/[0.08] bg-foreground/[0.04] p-2.5"
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground hover:bg-secondary"
             onClick={() => setOpen(!open)}
             aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={open}
@@ -159,40 +105,32 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            id="menu-mobile"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="border-t border-foreground/[0.06] bg-background/95 backdrop-blur-2xl lg:hidden"
-          >
-            <nav aria-label="Navigation mobile" className="container flex flex-col gap-2 py-5">
-              {navItems.map((item) => {
-                const active = location.pathname === item.path;
-                return (
+      {open && (
+        <div id="menu-mobile" className="border-t bg-background xl:hidden">
+          <ul className="container flex flex-col py-3">
+            {[{ label: "Accueil", path: "/" }, ...navItems].map((item) => {
+              const active = item.path === "/" ? pathname === "/" : isActive(pathname, item.path);
+              return (
+                <li key={item.path}>
                   <Link
-                    key={item.path}
                     to={item.path}
-                    onClick={() => setOpen(false)}
                     aria-current={active ? "page" : undefined}
-                    className={[
-                      "rounded-2xl px-4 py-3 text-sm transition-colors",
-                      active ? "bg-primary text-primary-foreground" : "bg-foreground/[0.04] text-foreground/50 hover:text-foreground/80",
-                    ].join(" ")}
+                    className={cn(
+                      "block border-l-2 px-4 py-3 text-[0.9375rem] font-medium",
+                      active ? "border-primary bg-accent text-primary" : "border-transparent text-foreground/80 hover:bg-secondary",
+                    )}
                   >
                     {item.label}
                   </Link>
-                );
-              })}
-              <div className="pt-2">
-                <QuoteRequestModal triggerVariant="hero" triggerSize="sm" triggerClassName="w-full" />
-              </div>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                </li>
+              );
+            })}
+            <li className="px-4 pb-2 pt-4">
+              <QuoteRequestModal triggerVariant="hero" triggerSize="default" triggerClassName="w-full" />
+            </li>
+          </ul>
+        </div>
+      )}
     </header>
   );
 };

@@ -1,70 +1,70 @@
 ﻿import { useState } from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import PageBackground from "@/components/PageBackground";
+import { ArrowRight } from "lucide-react";
 import Seo from "@/components/Seo";
+import PageHeader from "@/components/PageHeader";
+import ScrollReveal from "@/components/ScrollReveal";
+import ServiceExpandCard from "@/components/ServiceExpandCard";
 import { breadcrumb, serviceSchema } from "@/lib/seo-schemas";
 import { serviceOffers } from "@/data/services";
-import ServiceExpandCard from "@/components/ServiceExpandCard";
-import ScrollReveal from "@/components/ScrollReveal";
 
 const servicesJsonLd = [
   serviceSchema("Services IT & connectivité", "Fibre, Starlink, cybersécurité, développement web, équipements IT, support 24/7 et domotique.", "/services"),
   breadcrumb("Services", "/services"),
 ];
 
+const relatedLinks = [
+  { label: "Solutions pour entreprises", path: "/solutions" },
+  { label: "Équipements réseau", path: "/produits" },
+  { label: "Domotique et maison intelligente", path: "/domotique" },
+];
+
 const ServicesPage = () => {
   const [openService, setOpenService] = useState<string | null>(null);
 
   return (
-    <div className="relative isolate pt-24">
-      <PageBackground />
+    <>
       <Seo
         title="Services IT & Connectivité | ALTIS SPHERE"
         description="Fibre, Starlink, cybersécurité, développement web, équipements IT, support 24/7 et domotique — les services complets d'ALTIS SPHERE."
         path="/services"
         jsonLd={servicesJsonLd}
       />
-      <section className="py-24">
-        <ScrollReveal>
-          <div className="container">
-          <div className="mb-12 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <span className="section-kicker">Services</span>
-              <h1 className="section-title mt-4">Nos Services</h1>
-            </div>
-            <p className="max-w-xl text-sm leading-7 text-muted-foreground sm:text-base">
-              De la connectivité internet à la cybersécurité, chaque offre s'intègre dans une expérience cohérente, maîtrisée et orientée résultats.
-            </p>
-          </div>
+      <PageHeader
+        crumb="Services"
+        title="Nos services"
+        lead="De la connectivité internet à la cybersécurité, chaque prestation est réalisée par nos équipes, de l'étude à la maintenance."
+      />
 
-          <div className="grid items-start gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {serviceOffers.map((s, i) => (
-              <motion.div
-                key={s.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-              >
+      <section className="py-16 lg:py-20">
+        <div className="container">
+          <div className="grid items-start gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {serviceOffers.map((s) => (
+              <ScrollReveal key={s.id}>
                 <ServiceExpandCard
                   service={s}
                   open={openService === s.id}
                   onOpenChange={(next) => setOpenService(next ? s.id : null)}
                 />
-              </motion.div>
+              </ScrollReveal>
             ))}
           </div>
 
-          <nav aria-label="Pages clés" className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm">
-            <Link to="/solutions" className="text-primary underline-offset-4 hover:underline">Voir nos solutions pour entreprises</Link>
-            <Link to="/produits" className="text-primary underline-offset-4 hover:underline">Parcourir nos équipements réseau</Link>
-            <Link to="/domotique" className="text-primary underline-offset-4 hover:underline">Explorer la domotique et la maison intelligente</Link>
+          <nav aria-label="Pages associées" className="mt-12 border-t pt-8">
+            <p className="text-sm font-semibold">Voir aussi</p>
+            <ul className="mt-3 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+              {relatedLinks.map((l) => (
+                <li key={l.path}>
+                  <Link to={l.path} className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline">
+                    {l.label} <ArrowRight size={14} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </nav>
-          </div>
-        </ScrollReveal>
+        </div>
       </section>
-    </div>
+    </>
   );
 };
 

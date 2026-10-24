@@ -1,53 +1,67 @@
+import { ExternalLink } from 'lucide-react';
 import { downloads, DownloadItem } from '@/data/downloads';
+import Seo from '@/components/Seo';
+import PageHeader from '@/components/PageHeader';
 
 const SECTIONS: { title: string; categories: DownloadItem['category'][] }[] = [
-  { title: 'Drivers Desktop', categories: ['Desktop Drivers'] },
+  { title: 'Pilotes', categories: ['Desktop Drivers'] },
   { title: 'Applications Android', categories: ['Android Apps'] },
-  { title: 'PDFs et Autres Ressources', categories: ['PDFs', 'Other'] },
+  { title: 'Documents et ressources', categories: ['PDFs', 'Other'] },
 ];
 
 const AltisDownload = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-center mb-12">Bienvenue sur Altis Download !</h1>
+    <>
+      <Seo
+        title="Téléchargements | ALTIS SPHERE GROUP"
+        description="Liens officiels vers les pilotes NVIDIA, AMD et Intel, sélectionnés par ALTIS SPHERE GROUP."
+        path="/altis-download"
+      />
+      <PageHeader
+        crumb="Téléchargements"
+        title="Téléchargements"
+        lead="Liens officiels des éditeurs vers les pilotes et utilitaires que nous recommandons."
+      />
 
-      {SECTIONS.map(({ title, categories }) => {
-        const items = downloads.filter((item) => categories.includes(item.category));
-        // Une section sans contenu n'est pas affichée
-        if (items.length === 0) return null;
+      <div className="container py-16 lg:py-20">
+        {SECTIONS.map(({ title, categories }) => {
+          const items = downloads.filter((item) => categories.includes(item.category));
+          // Une section sans contenu n'est pas affichée
+          if (items.length === 0) return null;
 
-        return (
-          <section key={title} className="mb-12">
-            <h2 className="text-3xl font-semibold mb-6">{title}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {items.map((item) => (
-                <div key={item.id} className="border rounded-lg shadow-lg overflow-hidden bg-card text-card-foreground">
-                  <img
-                    src={item.imageUrl}
-                    alt={item.name}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{item.name}</h3>
-                    <p className="text-muted-foreground mb-4">{item.description}</p>
-                    <a
-                      href={item.downloadLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block bg-primary text-primary-foreground px-6 py-2 rounded-full hover:bg-primary/90 transition-colors"
-                    >
-                      Télécharger
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        );
-      })}
-    </div>
+          return (
+            <section key={title} className="mb-14 last:mb-0">
+              <h2 className="text-2xl font-semibold">{title}</h2>
+              <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {items.map((item) => (
+                  <article key={item.id} className="flex flex-col overflow-hidden rounded-lg border bg-card shadow-sm">
+                    <img
+                      src={item.imageUrl}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      className="aspect-[16/9] w-full object-cover"
+                    />
+                    <div className="flex flex-1 flex-col p-6">
+                      <h3 className="text-lg font-semibold">{item.name}</h3>
+                      <p className="mt-2 flex-1 text-sm leading-6 text-muted-foreground">{item.description}</p>
+                      <a
+                        href={item.downloadLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                      >
+                        Site officiel <ExternalLink size={14} />
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

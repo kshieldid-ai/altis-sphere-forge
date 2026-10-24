@@ -2,16 +2,35 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import altisLogo from "@/assets/altis-logo.png";
 
+const serviceLinks = [
+  { label: "Internet & connectivité", path: "/services#internet" },
+  { label: "Solutions IT", path: "/services#it" },
+  { label: "Cybersécurité", path: "/services#cyber" },
+  { label: "Développement web", path: "/services#web" },
+  { label: "Support technique", path: "/services#support" },
+  { label: "Domotique", path: "/domotique" },
+];
+
+const companyLinks = [
+  { label: "À propos", path: "/a-propos" },
+  { label: "Produits", path: "/produits" },
+  { label: "Solutions", path: "/solutions" },
+  { label: "Blog", path: "/blog" },
+  { label: "Téléchargements", path: "/altis-download" },
+  { label: "Contact", path: "/contact" },
+];
+
+const linkClass = "text-sm text-muted-foreground transition-colors hover:text-primary";
+
 const Footer = () => (
-  <footer className="relative overflow-hidden border-t border-foreground/[0.06] bg-background/80">
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,hsl(var(--primary)/0.08),transparent_30%),radial-gradient(circle_at_right,hsl(var(--accent)/0.05),transparent_25%)]" />
-    <div className="container relative py-16">
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1.1fr]">
-        <div className="space-y-5">
-          <Link to="/" className="flex items-center gap-2">
+  <footer className="border-t bg-muted">
+    <div className="container py-14">
+      <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.3fr]">
+        <div className="space-y-4">
+          <Link to="/" className="inline-flex">
             <img
               src={altisLogo}
-              alt="Logo ALTIS SPHERE GROUP"
+              alt="ALTIS SPHERE GROUP"
               width={105}
               height={36}
               loading="lazy"
@@ -19,70 +38,64 @@ const Footer = () => (
               className="h-9 w-auto"
             />
           </Link>
-          <p className="max-w-sm text-sm leading-7 text-foreground/40">
-            Solutions informatiques et connectivité internet pour particuliers et entreprises.
+          <p className="max-w-xs text-sm leading-6 text-muted-foreground">
+            Services informatiques et connectivité internet pour les entreprises et les particuliers, depuis Lubumbashi.
           </p>
         </div>
 
-        <div className="space-y-4">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground/90">Services</h2>
-          <div className="flex flex-col gap-2.5">
-            {[
-              { label: "Internet & Connectivité", path: "/services#internet" },
-              { label: "Solutions IT", path: "/services#it" },
-              { label: "Cybersécurité", path: "/services#cyber" },
-              { label: "Développement Web", path: "/services#web" },
-              { label: "Support Technique", path: "/services#support" },
-              { label: "Domotique / Maison intelligente", path: "/domotique" },
-            ].map((service) => (
-              <Link key={service.label} to={service.path} className="text-sm text-foreground/40 transition-colors hover:text-primary">
-                {service.label}
-              </Link>
+        <div>
+          <h2 className="text-sm font-semibold">Services</h2>
+          <ul className="mt-4 space-y-2.5">
+            {serviceLinks.map((link) => (
+              <li key={link.label}>
+                <Link to={link.path} className={linkClass}>{link.label}</Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
 
-        <div className="space-y-4">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground/90">Entreprise</h2>
-          <div className="flex flex-col gap-2.5">
-            {[
-              { label: "À propos", path: "/a-propos" },
-              { label: "Blog", path: "/blog" },
-              { label: "Contact", path: "/contact" },
-            ].map((link) => (
-              <Link key={link.path} to={link.path} className="text-sm text-foreground/40 transition-colors hover:text-primary">
-                {link.label}
-              </Link>
+        <div>
+          <h2 className="text-sm font-semibold">Entreprise</h2>
+          <ul className="mt-4 space-y-2.5">
+            {companyLinks.map((link) => (
+              <li key={link.path}>
+                <Link to={link.path} className={linkClass}>{link.label}</Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
 
-        <div className="space-y-4">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground/90">Contact</h2>
-          <div className="flex flex-col gap-3 text-sm text-foreground/40">
-            <a href="mailto:support@altisphere-group.com" className="flex items-center gap-3 transition-colors hover:text-primary">
-              <Mail size={16} /> support@altisphere-group.com
-            </a>
-            <a href="tel:+243998914448" className="flex items-center gap-3 transition-colors hover:text-primary">
-              <Phone size={16} /> +243 998 914 448
-            </a>
-            <a href="tel:+243993653332" className="flex items-center gap-3 transition-colors hover:text-primary">
-              <Phone size={16} /> +243 993 653 332
-            </a>
-            <span className="flex items-start gap-3 leading-7">
-              <MapPin size={16} className="mt-1 flex-shrink-0" /> 110, Av. Biayi, Kalubwe, Lubumbashi, RD Congo
-            </span>
-          </div>
+        <div>
+          <h2 className="text-sm font-semibold">Contact</h2>
+          <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+            <li>
+              <a href="mailto:support@altisphere-group.com" className="flex items-center gap-3 hover:text-primary">
+                <Mail size={16} className="shrink-0" /> support@altisphere-group.com
+              </a>
+            </li>
+            <li>
+              <a href="tel:+243998914448" className="flex items-center gap-3 hover:text-primary">
+                <Phone size={16} className="shrink-0" /> +243 998 914 448
+              </a>
+            </li>
+            <li>
+              <a href="tel:+243993653332" className="flex items-center gap-3 hover:text-primary">
+                <Phone size={16} className="shrink-0" /> +243 993 653 332
+              </a>
+            </li>
+            <li className="flex items-start gap-3 leading-6">
+              <MapPin size={16} className="mt-1 shrink-0" /> 110, Av. Biayi, Kalubwe, Lubumbashi, RD Congo
+            </li>
+          </ul>
         </div>
       </div>
 
-      <div className="mt-12 border-t border-foreground/[0.06] pt-8 text-center text-sm text-foreground/40">
-        <div className="mb-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          <Link to="/politique-de-confidentialite" className="transition-colors hover:text-primary">Confidentialité</Link>
-          <span className="text-foreground/20">•</span>
-          <Link to="/cgv" className="transition-colors hover:text-primary">CGV</Link>
+      <div className="mt-12 flex flex-col gap-3 border-t pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <p>© {new Date().getFullYear()} ALTIS SPHERE GROUP. Tous droits réservés.</p>
+        <div className="flex gap-6">
+          <Link to="/politique-de-confidentialite" className="hover:text-primary">Confidentialité</Link>
+          <Link to="/cgv" className="hover:text-primary">CGV</Link>
         </div>
-        © {new Date().getFullYear()} ALTIS SPHERE GROUP. Tous droits réservés.
       </div>
     </div>
   </footer>
