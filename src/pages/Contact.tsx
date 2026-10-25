@@ -1,6 +1,4 @@
-import PageBackground from "@/components/PageBackground";
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { CheckCircle2, Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,7 +10,7 @@ import { useAntiBot } from "@/hooks/use-anti-bot";
 import AntiBotFields from "@/components/AntiBotFields";
 import Seo from "@/components/Seo";
 import { breadcrumb, webPage } from "@/lib/seo-schemas";
-import ScrollReveal from "@/components/ScrollReveal";
+import PageHeader from "@/components/PageHeader";
 
 const contactSchema = z.object({
   nom: z.string().trim().min(1, "Nom requis").max(100),
@@ -158,235 +156,182 @@ const Contact = () => {
     : "";
 
   return (
-    <div className="relative isolate pt-24">
-      <PageBackground />
+    <>
       <Seo
         title="Contact | ALTIS SPHERE — Lubumbashi, RD Congo"
         description="Contactez ALTIS SPHERE à Lubumbashi : formulaire, téléphone +243 998 914 448, email support@altisphere-group.com."
         path="/contact"
         jsonLd={contactJsonLd}
       />
-      <section className="py-24">
-        <ScrollReveal>
-          <div className="container">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-14 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-            <div>
-              <span className="section-kicker">Contact</span>
-              <h1 className="section-title mt-4">Contactez-nous</h1>
-              <p className="mt-5 max-w-xl text-base leading-8 text-muted-foreground">
-                Une question, un projet ? N'hésitez pas à nous contacter.
-              </p>
-            </div>
-            <div className="editorial-panel">
-              <p className="text-xs uppercase tracking-[0.3em] text-primary">Échange direct</p>
-              <p className="mt-3 text-lg leading-8 text-foreground/90">
-                Notre équipe lit chaque message et vous répond sous 24 heures ouvrées.
-              </p>
-            </div>
-          </motion.div>
+      <PageHeader
+        crumb="Contact"
+        title="Contactez-nous"
+        lead="Une question, un projet ? Écrivez-nous ou appelez-nous : nous répondons sous 24 heures ouvrées."
+      />
 
-          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-            <div className="space-y-4">
-              {contactItems.map((item, index) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.08 }}
-                  className="rounded-none border border-foreground/[0.08] bg-foreground/[0.04] p-5"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="icon-shell h-11 w-11 rounded-2xl">
-                      <item.icon size={18} className="text-primary-foreground" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">{item.label}</p>
-                      {item.href ? (
-                        <a href={item.href} className="mt-2 block text-sm leading-7 text-muted-foreground transition-colors hover:text-foreground">
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.value}</p>
-                      )}
-                    </div>
+      <section className="py-20 lg:py-24">
+        <div className="container grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <aside className="space-y-6">
+            <ul className="divide-y rounded-lg border bg-card">
+              {contactItems.map((item) => (
+                <li key={item.label} className="flex items-start gap-4 p-5">
+                  <span className="icon-shell h-10 w-10">
+                    <item.icon size={18} aria-hidden="true" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold">{item.label}</p>
+                    {item.href ? (
+                      <a href={item.href} className="mt-1 block break-words text-sm leading-6 text-muted-foreground hover:text-primary">
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className="mt-1 text-sm leading-6 text-muted-foreground">{item.value}</p>
+                    )}
                   </div>
-                </motion.div>
+                </li>
               ))}
-            </div>
+            </ul>
+            <p className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Clock size={16} className="shrink-0 text-primary" aria-hidden="true" />
+              Réponse sous 24 heures ouvrées.
+            </p>
+          </aside>
 
-            {receipt ? (
-              /* ══════════ ÉCRAN DE CONFIRMATION ══════════ */
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="rounded-none border border-primary/25 bg-primary/5 p-7 backdrop-blur-xl lg:p-9"
-              >
-                <div className="text-center">
-                  <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary/15 text-primary">
-                    <CheckCircle2 size={34} strokeWidth={2.2} />
-                  </div>
-
-                  <h2 className="text-xl font-semibold sm:text-2xl">
-                    Merci, votre message est bien arrivé
-                  </h2>
-
-                  <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
-                    Un membre de l'équipe ALTIS SPHERE GROUP prend connaissance de
-                    votre demande et revient vers vous rapidement.
+          {receipt ? (
+            /* ══════════ ÉCRAN DE CONFIRMATION ══════════ */
+            <div className="rounded-lg border bg-card p-7 shadow-sm lg:p-9" role="status">
+              <div className="flex items-start gap-4">
+                <CheckCircle2 size={28} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
+                <div>
+                  <h2 className="text-xl font-bold">Merci, votre message est bien arrivé</h2>
+                  <p className="mt-3 text-[0.9375rem] leading-[1.7] text-muted-foreground">
+                    Un membre de l'équipe ALTIS SPHERE GROUP prend connaissance de votre demande et revient vers vous rapidement.
                   </p>
                 </div>
+              </div>
 
-                <div className="mx-auto mt-7 grid max-w-md gap-3 text-left">
-                  <div className="flex items-center gap-3 rounded-xl border border-foreground/[0.08] bg-foreground/[0.04] px-4 py-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <span className="text-sm font-bold">#</span>
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-xs uppercase tracking-wide text-muted-foreground">Référence</p>
-                      <p className="font-semibold tabular-nums">
-                        CONTACT-{String(receipt.id).padStart(5, "0")}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 rounded-xl border border-foreground/[0.08] bg-foreground/[0.04] px-4 py-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Mail size={16} />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-xs uppercase tracking-wide text-muted-foreground">Réponse attendue à</p>
-                      <p className="truncate font-medium">{confirmedEmail}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 rounded-xl border border-foreground/[0.08] bg-foreground/[0.04] px-4 py-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Clock size={16} />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-xs uppercase tracking-wide text-muted-foreground">Reçu le</p>
-                      <p className="font-medium">{formattedDate}</p>
-                    </div>
-                  </div>
+              <dl className="mt-7 divide-y rounded-md border text-sm">
+                <div className="flex justify-between gap-4 px-4 py-3">
+                  <dt className="text-muted-foreground">Référence</dt>
+                  <dd className="font-bold tabular-nums">CONTACT-{String(receipt.id).padStart(5, "0")}</dd>
                 </div>
-
-                <p className="mt-6 text-center text-xs text-muted-foreground">
-                  Conservez cette référence pour tout échange avec notre équipe.
-                </p>
-
-                <Button variant="hero-outline" size="lg" className="mt-7 w-full" onClick={resetAll}>
-                  Envoyer un autre message
-                </Button>
-              </motion.div>
-            ) : (
-              /* ══════════ FORMULAIRE ══════════ */
-              <motion.form
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 }}
-                onSubmit={handleSubmit}
-                noValidate
-                className="rounded-none border border-foreground/[0.08] bg-foreground/[0.04] p-7 backdrop-blur-xl lg:p-9"
-              >
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <label htmlFor="contact-nom" className="text-sm font-medium">Nom *</label>
-                    <Input
-                      id="contact-nom"
-                      name="nom"
-                      autoComplete="name"
-                      placeholder="Votre nom"
-                      value={form.nom}
-                      onChange={(e) => { setForm({ ...form, nom: e.target.value }); clearFieldError("nom"); }}
-                    />
-                    <ErrorText name="nom" />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="contact-email" className="text-sm font-medium">Email *</label>
-                    <Input
-                      id="contact-email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      placeholder="votre@email.com"
-                      value={form.email}
-                      onChange={(e) => { setForm({ ...form, email: e.target.value }); clearFieldError("email"); }}
-                    />
-                    <ErrorText name="email" />
-                  </div>
+                <div className="flex justify-between gap-4 px-4 py-3">
+                  <dt className="text-muted-foreground">Réponse à</dt>
+                  <dd className="truncate font-medium">{confirmedEmail}</dd>
                 </div>
-
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <label htmlFor="contact-tel" className="text-sm font-medium">Téléphone</label>
-                    <Input
-                      id="contact-tel"
-                      name="telephone"
-                      type="tel"
-                      autoComplete="tel"
-                      placeholder="+243 ..."
-                      value={form.telephone}
-                      onChange={(e) => { setForm({ ...form, telephone: e.target.value }); clearFieldError("telephone"); }}
-                    />
-                    <ErrorText name="telephone" />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="contact-entreprise" className="text-sm font-medium">Entreprise</label>
-                    <Input
-                      id="contact-entreprise"
-                      name="entreprise"
-                      autoComplete="organization"
-                      placeholder="Nom de votre entreprise"
-                      value={form.entreprise}
-                      onChange={(e) => { setForm({ ...form, entreprise: e.target.value }); clearFieldError("entreprise"); }}
-                    />
-                    <ErrorText name="entreprise" />
-                  </div>
+                <div className="flex justify-between gap-4 px-4 py-3">
+                  <dt className="text-muted-foreground">Reçu le</dt>
+                  <dd className="font-medium">{formattedDate}</dd>
                 </div>
+              </dl>
 
-                <div className="mt-4 space-y-2">
-                  <label htmlFor="contact-sujet" className="text-sm font-medium">Sujet *</label>
+              <p className="mt-4 text-xs text-muted-foreground">
+                Conservez cette référence pour tout échange avec notre équipe.
+              </p>
+
+              <Button variant="hero-outline" className="mt-6" onClick={resetAll}>
+                Envoyer un autre message
+              </Button>
+            </div>
+          ) : (
+            /* ══════════ FORMULAIRE ══════════ */
+            <form onSubmit={handleSubmit} noValidate className="rounded-lg border bg-card p-6 shadow-sm lg:p-8">
+              <h2 className="text-lg font-bold">Envoyer un message</h2>
+              <p className="mt-1 text-sm text-muted-foreground">Les champs marqués d'un * sont obligatoires.</p>
+
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <label htmlFor="contact-nom" className="text-sm font-medium">Nom *</label>
                   <Input
-                    id="contact-sujet"
-                    name="sujet"
-                    placeholder="Sujet du message"
-                    value={form.sujet}
-                    onChange={(e) => { setForm({ ...form, sujet: e.target.value }); clearFieldError("sujet"); }}
+                    id="contact-nom"
+                    name="nom"
+                    autoComplete="name"
+                    value={form.nom}
+                    onChange={(e) => { setForm({ ...form, nom: e.target.value }); clearFieldError("nom"); }}
                   />
-                  <ErrorText name="sujet" />
+                  <ErrorText name="nom" />
                 </div>
-
-                <div className="mt-4 space-y-2">
-                  <label htmlFor="contact-message" className="text-sm font-medium">Message *</label>
-                  <Textarea
-                    id="contact-message"
-                    name="message"
-                    placeholder="Décrivez votre projet ou votre question..."
-                    rows={6}
-                    value={form.message}
-                    onChange={(e) => { setForm({ ...form, message: e.target.value }); clearFieldError("message"); }}
+                <div className="space-y-2">
+                  <label htmlFor="contact-email" className="text-sm font-medium">Email *</label>
+                  <Input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="nom@entreprise.com"
+                    value={form.email}
+                    onChange={(e) => { setForm({ ...form, email: e.target.value }); clearFieldError("email"); }}
                   />
-                  <div className="flex justify-between">
-                    <ErrorText name="message" />
-                    <span className="text-xs text-muted-foreground">{form.message.length} / 2000</span>
-                  </div>
+                  <ErrorText name="email" />
                 </div>
+              </div>
 
-                <div className="mt-4">
-                  <AntiBotFields {...antiBot} />
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <label htmlFor="contact-tel" className="text-sm font-medium">Téléphone</label>
+                  <Input
+                    id="contact-tel"
+                    name="telephone"
+                    type="tel"
+                    autoComplete="tel"
+                    placeholder="+243 ..."
+                    value={form.telephone}
+                    onChange={(e) => { setForm({ ...form, telephone: e.target.value }); clearFieldError("telephone"); }}
+                  />
+                  <ErrorText name="telephone" />
                 </div>
+                <div className="space-y-2">
+                  <label htmlFor="contact-entreprise" className="text-sm font-medium">Entreprise</label>
+                  <Input
+                    id="contact-entreprise"
+                    name="entreprise"
+                    autoComplete="organization"
+                    value={form.entreprise}
+                    onChange={(e) => { setForm({ ...form, entreprise: e.target.value }); clearFieldError("entreprise"); }}
+                  />
+                  <ErrorText name="entreprise" />
+                </div>
+              </div>
 
-                <Button variant="hero" size="lg" type="submit" disabled={loading} className="mt-6">
-                  {loading ? "Envoi..." : "Envoyer"} <Send size={18} />
-                </Button>
-              </motion.form>
-            )}
-          </div>
-          </div>
-        </ScrollReveal>
+              <div className="mt-4 space-y-2">
+                <label htmlFor="contact-sujet" className="text-sm font-medium">Sujet *</label>
+                <Input
+                  id="contact-sujet"
+                  name="sujet"
+                  value={form.sujet}
+                  onChange={(e) => { setForm({ ...form, sujet: e.target.value }); clearFieldError("sujet"); }}
+                />
+                <ErrorText name="sujet" />
+              </div>
+
+              <div className="mt-4 space-y-2">
+                <label htmlFor="contact-message" className="text-sm font-medium">Message *</label>
+                <Textarea
+                  id="contact-message"
+                  name="message"
+                  placeholder="Décrivez votre projet ou votre question"
+                  rows={6}
+                  value={form.message}
+                  onChange={(e) => { setForm({ ...form, message: e.target.value }); clearFieldError("message"); }}
+                />
+                <div className="flex justify-between">
+                  <ErrorText name="message" />
+                  <span className="ml-auto text-xs tabular-nums text-muted-foreground">{form.message.length} / 2000</span>
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <AntiBotFields {...antiBot} />
+              </div>
+
+              <Button variant="hero" size="lg" type="submit" disabled={loading} className="mt-6">
+                {loading ? "Envoi en cours…" : "Envoyer le message"} <Send size={16} />
+              </Button>
+            </form>
+          )}
+        </div>
       </section>
-    </div>
+    </>
   );
 };
 

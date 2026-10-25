@@ -1,4 +1,6 @@
-import sifuImage from "@/assets/downloads/sifu-140x140.webp";
+import nvidiaImage from "@/assets/downloads/nvidia-drivers.jpg";
+import amdImage from "@/assets/downloads/amd-drivers.jpg";
+import intelImage from "@/assets/downloads/intel-drivers.jpg";
 
 export interface DownloadItem {
   id: string;
@@ -9,41 +11,30 @@ export interface DownloadItem {
   category: 'Desktop Drivers' | 'Android Apps' | 'PDFs' | 'Other';
 }
 
+// Uniquement des liens officiels d'éditeurs : aucun APK modifié ni miroir tiers.
 export const downloads: DownloadItem[] = [
-  // Example Desktop Driver
   {
-    id: '1',
-    name: 'NVIDIA GeForce Game Ready Driver',
-    imageUrl: 'https://core-normal.traeapi.us/api/ide/v1/text_to_image?prompt=NVIDIA+GeForce+logo+modern+dark+background&image_size=landscape_16_9',
-    downloadLink: 'https://www.nvidia.com/Download/index.aspx',
-    description: 'Optimize your gaming experience with the latest NVIDIA drivers.',
+    id: 'nvidia-drivers',
+    name: 'Pilotes NVIDIA GeForce',
+    imageUrl: nvidiaImage,
+    downloadLink: 'https://www.nvidia.com/fr-fr/drivers/',
+    description: 'Pilotes officiels NVIDIA pour cartes graphiques GeForce et RTX.',
     category: 'Desktop Drivers',
   },
-  // Example Android App
   {
-    id: '2',
-    name: 'Spotify Premium MOD APK',
-    imageUrl: 'https://core-normal.traeapi.us/api/ide/v1/text_to_image?prompt=Spotify+logo+app+icon+music+streaming&image_size=square',
-    downloadLink: 'https://example.com/spotify-mod-apk',
-    description: 'Listen to music ad-free with Spotify Premium features.',
-    category: 'Android Apps',
+    id: 'amd-drivers',
+    name: 'Pilotes AMD Radeon',
+    imageUrl: amdImage,
+    downloadLink: 'https://www.amd.com/fr/support/download/drivers.html',
+    description: 'Pilotes officiels AMD Adrenalin pour cartes graphiques et chipsets Radeon / Ryzen.',
+    category: 'Desktop Drivers',
   },
-  // SIFU Mobile
   {
-    id: 'sifu-mobile',
-    name: 'SIFU Mobile',
-    imageUrl: sifuImage,
-    downloadLink: 'https://apkvision.org/games/action/sifu-134807/download/v1.0.254260-apk/',
-    description: 'Devenez un maître du Kung Fu dans ce jeu d\'action intense, maintenant sur mobile.',
-    category: 'Android Apps',
-  },
-  // Example PDF
-  {
-    id: '3',
-    name: 'Getting Started with React Guide',
-    imageUrl: 'https://core-normal.traeapi.us/api/ide/v1/text_to_image?prompt=React+JS+logo+coding+programming+guide&image_size=landscape_16_9',
-    downloadLink: 'https://react.dev/learn/start-a-new-react-project',
-    description: 'A comprehensive guide to kickstart your React journey.',
-    category: 'PDFs',
+    id: 'intel-drivers',
+    name: 'Pilotes Intel',
+    imageUrl: intelImage,
+    downloadLink: 'https://www.intel.fr/content/www/fr/fr/support/detect.html',
+    description: "Intel Driver & Support Assistant : détection et mise à jour automatique des pilotes Intel.",
+    category: 'Desktop Drivers',
   },
 ];

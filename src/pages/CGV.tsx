@@ -1,6 +1,5 @@
-import PageBackground from "@/components/PageBackground";
-import { motion } from "framer-motion";
 import Seo from "@/components/Seo";
+import PageHeader from "@/components/PageHeader";
 import { breadcrumb, webPage } from "@/lib/seo-schemas";
 
 const cgvJsonLd = [
@@ -9,29 +8,24 @@ const cgvJsonLd = [
 ];
 
 const CGV = () => (
-  <div className="relative isolate pt-24">
-    <PageBackground />
+  <>
     <Seo
       title="Conditions générales de vente | ALTIS SPHERE GROUP"
       description="Conditions générales de vente des services informatiques et de connectivité d'ALTIS SPHERE GROUP."
       path="/cgv"
       jsonLd={cgvJsonLd}
     />
-    <section className="py-24">
-      <div className="container max-w-3xl space-y-10">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <span className="section-kicker">CGV</span>
-          <h1 className="section-title mt-4">Conditions Générales de <span className="gradient-text">Vente</span></h1>
-          <p className="mt-6 text-base leading-8 text-muted-foreground">
-            Les présentes conditions générales de vente (CGV) régissent les prestations de services proposées par
-            ALTIS SPHERE GROUP. Toute commande implique l'acceptation sans réserve des présentes conditions.
-          </p>
-        </motion.div>
-
-        <div className="space-y-8">
-          <div className="editorial-panel">
-            <h2 className="text-lg font-semibold text-foreground">1. Objet</h2>
-            <div className="mt-4 space-y-2 text-sm leading-7 text-foreground/80">
+    <PageHeader
+      crumb="CGV"
+      title="Conditions générales de vente"
+      lead="Les présentes conditions générales de vente (CGV) régissent les prestations de services proposées par ALTIS SPHERE GROUP. Toute commande implique l'acceptation sans réserve des présentes conditions."
+    />
+    <section className="py-20 lg:py-24">
+      <div className="container max-w-3xl">
+        <div className="divide-y">
+          <div className="py-8 first:pt-0">
+            <h2 className="text-lg font-bold">1. Objet</h2>
+            <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>
                 ALTIS SPHERE GROUP propose des services informatiques, de connectivité internet, de cybersécurité,
                 de développement web et de domotique. Les présentes CGV s'appliquent à toute souscription de services
@@ -40,9 +34,9 @@ const CGV = () => (
             </div>
           </div>
 
-          <div className="editorial-panel">
-            <h2 className="text-lg font-semibold text-foreground">2. Devis et commande</h2>
-            <div className="mt-4 space-y-2 text-sm leading-7 text-foreground/80">
+          <div className="py-8 first:pt-0">
+            <h2 className="text-lg font-bold">2. Devis et commande</h2>
+            <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>
                 Toute prestation fait l'objet d'un devis préalable détaillé. La commande est ferme et définitive
                 dès signature du devis et versement de l'acompte, le cas échéant. Les délais indiqués sont donnés
@@ -51,9 +45,9 @@ const CGV = () => (
             </div>
           </div>
 
-          <div className="editorial-panel">
-            <h2 className="text-lg font-semibold text-foreground">3. Prix et modalités de paiement</h2>
-            <div className="mt-4 space-y-2 text-sm leading-7 text-foreground/80">
+          <div className="py-8 first:pt-0">
+            <h2 className="text-lg font-bold">3. Prix et modalités de paiement</h2>
+            <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>
                 Les prix sont exprimés en francs congolais (CDF) ou en dollars américains (USD), hors taxes, sauf
                 mention contraire sur le devis. Les modalités de paiement (acompte, échéancier, paiement à la livraison)
@@ -62,9 +56,9 @@ const CGV = () => (
             </div>
           </div>
 
-          <div className="editorial-panel">
-            <h2 className="text-lg font-semibold text-foreground">4. Réalisation des prestations</h2>
-            <div className="mt-4 space-y-2 text-sm leading-7 text-foreground/80">
+          <div className="py-8 first:pt-0">
+            <h2 className="text-lg font-bold">4. Réalisation des prestations</h2>
+            <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>
                 ALTIS SPHERE GROUP s'engage à mettre en œuvre tous les moyens nécessaires pour exécuter les prestations
                 dans les règles de l'art. Le client s'engage à fournir les informations et accès nécessaires au bon
@@ -73,9 +67,9 @@ const CGV = () => (
             </div>
           </div>
 
-          <div className="editorial-panel">
-            <h2 className="text-lg font-semibold text-foreground">5. Garantie et responsabilité</h2>
-            <div className="mt-4 space-y-2 text-sm leading-7 text-foreground/80">
+          <div className="py-8 first:pt-0">
+            <h2 className="text-lg font-bold">5. Garantie et responsabilité</h2>
+            <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>
                 ALTIS SPHERE GROUP garantit la conformité des prestations aux spécifications définies. La responsabilité
                 de l'entreprise est limitée au montant de la prestation et ne saurait couvrir les dommages indirects
@@ -84,9 +78,9 @@ const CGV = () => (
             </div>
           </div>
 
-          <div className="editorial-panel">
-            <h2 className="text-lg font-semibold text-foreground">6. Résiliation</h2>
-            <div className="mt-4 space-y-2 text-sm leading-7 text-foreground/80">
+          <div className="py-8 first:pt-0">
+            <h2 className="text-lg font-bold">6. Résiliation</h2>
+            <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>
                 En cas de manquement grave de l'une des parties à ses obligations, l'autre partie pourra résilier
                 les prestations par lettre recommandée avec accusé de réception, après mise en demeure restée sans
@@ -95,9 +89,9 @@ const CGV = () => (
             </div>
           </div>
 
-          <div className="editorial-panel">
-            <h2 className="text-lg font-semibold text-foreground">7. Droit applicable et litiges</h2>
-            <div className="mt-4 space-y-2 text-sm leading-7 text-foreground/80">
+          <div className="py-8 first:pt-0">
+            <h2 className="text-lg font-bold">7. Droit applicable et litiges</h2>
+            <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>
                 Les présentes CGV sont soumises au droit congolais. Tout litige relatif à leur interprétation ou à
                 leur exécution relève de la compétence des tribunaux de Lubumbashi, à défaut de résolution amiable.
@@ -107,7 +101,7 @@ const CGV = () => (
         </div>
       </div>
     </section>
-  </div>
+  </>
 );
 
 export default CGV;

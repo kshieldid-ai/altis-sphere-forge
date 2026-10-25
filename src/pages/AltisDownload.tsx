@@ -1,80 +1,88 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { ExternalLink } from 'lucide-react';
 import { downloads, DownloadItem } from '@/data/downloads';
+import { downloadsApi, isDownloadsApiEnabled } from '@/services/downloadsApi';
+import Seo from '@/components/Seo';
+import PageHeader from '@/components/PageHeader';
+
+const SECTIONS: { title: string; categories: DownloadItem['category'][] }[] = [
+  { title: 'Pilotes', categories: ['Desktop Drivers'] },
+  { title: 'Applications Android', categories: ['Android Apps'] },
+  { title: 'Documents et ressources', categories: ['PDFs', 'Other'] },
+];
+
+const normalize = (name: string) => name.trim().toLowerCase();
+
+/** Liste fixe d'abord, puis les éléments de l'API qui n'y figurent pas déjà. */
+const mergeDownloads = (fixed: DownloadItem[], fromApi: DownloadItem[]) => {
+  const known = new Set(fixed.map((item) => normalize(item.name)));
+  return [...fixed, ...fromApi.filter((item) => !known.has(normalize(item.name)))];
+};
 
 const AltisDownload = () => {
+  // En cas d'échec de l'API, la liste fixe reste affichée : pas d'écran d'erreur.
+  const { data: apiItems = [], isFetching } = useQuery({
+    queryKey: ['downloads'],
+    queryFn: ({ signal }) => downloadsApi.getItems(signal),
+    enabled: isDownloadsApiEnabled,
+    retry: 1,
+    staleTime: 5 * 60_000,
+  });
+
+  const items = mergeDownloads(downloads, apiItems);
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-center mb-12">Bienvenue sur Altis Download !</h1>
-      
-      <section className="mb-12">
-        <h2 className="text-3xl font-semibold mb-6">Drivers Desktop</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {downloads.filter(item => item.category === 'Desktop Drivers').map((item: DownloadItem) => (
-            <div key={item.id} className="border rounded-lg shadow-lg overflow-hidden bg-card text-card-foreground">
-              <img src={item.imageUrl} alt={item.name} className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{item.name}</h3>
-                <p className="text-muted-foreground mb-4">{item.description}</p>
-                <a 
-                  href={item.downloadLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="inline-block bg-primary text-primary-foreground px-6 py-2 rounded-full hover:bg-primary/90 transition-colors"
-                >
-                  Télécharger
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+    <>
+      <Seo
+        title="Téléchargements | ALTIS SPHERE GROUP"
+        description="Liens officiels vers les pilotes NVIDIA, AMD et Intel, sélectionnés par ALTIS SPHERE GROUP."
+        path="/altis-download"
+      />
+      <PageHeader
+        crumb="Téléchargements"
+        title="Téléchargements"
+        lead="Liens officiels des éditeurs vers les pilotes et utilitaires que nous recommandons."
+      />
 
-      <section className="mb-12">
-        <h2 className="text-3xl font-semibold mb-6">Applications Android (MODs)</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {downloads.filter(item => item.category === 'Android Apps').map((item: DownloadItem) => (
-            <div key={item.id} className="border rounded-lg shadow-lg overflow-hidden bg-card text-card-foreground">
-              <img src={item.imageUrl} alt={item.name} className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{item.name}</h3>
-                <p className="text-muted-foreground mb-4">{item.description}</p>
-                <a 
-                  href={item.downloadLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="inline-block bg-primary text-primary-foreground px-6 py-2 rounded-full hover:bg-primary/90 transition-colors"
-                >
-                  Télécharger
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <div className="container py-20 lg:py-24" aria-busy={isFetching}>
+        {SECTIONS.map(({ title, categories }) => {
+          const sectionItems = items.filter((item) => categories.includes(item.category));
+          // Une section sans contenu n'est pas affichée
+          if (sectionItems.length === 0) return null;
 
-      <section>
-        <h2 className="text-3xl font-semibold mb-6">PDFs et Autres Ressources</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {downloads.filter(item => item.category === 'PDFs' || item.category === 'Other').map((item: DownloadItem) => (
-            <div key={item.id} className="border rounded-lg shadow-lg overflow-hidden bg-card text-card-foreground">
-              <img src={item.imageUrl} alt={item.name} className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{item.name}</h3>
-                <p className="text-muted-foreground mb-4">{item.description}</p>
-                <a 
-                  href={item.downloadLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="inline-block bg-primary text-primary-foreground px-6 py-2 rounded-full hover:bg-primary/90 transition-colors"
-                >
-                  Télécharger
-                </a>
+          return (
+            <section key={title} className="mb-14 last:mb-0">
+              <h2 className="text-2xl font-bold">{title}</h2>
+              <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {sectionItems.map((item) => (
+                  <article key={item.id} className="flex flex-col overflow-hidden rounded-2xl border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_-20px_hsl(var(--navy)/0.25)]">
+                    <img
+                      src={item.imageUrl}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      className="aspect-[16/9] w-full bg-muted object-cover"
+                    />
+                    <div className="flex flex-1 flex-col p-6">
+                      <h3 className="text-lg font-bold">{item.name}</h3>
+                      <p className="mt-2 line-clamp-3 flex-1 text-sm leading-6 text-muted-foreground">{item.description}</p>
+                      <a
+                        href={item.downloadLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline"
+                      >
+                        Télécharger <ExternalLink size={14} />
+                      </a>
+                    </div>
+                  </article>
+                ))}
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
-    </div>
+            </section>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

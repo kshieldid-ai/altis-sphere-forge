@@ -15,13 +15,17 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "gradient-bg text-primary-foreground font-semibold shadow-lg glow-primary hover:opacity-90 transition-opacity",
-        "hero-outline": "border-2 border-primary text-primary hover:bg-primary/10 font-semibold",
+        // Appel à l'action principal (majuscules espacées, ombre bleutée)
+        hero: "bg-primary text-[0.8125rem] font-bold uppercase tracking-[0.1em] text-primary-foreground shadow-[0_12px_28px_-10px_hsl(var(--primary)/0.7)] hover:bg-primary/90",
+        // Action secondaire sur fond clair
+        "hero-outline": "border-2 border-primary bg-transparent text-[0.8125rem] font-bold uppercase tracking-[0.1em] text-primary hover:bg-primary hover:text-primary-foreground",
+        // Action secondaire sur fond sombre
+        "on-dark": "border border-white/40 bg-white/5 text-[0.8125rem] font-bold uppercase tracking-[0.1em] text-white hover:bg-white/15",
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
+        sm: "h-10 rounded-[0.625rem] px-5",
+        lg: "h-[3.25rem] rounded-[0.625rem] px-7",
         icon: "h-10 w-10",
       },
     },

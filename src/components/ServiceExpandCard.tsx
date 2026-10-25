@@ -1,4 +1,4 @@
-import { ChevronDown } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import ServiceProjects from "@/components/ServiceProjects";
 import type { ServiceOffer } from "@/data/services";
@@ -15,66 +15,49 @@ const ServiceExpandCard = ({ service, open, onOpenChange }: Props) => {
 
   return (
     <Collapsible open={open} onOpenChange={onOpenChange}>
-      <article
-        className={cn(
-          "service-shell group h-full",
-          open && "hover:translate-y-0",
-        )}
-      >
-        <div className="flex items-start justify-between gap-4">
-          <div className="icon-shell">
-            <Icon size={22} className="text-primary-foreground" />
-          </div>
-          <CollapsibleTrigger asChild>
-            <button
-              type="button"
-              aria-label={open ? `Masquer le détail de ${service.title}` : `Voir le détail de ${service.title}`}
-              className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/[0.08] bg-foreground/[0.04] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-            >
-              <ChevronDown
-                size={18}
-                className={cn("transition-transform duration-300", open && "rotate-180")}
-              />
-            </button>
-          </CollapsibleTrigger>
-        </div>
+      {/* id = ancre des liens /services#… du pied de page */}
+      <article id={service.id} className={cn("service-shell h-full scroll-mt-28", open && "border-primary/40")}>
+        <span className="icon-shell">
+          <Icon size={24} aria-hidden="true" />
+        </span>
 
-        <h2 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{service.title}</h2>
-        <p className="mt-4 text-sm leading-7 text-muted-foreground">{service.desc}</p>
+        <h2 className="mt-6 text-xl font-bold">{service.title}</h2>
+        <p className="mt-3 text-[0.9375rem] leading-[1.7] text-muted-foreground">{service.desc}</p>
+
+        <CollapsibleTrigger asChild>
+          <button
+            type="button"
+            className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline"
+          >
+            {open ? "Masquer le détail" : "Voir le détail"}
+            <ChevronDown size={16} className={cn("transition-transform duration-200", open && "rotate-180")} />
+          </button>
+        </CollapsibleTrigger>
 
         <CollapsibleContent className="overflow-hidden">
-          <div className="mt-6 border-t border-foreground/[0.08] pt-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">{service.subtitle}</p>
+          <div className="mt-6 border-t pt-6">
+            <p className="text-sm font-bold">{service.subtitle}</p>
 
             <div className={cn("mt-4 grid gap-2", service.images.length > 1 ? "grid-cols-2" : "grid-cols-1")}>
               {service.images.map((image, index) => {
                 const isHero = service.images.length === 3 && index === 0;
                 return (
-                  <figure
-                    key={image.src}
-                    className={cn(
-                      "overflow-hidden border border-foreground/[0.08] bg-foreground/[0.03]",
-                      isHero && "col-span-2",
-                    )}
-                  >
+                  <figure key={image.src} className={cn("overflow-hidden rounded-md", isHero && "col-span-2")}>
                     <img
                       src={image.src}
                       alt={image.alt}
                       loading="lazy"
-                      className={cn(
-                        "h-28 w-full object-cover sm:h-32",
-                        isHero && "h-40 sm:h-48",
-                      )}
+                      className={cn("h-28 w-full object-cover sm:h-32", isHero && "h-40 sm:h-48")}
                     />
                   </figure>
                 );
               })}
             </div>
 
-            <ul className="mt-5 space-y-2.5">
+            <ul className="mt-5 space-y-2">
               {service.items.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm leading-6 text-muted-foreground">
-                  <span className="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                <li key={item} className="flex items-start gap-2.5 text-sm leading-6 text-muted-foreground">
+                  <Check size={16} className="mt-1 shrink-0 text-primary" aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}

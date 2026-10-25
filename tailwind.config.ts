@@ -8,15 +8,14 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: { DEFAULT: "1rem", sm: "1.5rem", lg: "2rem" },
       screens: {
-        "2xl": "1400px",
+        "2xl": "1280px",
       },
     },
     extend: {
       fontFamily: {
-        heading: ['"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['"DM Sans"', "system-ui", "-apple-system", '"Segoe UI"', "Roboto", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -53,6 +52,8 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         "surface-elevated": "hsl(var(--surface-elevated))",
+        navy: { DEFAULT: "hsl(var(--navy))", deep: "hsl(var(--navy-deep))" },
+        sky: { DEFAULT: "hsl(var(--sky))" },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -73,37 +74,10 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "float": {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        "pulse-glow": {
-          "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "0.8" },
-        },
-        "shimmer-slide": {
-          "0%": { backgroundPosition: "200% 0" },
-          "100%": { backgroundPosition: "-200% 0" },
-        },
-        "float-subtle": {
-          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
-          "33%": { transform: "translateY(-4px) rotate(0.5deg)" },
-          "66%": { transform: "translateY(2px) rotate(-0.3deg)" },
-        },
-        "gradient-shift": {
-          "0%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-          "100%": { backgroundPosition: "0% 50%" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "float": "float 6s ease-in-out infinite",
-        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
-        "shimmer-slide": "shimmer-slide 3s ease-in-out infinite",
-        "float-subtle": "float-subtle 8s ease-in-out infinite",
-        "gradient-shift": "gradient-shift 8s ease-in-out infinite",
       },
     },
   },

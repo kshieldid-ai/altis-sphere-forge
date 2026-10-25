@@ -35,7 +35,7 @@ const App = () => (
         <div className="min-h-screen" translate="no">
           <a
             href="#contenu-principal"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-primary focus:px-5 focus:py-2 focus:text-primary-foreground"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-5 focus:py-2 focus:text-primary-foreground"
           >
             Aller au contenu principal
           </a>

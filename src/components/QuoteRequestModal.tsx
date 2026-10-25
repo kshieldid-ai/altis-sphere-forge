@@ -61,7 +61,7 @@ const fieldLabels: Record<string, string> = {
 type QuoteRequestModalProps = {
   triggerClassName?: string;
   triggerSize?: "default" | "sm" | "lg" | "icon";
-  triggerVariant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "hero" | "hero-outline";
+  triggerVariant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "hero" | "hero-outline" | "on-dark";
 };
 
 const QuoteRequestModal = ({
@@ -197,13 +197,11 @@ const QuoteRequestModal = ({
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto border border-foreground/[0.08] bg-background/95 backdrop-blur-2xl p-0 shadow-2xl">
-        <div className="grid-pattern absolute inset-0 opacity-10" />
-        <div className="relative rounded-xl border border-foreground/[0.08] bg-foreground/[0.02] p-6 sm:p-8">
+      <DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto rounded-lg p-0">
+        <div className="p-6 sm:p-8">
           <DialogHeader className="mb-6 space-y-3 text-left">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary">Devis</p>
-              <DialogTitle className="mt-2 text-2xl font-bold sm:text-3xl">
+              <DialogTitle className="text-2xl font-bold">
                 {receipt ? "Demande bien reçue" : "Demander un devis"}
               </DialogTitle>
             </div>
@@ -217,12 +215,12 @@ const QuoteRequestModal = ({
           {receipt ? (
             /* ══════════ ÉCRAN DE CONFIRMATION ══════════ */
             <div className="space-y-6">
-              <div className="rounded-2xl border border-primary/25 bg-primary/5 p-6 text-center sm:p-8">
-                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary/15 text-primary">
+              <div className="rounded-lg border bg-muted p-6 text-center sm:p-8">
+                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-accent text-primary">
                   <CheckCircle2 size={34} strokeWidth={2.2} />
                 </div>
 
-                <h3 className="text-xl font-semibold sm:text-2xl">
+                <h3 className="text-xl font-bold sm:text-2xl">
                   Merci, votre demande est enregistrée
                 </h3>
 
@@ -232,22 +230,22 @@ const QuoteRequestModal = ({
                 </p>
 
                 <div className="mx-auto mt-6 grid max-w-md gap-3 text-left">
-                  <div className="flex items-center gap-3 rounded-xl border border-foreground/[0.08] bg-foreground/[0.03] px-4 py-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <div className="flex items-center gap-3 rounded-md border bg-background px-4 py-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-accent text-primary">
                       <span className="text-sm font-bold">#</span>
                     </span>
                     <div className="min-w-0">
                       <p className="text-xs uppercase tracking-wide text-muted-foreground">
                         Référence
                       </p>
-                      <p className="font-semibold tabular-nums">
+                      <p className="font-bold tabular-nums">
                         DEVIS-{String(receipt.id).padStart(5, "0")}
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 rounded-xl border border-foreground/[0.08] bg-foreground/[0.03] px-4 py-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <div className="flex items-center gap-3 rounded-md border bg-background px-4 py-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-accent text-primary">
                       <Mail size={16} />
                     </span>
                     <div className="min-w-0">
@@ -258,8 +256,8 @@ const QuoteRequestModal = ({
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 rounded-xl border border-foreground/[0.08] bg-foreground/[0.03] px-4 py-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <div className="flex items-center gap-3 rounded-md border bg-background px-4 py-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-accent text-primary">
                       <Clock size={16} />
                     </span>
                     <div className="min-w-0">
@@ -285,7 +283,7 @@ const QuoteRequestModal = ({
                 </Button>
               </div>
 
-              <div className="rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] p-5">
+              <div className="rounded-lg border bg-muted p-5">
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   Besoin d'une réponse immédiate ? Écrivez-nous directement sur WhatsApp.
                 </p>
@@ -300,9 +298,9 @@ const QuoteRequestModal = ({
             /* ══════════ FORMULAIRE ══════════ */
             <div className="grid gap-8 lg:grid-cols-[1.35fr_0.85fr]">
               <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                <div className="space-y-4 rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] p-5">
+                <div className="space-y-4 rounded-lg border bg-muted p-5">
                   <div>
-                    <h3 className="text-lg font-semibold">Informations client</h3>
+                    <h3 className="text-lg font-bold">Informations client</h3>
                     <p className="text-sm text-muted-foreground">Renseignez vos coordonnées pour être recontacté.</p>
                   </div>
 
@@ -351,9 +349,9 @@ const QuoteRequestModal = ({
                   </div>
                 </div>
 
-                <div className="space-y-4 rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] p-5">
+                <div className="space-y-4 rounded-lg border bg-muted p-5">
                   <div>
-                    <h3 className="text-lg font-semibold">Informations sur la demande</h3>
+                    <h3 className="text-lg font-bold">Informations sur la demande</h3>
                     <p className="text-sm text-muted-foreground">Décrivez le service souhaité et le contexte de votre projet.</p>
                   </div>
 
@@ -420,7 +418,7 @@ const QuoteRequestModal = ({
                 </div>
 
                 {/* Honeypot (caché) + CAPTCHA arithmétique */}
-                <div className="space-y-4 rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] p-5">
+                <div className="space-y-4 rounded-lg border bg-muted p-5">
                   <AntiBotFields {...antiBot} />
                 </div>
 
@@ -429,11 +427,10 @@ const QuoteRequestModal = ({
                 </Button>
               </form>
 
-              <aside className="flex h-full flex-col justify-between rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] p-5">
+              <aside className="flex h-full flex-col justify-between rounded-lg border bg-muted p-5">
                 <div className="space-y-4">
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary">Contact rapide</p>
-                    <h3 className="mt-2 text-xl font-semibold">Ou contactez-nous directement</h3>
+                    <h3 className="text-lg font-bold">Ou contactez-nous directement</h3>
                   </div>
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     Pour une réponse immédiate, ouvrez WhatsApp avec un message déjà prêt à envoyer à notre équipe.

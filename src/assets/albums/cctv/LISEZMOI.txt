@@ -1,0 +1,6 @@
+Déposez ici les photos de l’album (jpg, jpeg, png ou webp).
+Elles apparaissent automatiquement dans le blog, triées par nom de fichier.
+Le nom du fichier sert de légende : « camera-entree-bureau.jpg » -> « Camera entree bureau ».
+Pour choisir l’ordre, préfixez par un numéro : « 01-Pose de caméra.jpg ». Le numéro n’apparaît pas dans la légende.
+La première photo sert de couverture à l’album.
+Pour choisir la couverture, préfixez le nom par « 00- » : « 00-Caméra.jpg ». Elle passe avant toutes les autres photos de l’album.
