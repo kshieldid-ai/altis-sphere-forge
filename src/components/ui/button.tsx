@@ -15,17 +15,17 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        // Appel à l'action principal
-        hero: "bg-primary font-semibold text-primary-foreground shadow-sm hover:bg-primary/90",
-        // Action secondaire, à côté d'un bouton hero
-        "hero-outline": "border border-primary bg-transparent font-semibold text-primary hover:bg-accent",
-        // Variante pour fond sombre (bandeau hero)
-        "on-dark": "border border-white/70 bg-transparent font-semibold text-white hover:bg-white/10",
+        // Appel à l'action principal (majuscules espacées, ombre bleutée)
+        hero: "bg-primary text-[0.8125rem] font-bold uppercase tracking-[0.1em] text-primary-foreground shadow-[0_12px_28px_-10px_hsl(var(--primary)/0.7)] hover:bg-primary/90",
+        // Action secondaire sur fond clair
+        "hero-outline": "border-2 border-primary bg-transparent text-[0.8125rem] font-bold uppercase tracking-[0.1em] text-primary hover:bg-primary hover:text-primary-foreground",
+        // Action secondaire sur fond sombre
+        "on-dark": "border border-white/40 bg-white/5 text-[0.8125rem] font-bold uppercase tracking-[0.1em] text-white hover:bg-white/15",
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-6 text-[0.9375rem]",
+        sm: "h-10 rounded-[0.625rem] px-5",
+        lg: "h-[3.25rem] rounded-[0.625rem] px-7",
         icon: "h-10 w-10",
       },
     },

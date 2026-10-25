@@ -30,16 +30,16 @@ const Products = () => (
       lead="Du matériel de qualité professionnelle, sélectionné pour sa fiabilité, fourni et installé par nos techniciens."
     />
 
-    <section className="py-16 lg:py-20">
+    <section className="py-20 lg:py-24">
       <div className="container grid gap-6 md:grid-cols-2">
         {products.map((p, i) => (
           <ScrollReveal key={p.category} delay={i * 0.05}>
             <div className="service-shell h-full">
               <div className="flex items-center gap-3">
                 <span className="icon-shell">
-                  <p.icon size={20} aria-hidden="true" />
+                  <p.icon size={24} aria-hidden="true" />
                 </span>
-                <h2 className="text-xl font-semibold">{p.category}</h2>
+                <h2 className="text-xl font-bold">{p.category}</h2>
               </div>
               <ul className="mt-5 grid gap-2 sm:grid-cols-2">
                 {p.items.map((item) => (

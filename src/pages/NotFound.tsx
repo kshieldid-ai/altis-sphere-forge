@@ -21,10 +21,10 @@ const NotFound = () => {
         path={location.pathname}
         noindex
       />
-      <section className="flex min-h-[80vh] items-center pb-20 pt-32">
+      <section className="flex min-h-[70vh] items-center py-24">
         <div className="container max-w-2xl">
-          <p className="text-sm font-semibold text-primary">Erreur 404</p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Cette page n'existe pas.</h1>
+          <p className="section-kicker">Erreur 404</p>
+          <h1 className="section-title mt-4">Cette page n'existe pas.</h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground">
             Le lien est peut-être obsolète ou l'adresse mal saisie. Voici quelques pages utiles pour poursuivre votre visite.
           </p>

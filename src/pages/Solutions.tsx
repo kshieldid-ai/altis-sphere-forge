@@ -36,31 +36,31 @@ const Solutions = () => (
       lead="Des projets complets pour structurer, héberger et sécuriser le système d'information de votre entreprise."
     />
 
-    <section className="py-16 lg:py-20">
+    <section className="py-20 lg:py-24">
       <div className="container grid gap-6 md:grid-cols-3">
         {solutions.map((s, i) => (
           <ScrollReveal key={s.title} delay={i * 0.05}>
             <div className="service-shell h-full">
               <span className="icon-shell">
-                <s.icon size={20} aria-hidden="true" />
+                <s.icon size={24} aria-hidden="true" />
               </span>
-              <h2 className="mt-5 text-xl font-semibold">{s.title}</h2>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{s.desc}</p>
+              <h2 className="mt-6 text-xl font-bold">{s.title}</h2>
+              <p className="mt-3 text-[0.9375rem] leading-[1.7] text-muted-foreground">{s.desc}</p>
             </div>
           </ScrollReveal>
         ))}
       </div>
     </section>
 
-    <section className="border-t bg-muted py-16 lg:py-20">
+    <section className="border-t bg-muted py-20 lg:py-24">
       <div className="container">
         <p className="section-kicker">Méthode</p>
         <h2 className="section-title mt-3">Comment nous travaillons</h2>
         <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
             <li key={step.title} className="border-t-2 border-primary pt-5">
-              <span className="text-sm font-semibold tabular-nums text-primary">{String(i + 1).padStart(2, "0")}</span>
-              <h3 className="mt-2 text-lg font-semibold">{step.title}</h3>
+              <span className="text-sm font-bold tabular-nums text-primary">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="mt-2 text-lg font-bold">{step.title}</h3>
               <p className="mt-1.5 text-sm leading-6 text-muted-foreground">{step.desc}</p>
             </li>
           ))}

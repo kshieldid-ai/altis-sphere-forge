@@ -15,7 +15,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"IBM Plex Sans"', "system-ui", "-apple-system", '"Segoe UI"', "Roboto", "sans-serif"],
+        sans: ['"DM Sans"', "system-ui", "-apple-system", '"Segoe UI"', "Roboto", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -52,7 +52,8 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         "surface-elevated": "hsl(var(--surface-elevated))",
-        navy: "hsl(var(--navy))",
+        navy: { DEFAULT: "hsl(var(--navy))", deep: "hsl(var(--navy-deep))" },
+        sky: { DEFAULT: "hsl(var(--sky))" },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

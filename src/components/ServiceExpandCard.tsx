@@ -16,18 +16,18 @@ const ServiceExpandCard = ({ service, open, onOpenChange }: Props) => {
   return (
     <Collapsible open={open} onOpenChange={onOpenChange}>
       {/* id = ancre des liens /services#… du pied de page */}
-      <article id={service.id} className={cn("service-shell h-full scroll-mt-24", open && "border-primary/40")}>
+      <article id={service.id} className={cn("service-shell h-full scroll-mt-28", open && "border-primary/40")}>
         <span className="icon-shell">
-          <Icon size={20} aria-hidden="true" />
+          <Icon size={24} aria-hidden="true" />
         </span>
 
-        <h2 className="mt-5 text-xl font-semibold">{service.title}</h2>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">{service.desc}</p>
+        <h2 className="mt-6 text-xl font-bold">{service.title}</h2>
+        <p className="mt-3 text-[0.9375rem] leading-[1.7] text-muted-foreground">{service.desc}</p>
 
         <CollapsibleTrigger asChild>
           <button
             type="button"
-            className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+            className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline"
           >
             {open ? "Masquer le détail" : "Voir le détail"}
             <ChevronDown size={16} className={cn("transition-transform duration-200", open && "rotate-180")} />
@@ -36,7 +36,7 @@ const ServiceExpandCard = ({ service, open, onOpenChange }: Props) => {
 
         <CollapsibleContent className="overflow-hidden">
           <div className="mt-6 border-t pt-6">
-            <p className="text-sm font-semibold">{service.subtitle}</p>
+            <p className="text-sm font-bold">{service.subtitle}</p>
 
             <div className={cn("mt-4 grid gap-2", service.images.length > 1 ? "grid-cols-2" : "grid-cols-1")}>
               {service.images.map((image, index) => {

@@ -65,10 +65,10 @@ const domotiqueJsonLd = [
 const FeatureCard = ({ icon: Icon, title, description }: { icon: typeof Lock; title: string; description: string }) => (
   <div className="service-shell h-full">
     <span className="icon-shell">
-      <Icon size={20} aria-hidden="true" />
+      <Icon size={24} aria-hidden="true" />
     </span>
-    <h3 className="mt-5 text-lg font-semibold">{title}</h3>
-    <p className="mt-2 text-sm leading-6 text-muted-foreground">{description}</p>
+    <h3 className="mt-6 text-lg font-bold">{title}</h3>
+    <p className="mt-3 text-[0.9375rem] leading-[1.7] text-muted-foreground">{description}</p>
   </div>
 );
 
@@ -91,7 +91,7 @@ const DomotiquePage = () => (
     </PageHeader>
 
     {/* ═══ Maison intelligente ═══ */}
-    <section className="py-16 lg:py-20">
+    <section className="py-20 lg:py-24">
       <div className="container">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <ScrollReveal>
@@ -123,7 +123,7 @@ const DomotiquePage = () => (
     </section>
 
     {/* ═══ Scénarios ═══ */}
-    <section className="border-y bg-muted py-16 lg:py-20">
+    <section className="border-y bg-muted py-20 lg:py-24">
       <div className="container">
         <ScrollReveal className="max-w-2xl">
           <p className="section-kicker">Automatisation</p>
@@ -135,7 +135,7 @@ const DomotiquePage = () => (
           {scenarios.map((s) => (
             <div key={s.label} className="rounded-lg border bg-card p-6">
               <s.icon size={22} className="text-primary" aria-hidden="true" />
-              <h3 className="mt-4 font-semibold">{s.label}</h3>
+              <h3 className="mt-4 font-bold">{s.label}</h3>
               <p className="mt-1.5 text-sm leading-6 text-muted-foreground">{s.description}</p>
             </div>
           ))}
@@ -144,7 +144,7 @@ const DomotiquePage = () => (
     </section>
 
     {/* ═══ Véhicule connecté ═══ */}
-    <section className="py-16 lg:py-20">
+    <section className="py-20 lg:py-24">
       <div className="container">
         <ScrollReveal className="max-w-2xl">
           <p className="section-kicker">Véhicule connecté</p>
@@ -165,7 +165,7 @@ const DomotiquePage = () => (
     </section>
 
     {/* ═══ Avantages + devis ═══ */}
-    <section className="border-t bg-muted py-16 lg:py-20">
+    <section className="border-t bg-muted py-20 lg:py-24">
       <div className="container grid gap-10 lg:grid-cols-2 lg:items-center">
         <div>
           <p className="section-kicker">Pourquoi ALTIS SPHERE</p>
@@ -185,8 +185,8 @@ const DomotiquePage = () => (
         </div>
 
         <div className="rounded-lg border bg-card p-7 shadow-sm lg:p-8">
-          <h3 className="text-xl font-semibold">Obtenez votre devis gratuit</h3>
-          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+          <h3 className="text-xl font-bold">Obtenez votre devis gratuit</h3>
+          <p className="mt-3 text-[0.9375rem] leading-[1.7] text-muted-foreground">
             Décrivez votre projet domotique : notre équipe vous propose une solution personnalisée avec chiffrage sous 24 h.
           </p>
           <QuoteRequestModal triggerVariant="hero" triggerSize="lg" triggerClassName="mt-6 w-full" />

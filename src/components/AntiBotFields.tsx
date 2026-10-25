@@ -41,7 +41,7 @@ const AntiBotFields = ({
         Vérification anti-bot *
       </Label>
       <div className="flex items-center gap-3">
-        <span className="whitespace-nowrap rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm font-semibold tracking-wide">
+        <span className="whitespace-nowrap rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm font-bold tracking-wide">
           {challenge.question} =
         </span>
         <Input

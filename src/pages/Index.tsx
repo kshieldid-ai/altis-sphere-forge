@@ -1,32 +1,47 @@
-import { useState, useEffect } from "react";
 import { useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
+  ArrowRight,
+  ArrowUpRight,
+  Award,
+  Clock,
+  Cloud,
+  Headphones,
+  Network,
+  Quote,
+  Router,
+  ShieldCheck,
+  Users,
+  Wifi,
+  Wrench,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
-import { Check, Clock, Award, Users, Wrench, ArrowRight, ArrowUpRight, House, Phone } from "lucide-react";
+import BrandImageCard from "@/components/BrandImageCard";
+import ScrollReveal from "@/components/ScrollReveal";
+import Seo from "@/components/Seo";
 import heroVideo from "@/assets/dernier.mp4";
 import heroPoster from "@/assets/hero-bg.jpg";
-import serviceDomotique from "@/assets/service-domotique.jpg";
-import Seo from "@/components/Seo";
+import aboutPhoto from "@/assets/service-it.jpg";
+import whyPhoto from "@/assets/IMG-20260607-WA0035.jpg";
+import domotiquePhoto from "@/assets/service-domotique.jpg";
 import { SITE_URL, ORG_ID } from "@/lib/site";
-import { serviceOffers, clientTestimonials } from "@/data/services";
-import ServiceProjects from "@/components/ServiceProjects";
-import ScrollReveal from "@/components/ScrollReveal";
+import { serviceOffers, clientTestimonials, webProjects } from "@/data/services";
 
-const featuredDomotique = {
-  icon: House,
-  title: "Domotique / Maison intelligente",
-  image: serviceDomotique,
-  items: ["Éclairage intelligent", "Sécurité connectée", "Gestion du climat", "Pilotage centralisé"],
-};
+const stats = [
+  { value: "10+", label: "Ans d'expérience" },
+  { value: String(serviceOffers.length), label: "Domaines d'expertise" },
+  { value: "24/7", label: "Support technique" },
+  { value: String(webProjects.length), label: "Réalisations web" },
+];
+
+const solutionLinks = [
+  { icon: Network, label: "Réseaux d'entreprise", path: "/solutions" },
+  { icon: Cloud, label: "Cloud & infrastructure IT", path: "/solutions" },
+  { icon: ShieldCheck, label: "Sécurité des systèmes", path: "/solutions" },
+  { icon: Router, label: "Équipements réseau et informatiques", path: "/produits" },
+  { icon: Headphones, label: "Support et maintenance", path: "/services#support" },
+];
 
 const reasons = [
   { icon: Clock, title: "Réactivité", desc: "Déploiement rapide et support joignable quand vous en avez besoin." },
@@ -35,273 +50,271 @@ const reasons = [
   { icon: Wrench, title: "Travail soigné", desc: "Matériel professionnel, installations propres et documentées." },
 ];
 
-const heroDomains = [
-  { label: "Fibre optique & Starlink", href: "/services#internet" },
-  { label: "Réseaux & infrastructure IT", href: "/services#it" },
-  { label: "Cybersécurité", href: "/services#cyber" },
-  { label: "Développement web", href: "/services#web" },
-  { label: "Domotique", href: "/domotique" },
-];
-
 const Hero = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden bg-navy pt-16 text-white lg:pt-[4.5rem]">
+    <section className="relative isolate flex min-h-[36rem] items-center overflow-hidden bg-navy lg:min-h-[44rem]">
       <div className="absolute inset-0 -z-10" aria-hidden="true">
         {reduceMotion ? (
           <img src={heroPoster} alt="" className="h-full w-full object-cover" />
         ) : (
-          <video
-            className="h-full w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={heroPoster}
-            disablePictureInPicture
-          >
+          <video className="h-full w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster={heroPoster} disablePictureInPicture>
             <source src={heroVideo} type="video/mp4" />
           </video>
         )}
-        {/* Voile uni : garantit le contraste du texte blanc */}
-        <div className="absolute inset-0 bg-navy/80" />
+        {/* Voile bleu nuit : contraste du texte blanc garanti */}
+        <div className="absolute inset-0 bg-navy/75" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,hsl(var(--navy)/0.9),transparent_70%)]" />
       </div>
+      <div className="diagonal-bands -z-10 hidden md:block" aria-hidden="true" />
 
-      <div className="container grid gap-12 py-20 md:py-28 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-center lg:py-32">
-        <div className="max-w-3xl">
-          <p className="text-sm font-medium text-white/75">Lubumbashi · République démocratique du Congo</p>
-          <h1 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">
-            Services informatiques et connectivité internet pour les entreprises.
+      <div className="container py-20 lg:py-28">
+        <div className="max-w-4xl">
+          <p className="section-kicker text-sky">Services IT & connectivité · Lubumbashi</p>
+          <h1 className="mt-6 text-[2.75rem] font-bold leading-[1.02] tracking-[-0.035em] text-white sm:text-6xl lg:text-[4.5rem]">
+            Votre infrastructure IT entre de bonnes mains.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85">
+          <p className="mt-6 max-w-2xl text-lg leading-[1.75] text-white/80">
             ALTIS SPHERE GROUP conçoit, installe et maintient vos réseaux, vos accès internet (fibre, Starlink),
-            votre sécurité informatique et vos sites web, pour les professionnels comme pour les particuliers.
+            votre sécurité informatique et vos sites web, en RD Congo.
           </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <QuoteRequestModal triggerVariant="hero" triggerSize="lg" triggerClassName="bg-white text-primary hover:bg-white/90" />
-            <Button variant="on-dark" size="lg" asChild>
-              <Link to="/services">Voir nos services</Link>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Button variant="hero" size="lg" asChild>
+              <Link to="/services">
+                Nos services <ArrowRight size={16} />
+              </Link>
             </Button>
+            <QuoteRequestModal triggerVariant="on-dark" triggerSize="lg" />
           </div>
         </div>
-
-        <nav aria-label="Nos domaines" className="hidden border-l border-white/25 pl-8 lg:block">
-          <p className="text-sm font-semibold text-white">Nos domaines</p>
-          <ul className="mt-4 space-y-1">
-            {heroDomains.map((d) => (
-              <li key={d.href}>
-                <Link to={d.href} className="group flex items-center justify-between py-2 text-[0.9375rem] text-white/80 hover:text-white">
-                  {d.label}
-                  <ArrowRight size={16} className="opacity-0 transition-opacity group-hover:opacity-100" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
       </div>
     </section>
   );
 };
 
-const ServiceGallery = ({ images }: { images: { src: string; alt: string }[] }) => {
-  const reduceMotion = useReducedMotion();
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
+const About = () => (
+  <section className="py-24 lg:py-28">
+    <div className="container feature-grid lg:items-center">
+      <ScrollReveal className="lg:pr-6">
+        <BrandImageCard
+          src={aboutPhoto}
+          alt="Technicien ALTIS SPHERE en intervention sur une baie réseau"
+          caption={<>ALTIS SPHERE<br />Votre partenaire IT</>}
+          badge={{ value: "10+", label: "Ans d'expérience" }}
+        />
+      </ScrollReveal>
 
-  useEffect(() => {
-    if (!api) return;
-    setCurrent(api.selectedScrollSnap());
-    api.on("select", () => setCurrent(api.selectedScrollSnap()));
-  }, [api]);
+      <ScrollReveal>
+        <p className="section-kicker">À propos de l'entreprise</p>
+        <h2 className="section-title mt-4">Connectivité, infrastructure et sécurité informatique</h2>
+        <p className="section-lead">
+          ALTIS SPHERE GROUP est une entreprise de services informatiques basée à Lubumbashi. Nous accompagnons
+          entreprises et particuliers, de l'accès internet au système d'information complet.
+        </p>
+        <p className="mt-4 text-base leading-[1.75]">
+          Étude, installation, configuration puis maintenance : vous gardez un seul interlocuteur, qui connaît votre
+          installation et reste joignable.
+        </p>
 
-  return (
-    <Carousel opts={{ align: "start", duration: reduceMotion ? 0 : 28 }} setApi={setApi} className="w-full">
-      <CarouselContent>
-        {images.map((image) => (
-          <CarouselItem key={image.src}>
-            <div className="h-60 overflow-hidden md:h-72">
-              <img src={image.src} alt={image.alt} loading="lazy" className="h-full w-full object-cover" />
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {[
+            { icon: Wifi, title: "Connectivité", sub: "Fibre, Starlink, Wi-Fi" },
+            { icon: ShieldCheck, title: "Sécurité & IT", sub: "Réseaux, cloud, protection" },
+          ].map((f) => (
+            <div key={f.title} className="flex items-center gap-4 rounded-2xl border bg-card p-5">
+              <span className="icon-shell h-12 w-12">
+                <f.icon size={22} aria-hidden="true" />
+              </span>
+              <div>
+                <p className="font-bold text-foreground">{f.title}</p>
+                <p className="text-sm">{f.sub}</p>
+              </div>
             </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious className="left-3 z-10 h-9 w-9 rounded-md border bg-background text-foreground hover:bg-secondary" />
-      <CarouselNext className="right-3 z-10 h-9 w-9 rounded-md border bg-background text-foreground hover:bg-secondary" />
-      <p className="absolute bottom-3 right-3 rounded bg-navy/80 px-2 py-0.5 text-xs tabular-nums text-white">
-        {current + 1} / {images.length}
-      </p>
-    </Carousel>
-  );
-};
+          ))}
+        </div>
 
-const CheckList = ({ items }: { items: string[] }) => (
-  <ul className="mt-5 space-y-2">
-    {items.map((item) => (
-      <li key={item} className="flex items-start gap-2.5 text-sm leading-6 text-muted-foreground">
-        <Check size={16} className="mt-1 shrink-0 text-primary" aria-hidden="true" />
-        <span>{item}</span>
-      </li>
-    ))}
-  </ul>
+        <Button variant="hero" size="lg" className="mt-9" asChild>
+          <Link to="/a-propos">
+            En savoir plus <ArrowRight size={16} />
+          </Link>
+        </Button>
+      </ScrollReveal>
+    </div>
+  </section>
 );
 
 const Services = () => (
-  <section className="py-20 lg:py-24">
+  <section className="bg-muted pb-24 pt-24 lg:pt-28">
     <div className="container">
-      <ScrollReveal className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <p className="section-kicker">Nos services</p>
-          <h2 className="section-title mt-3">Ce que nous faisons</h2>
-          <p className="section-lead">
-            Connectivité, infrastructure, sécurité, web et support : un seul prestataire pour l'ensemble de votre système d'information.
-          </p>
-        </div>
-        <Link to="/services" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
-          Tous les services <ArrowRight size={16} />
-        </Link>
+      <ScrollReveal className="mx-auto max-w-2xl text-center">
+        <p className="section-kicker">Nos services</p>
+        <h2 className="section-title mt-4">Des services IT complets pour votre activité</h2>
       </ScrollReveal>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        {serviceOffers.map((s) => (
-          <ScrollReveal key={s.id}>
-            <article id={s.id} className="h-full scroll-mt-24 overflow-hidden rounded-lg border bg-card shadow-sm">
-              {s.images.length > 3 ? (
-                <div className="relative">
-                  <ServiceGallery images={s.images} />
-                </div>
-              ) : (
-                <div className={s.images.length > 1 ? "grid grid-cols-2 gap-px bg-border" : ""}>
-                  {s.images.map((image, index) => {
-                    const isHero = s.images.length === 3 && index === 0;
-                    return (
-                      <div key={image.src} className={isHero ? "col-span-2 h-52 overflow-hidden" : "h-44 overflow-hidden"}>
-                        <img src={image.src} alt={image.alt} loading="lazy" className="h-full w-full object-cover" />
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-              <div className="p-6 lg:p-7">
-                <div className="flex items-center gap-3">
-                  <span className="icon-shell h-10 w-10">
-                    <s.icon size={20} aria-hidden="true" />
-                  </span>
-                  <h3 className="text-xl font-semibold">{s.title}</h3>
-                </div>
-                <p className="mt-3 text-sm text-muted-foreground">{s.subtitle}</p>
-                <CheckList items={s.items} />
-                {s.projects ? <ServiceProjects projects={s.projects} /> : null}
-              </div>
+      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {serviceOffers.map((s, i) => (
+          <ScrollReveal key={s.id} delay={(i % 3) * 0.06}>
+            <article className="service-shell flex h-full flex-col">
+              <span className="icon-shell">
+                <s.icon size={24} aria-hidden="true" />
+              </span>
+              <h3 className="mt-6 text-xl">{s.title}</h3>
+              <p className="mt-3 flex-1 text-[0.9375rem] leading-[1.7]">{s.desc}</p>
+              <Link
+                to={`/services#${s.id}`}
+                className="mt-6 inline-flex items-center gap-2 text-[0.9375rem] font-bold text-primary hover:gap-3"
+                aria-label={`En savoir plus : ${s.title}`}
+              >
+                En savoir plus <ArrowRight size={16} />
+              </Link>
             </article>
           </ScrollReveal>
         ))}
-
-        <ScrollReveal className="md:col-span-2">
-          <article className="grid overflow-hidden rounded-lg border bg-card shadow-sm lg:grid-cols-2">
-            <div className="h-64 lg:h-full">
-              <img src={featuredDomotique.image} alt={featuredDomotique.title} loading="lazy" className="h-full w-full object-cover" />
-            </div>
-            <div className="p-6 lg:p-8">
-              <div className="flex items-center gap-3">
-                <span className="icon-shell h-10 w-10">
-                  <featuredDomotique.icon size={20} aria-hidden="true" />
-                </span>
-                <h3 className="text-xl font-semibold">{featuredDomotique.title}</h3>
-              </div>
-              <CheckList items={featuredDomotique.items} />
-              <Link to="/domotique" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
-                Découvrir la domotique <ArrowRight size={16} />
-              </Link>
-            </div>
-          </article>
-        </ScrollReveal>
       </div>
+
+      {/* Bandeau de chiffres clés */}
+      <ScrollReveal className="mt-14">
+        <dl className="grid overflow-hidden rounded-2xl bg-primary text-white shadow-[0_25px_50px_-20px_hsl(var(--primary)/0.6)] sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.label} className="border-white/15 px-6 py-9 text-center sm:[&:nth-child(odd)]:border-r lg:border-r lg:last:border-r-0">
+              <dt className="sr-only">{s.label}</dt>
+              <dd>
+                <span className="block text-5xl font-bold tracking-[-0.03em]">{s.value}</span>
+                <span className="mt-2 block font-bold text-white/85">{s.label}</span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </ScrollReveal>
+    </div>
+  </section>
+);
+
+const Domotique = () => (
+  <section className="relative isolate overflow-hidden bg-navy py-24 text-center lg:py-32">
+    <img src={domotiquePhoto} alt="" aria-hidden="true" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30" />
+    <div className="absolute inset-0 -z-10 bg-navy/70" aria-hidden="true" />
+    <div className="container max-w-3xl">
+      <p className="section-kicker text-sky">Domotique</p>
+      <h2 className="mt-5 text-4xl font-bold leading-[1.08] tracking-[-0.03em] text-white sm:text-5xl">
+        Votre maison intelligente, pilotée depuis votre smartphone
+      </h2>
+      <p className="mx-auto mt-5 max-w-xl text-lg leading-[1.75] text-white/80">
+        Éclairage, climatisation, caméras, accès et véhicule connecté : nous installons et configurons l'ensemble.
+      </p>
+      <Button variant="hero" size="lg" className="mt-9" asChild>
+        <Link to="/domotique">
+          Découvrir la domotique <ArrowRight size={16} />
+        </Link>
+      </Button>
+    </div>
+  </section>
+);
+
+const Solutions = () => (
+  <section className="py-24 lg:py-28">
+    <div className="container feature-grid lg:items-center">
+      <ScrollReveal>
+        <p className="section-kicker">Solutions pour entreprises</p>
+        <h2 className="section-title mt-4">Un système d'information structuré et sécurisé</h2>
+        <p className="section-lead">
+          Nous concevons et déployons les réseaux, l'hébergement et la sécurité de votre entreprise, puis nous en
+          assurons le suivi. Chaque projet commence par une visite sur site et un diagnostic de l'existant.
+        </p>
+        <p className="mt-4 text-base leading-[1.75]">
+          Pour les sites isolés, nous combinons fibre, Starlink et liaisons de secours afin de garantir la continuité
+          de vos activités.
+        </p>
+        <Button variant="hero" size="lg" className="mt-9" asChild>
+          <Link to="/contact">
+            Parler de votre projet <ArrowRight size={16} />
+          </Link>
+        </Button>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <p className="section-kicker">Nos solutions</p>
+        <ul className="mt-5 divide-y overflow-hidden rounded-2xl border bg-card">
+          {solutionLinks.map((s) => (
+            <li key={s.label}>
+              <Link to={s.path} className="group flex items-center gap-4 p-4 transition-colors hover:bg-muted sm:p-5">
+                <span className="icon-shell h-12 w-12">
+                  <s.icon size={22} aria-hidden="true" />
+                </span>
+                <span className="flex-1 font-bold text-foreground">{s.label}</span>
+                <ArrowRight size={18} className="text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </ScrollReveal>
     </div>
   </section>
 );
 
 const WhyUs = () => (
-  <section className="border-y bg-muted py-20 lg:py-24">
+  <section className="bg-muted py-24 lg:py-28">
     <div className="container feature-grid lg:items-center">
-      <ScrollReveal className="max-w-xl">
-        <p className="section-kicker">Pourquoi nous choisir</p>
-        <h2 className="section-title mt-3">Un partenaire technique local, joignable et rigoureux.</h2>
-        <p className="section-lead">
-          Nous intervenons de l'étude à la maintenance, avec le même interlocuteur. Chaque installation est
-          dimensionnée pour durer et documentée pour vos équipes.
-        </p>
+      <ScrollReveal className="lg:pr-6">
+        <BrandImageCard
+          src={whyPhoto}
+          alt="Soudure de fibre optique sur un chantier ALTIS SPHERE"
+          caption={<>Des installations<br />faites pour durer</>}
+        />
       </ScrollReveal>
-      <div className="grid gap-4 sm:grid-cols-2">
-        {reasons.map((r, i) => (
-          <ScrollReveal key={r.title} delay={i * 0.05}>
-            <div className="h-full rounded-lg border bg-card p-6">
+
+      <ScrollReveal>
+        <p className="section-kicker">Pourquoi nous choisir</p>
+        <h2 className="section-title mt-4">Un partenaire technique local, joignable et rigoureux</h2>
+        <ul className="mt-8 divide-y">
+          {reasons.map((r) => (
+            <li key={r.title} className="flex gap-5 py-5 first:pt-0 last:pb-0">
               <span className="icon-shell">
-                <r.icon size={20} aria-hidden="true" />
+                <r.icon size={22} aria-hidden="true" />
               </span>
-              <h3 className="mt-5 text-lg font-semibold">{r.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{r.desc}</p>
-            </div>
-          </ScrollReveal>
-        ))}
-      </div>
+              <div>
+                <h3 className="text-lg">{r.title}</h3>
+                <p className="mt-1 text-[0.9375rem] leading-[1.7]">{r.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </ScrollReveal>
     </div>
   </section>
 );
 
 const Testimonials = () => (
-  <section className="py-20 lg:py-24">
+  <section className="pb-24 pt-24 lg:pt-28">
     <div className="container">
-      <ScrollReveal className="mb-12 max-w-2xl">
+      <ScrollReveal className="mx-auto max-w-2xl text-center">
         <p className="section-kicker">Références</p>
-        <h2 className="section-title mt-3">Ils nous ont confié leur projet</h2>
+        <h2 className="section-title mt-4">Ils nous ont confié leur projet</h2>
       </ScrollReveal>
-      <div className="grid gap-6 lg:grid-cols-3">
-        {clientTestimonials.map((t) => (
-          <ScrollReveal key={t.name}>
-            <figure className="flex h-full flex-col rounded-lg border bg-card p-7">
-              <blockquote className="flex-1 text-[0.9375rem] leading-7 text-foreground/90">
-                <p>« {t.text} »</p>
+      <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        {clientTestimonials.map((t, i) => (
+          <ScrollReveal key={t.name} delay={i * 0.06}>
+            <figure className="service-shell flex h-full flex-col">
+              <Quote size={32} className="text-primary/25" aria-hidden="true" />
+              <blockquote className="mt-4 flex-1 text-[0.9375rem] leading-[1.75] text-foreground/85">
+                <p>{t.text}</p>
               </blockquote>
-              <figcaption className="mt-6 border-t pt-5">
+              <figcaption className="mt-7 border-t pt-5">
                 <a
                   href={t.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-primary"
+                  className="inline-flex items-center gap-1.5 font-bold text-foreground hover:text-primary"
                 >
                   {t.name}
-                  <ArrowUpRight size={14} aria-hidden="true" />
+                  <ArrowUpRight size={15} aria-hidden="true" />
                 </a>
-                <p className="mt-1 text-sm text-muted-foreground">{t.role}</p>
+                <p className="mt-0.5 text-sm">{t.role}</p>
               </figcaption>
             </figure>
           </ScrollReveal>
         ))}
-      </div>
-    </div>
-  </section>
-);
-
-const CTA = () => (
-  <section className="bg-primary text-primary-foreground">
-    <div className="container flex flex-col gap-8 py-14 lg:flex-row lg:items-center lg:justify-between lg:py-16">
-      <div className="max-w-2xl">
-        <h2 className="text-2xl font-semibold text-white sm:text-3xl">Un projet réseau, internet ou web ?</h2>
-        <p className="mt-3 text-base leading-7 text-white/85">
-          Décrivez-nous votre besoin : nous revenons vers vous avec un diagnostic et un devis détaillé, sans engagement.
-        </p>
-      </div>
-      <div className="flex flex-wrap items-center gap-3">
-        <Button size="lg" asChild className="bg-white font-semibold text-primary hover:bg-white/90">
-          <Link to="/contact">Nous contacter</Link>
-        </Button>
-        <Button variant="on-dark" size="lg" asChild>
-          <a href="tel:+243998914448">
-            <Phone size={16} /> +243 998 914 448
-          </a>
-        </Button>
       </div>
     </div>
   </section>
@@ -326,10 +339,12 @@ const Index = () => (
       jsonLd={homeJsonLd}
     />
     <Hero />
+    <About />
     <Services />
+    <Domotique />
+    <Solutions />
     <WhyUs />
     <Testimonials />
-    <CTA />
   </>
 );
 

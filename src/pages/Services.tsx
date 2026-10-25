@@ -36,7 +36,7 @@ const ServicesPage = () => {
         lead="De la connectivité internet à la cybersécurité, chaque prestation est réalisée par nos équipes, de l'étude à la maintenance."
       />
 
-      <section className="py-16 lg:py-20">
+      <section className="py-20 lg:py-24">
         <div className="container">
           <div className="grid items-start gap-6 md:grid-cols-2 xl:grid-cols-3">
             {serviceOffers.map((s) => (
@@ -51,7 +51,7 @@ const ServicesPage = () => {
           </div>
 
           <nav aria-label="Pages associées" className="mt-12 border-t pt-8">
-            <p className="text-sm font-semibold">Voir aussi</p>
+            <p className="text-sm font-bold">Voir aussi</p>
             <ul className="mt-3 flex flex-wrap gap-x-8 gap-y-3 text-sm">
               {relatedLinks.map((l) => (
                 <li key={l.path}>

@@ -44,7 +44,7 @@ const AltisDownload = () => {
         lead="Liens officiels des éditeurs vers les pilotes et utilitaires que nous recommandons."
       />
 
-      <div className="container py-16 lg:py-20" aria-busy={isFetching}>
+      <div className="container py-20 lg:py-24" aria-busy={isFetching}>
         {SECTIONS.map(({ title, categories }) => {
           const sectionItems = items.filter((item) => categories.includes(item.category));
           // Une section sans contenu n'est pas affichée
@@ -52,10 +52,10 @@ const AltisDownload = () => {
 
           return (
             <section key={title} className="mb-14 last:mb-0">
-              <h2 className="text-2xl font-semibold">{title}</h2>
+              <h2 className="text-2xl font-bold">{title}</h2>
               <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {sectionItems.map((item) => (
-                  <article key={item.id} className="flex flex-col overflow-hidden rounded-lg border bg-card shadow-sm">
+                  <article key={item.id} className="flex flex-col overflow-hidden rounded-2xl border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_-20px_hsl(var(--navy)/0.25)]">
                     <img
                       src={item.imageUrl}
                       alt=""
@@ -64,13 +64,13 @@ const AltisDownload = () => {
                       className="aspect-[16/9] w-full bg-muted object-cover"
                     />
                     <div className="flex flex-1 flex-col p-6">
-                      <h3 className="text-lg font-semibold">{item.name}</h3>
+                      <h3 className="text-lg font-bold">{item.name}</h3>
                       <p className="mt-2 line-clamp-3 flex-1 text-sm leading-6 text-muted-foreground">{item.description}</p>
                       <a
                         href={item.downloadLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                        className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline"
                       >
                         Télécharger <ExternalLink size={14} />
                       </a>

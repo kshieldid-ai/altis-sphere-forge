@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import pageBanner from "@/assets/hero-bg.jpg";
 
 type Props = {
   /** Libellé court affiché dans le fil d'Ariane */
@@ -11,19 +11,23 @@ type Props = {
   children?: ReactNode;
 };
 
-/** En-tête commun des pages internes : fil d'Ariane, titre, chapô. */
+/** Bandeau sombre des pages internes : fil d'Ariane, titre, chapô. */
 const PageHeader = ({ crumb, title, lead, children }: Props) => (
-  <header className="border-b bg-muted pt-16 lg:pt-[4.5rem]">
-    <div className="container py-12 lg:py-16">
-      <nav aria-label="Fil d'Ariane" className="flex items-center gap-1.5 text-sm text-muted-foreground">
-        <Link to="/" className="hover:text-primary">Accueil</Link>
-        <ChevronRight size={14} aria-hidden="true" />
-        <span aria-current="page" className="text-foreground">{crumb}</span>
+  <header className="relative isolate overflow-hidden bg-navy">
+    <img src={pageBanner} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-25" />
+    <div className="absolute inset-0 -z-10 bg-navy/75" aria-hidden="true" />
+    <div className="diagonal-bands -z-10 hidden md:block" aria-hidden="true" />
+
+    <div className="container py-16 lg:py-24">
+      <nav aria-label="Fil d'Ariane" className="flex items-center gap-2.5 text-[0.8125rem] font-bold uppercase tracking-[0.12em]">
+        <Link to="/" className="text-white/80 hover:text-white">Accueil</Link>
+        <span className="text-white/40" aria-hidden="true">/</span>
+        <span aria-current="page" className="text-sky">{crumb}</span>
       </nav>
-      <h1 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-[2.75rem]">
+      <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-[1.08] tracking-[-0.03em] text-white sm:text-5xl lg:text-[3.5rem]">
         {title}
       </h1>
-      {lead ? <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">{lead}</p> : null}
+      {lead ? <p className="mt-5 max-w-2xl text-base leading-[1.75] text-white/75 sm:text-lg">{lead}</p> : null}
       {children ? <div className="mt-8">{children}</div> : null}
     </div>
   </header>

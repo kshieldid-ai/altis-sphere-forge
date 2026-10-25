@@ -201,7 +201,7 @@ const QuoteRequestModal = ({
         <div className="p-6 sm:p-8">
           <DialogHeader className="mb-6 space-y-3 text-left">
             <div>
-              <DialogTitle className="text-2xl font-semibold">
+              <DialogTitle className="text-2xl font-bold">
                 {receipt ? "Demande bien reçue" : "Demander un devis"}
               </DialogTitle>
             </div>
@@ -220,7 +220,7 @@ const QuoteRequestModal = ({
                   <CheckCircle2 size={34} strokeWidth={2.2} />
                 </div>
 
-                <h3 className="text-xl font-semibold sm:text-2xl">
+                <h3 className="text-xl font-bold sm:text-2xl">
                   Merci, votre demande est enregistrée
                 </h3>
 
@@ -238,7 +238,7 @@ const QuoteRequestModal = ({
                       <p className="text-xs uppercase tracking-wide text-muted-foreground">
                         Référence
                       </p>
-                      <p className="font-semibold tabular-nums">
+                      <p className="font-bold tabular-nums">
                         DEVIS-{String(receipt.id).padStart(5, "0")}
                       </p>
                     </div>
@@ -300,7 +300,7 @@ const QuoteRequestModal = ({
               <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 <div className="space-y-4 rounded-lg border bg-muted p-5">
                   <div>
-                    <h3 className="text-lg font-semibold">Informations client</h3>
+                    <h3 className="text-lg font-bold">Informations client</h3>
                     <p className="text-sm text-muted-foreground">Renseignez vos coordonnées pour être recontacté.</p>
                   </div>
 
@@ -351,7 +351,7 @@ const QuoteRequestModal = ({
 
                 <div className="space-y-4 rounded-lg border bg-muted p-5">
                   <div>
-                    <h3 className="text-lg font-semibold">Informations sur la demande</h3>
+                    <h3 className="text-lg font-bold">Informations sur la demande</h3>
                     <p className="text-sm text-muted-foreground">Décrivez le service souhaité et le contexte de votre projet.</p>
                   </div>
 
@@ -430,7 +430,7 @@ const QuoteRequestModal = ({
               <aside className="flex h-full flex-col justify-between rounded-lg border bg-muted p-5">
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-lg font-semibold">Ou contactez-nous directement</h3>
+                    <h3 className="text-lg font-bold">Ou contactez-nous directement</h3>
                   </div>
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     Pour une réponse immédiate, ouvrez WhatsApp avec un message déjà prêt à envoyer à notre équipe.

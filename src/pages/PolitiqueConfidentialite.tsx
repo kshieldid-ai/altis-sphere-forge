@@ -20,11 +20,11 @@ const PolitiqueConfidentialite = () => (
       title="Politique de confidentialité"
       lead="La présente politique décrit comment ALTIS SPHERE GROUP collecte, utilise et protège les données personnelles que vous nous communiquez lors de votre visite sur notre site ou de l'utilisation de nos services."
     />
-    <section className="py-16 lg:py-20">
+    <section className="py-20 lg:py-24">
       <div className="container max-w-3xl">
         <div className="divide-y">
           <div className="py-8 first:pt-0">
-            <h2 className="text-lg font-semibold">1. Données collectées</h2>
+            <h2 className="text-lg font-bold">1. Données collectées</h2>
             <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>Nous collectons uniquement les données nécessaires au traitement de vos demandes :</p>
               <ul className="list-disc space-y-1 pl-6">
@@ -39,7 +39,7 @@ const PolitiqueConfidentialite = () => (
           </div>
 
           <div className="py-8 first:pt-0">
-            <h2 className="text-lg font-semibold">2. Finalité du traitement</h2>
+            <h2 className="text-lg font-bold">2. Finalité du traitement</h2>
             <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>Vos données sont utilisées pour :</p>
               <ul className="list-disc space-y-1 pl-6">
@@ -51,7 +51,7 @@ const PolitiqueConfidentialite = () => (
           </div>
 
           <div className="py-8 first:pt-0">
-            <h2 className="text-lg font-semibold">3. Conservation des données</h2>
+            <h2 className="text-lg font-bold">3. Conservation des données</h2>
             <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>
                 Vos données sont conservées pendant la durée nécessaire au traitement de votre demande, puis pour une
@@ -61,7 +61,7 @@ const PolitiqueConfidentialite = () => (
           </div>
 
           <div className="py-8 first:pt-0">
-            <h2 className="text-lg font-semibold">4. Sécurité et protection</h2>
+            <h2 className="text-lg font-bold">4. Sécurité et protection</h2>
             <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>
                 ALTIS SPHERE GROUP met en œuvre des mesures techniques et organisationnelles pour protéger vos données
@@ -72,7 +72,7 @@ const PolitiqueConfidentialite = () => (
           </div>
 
           <div className="py-8 first:pt-0">
-            <h2 className="text-lg font-semibold">5. Vos droits</h2>
+            <h2 className="text-lg font-bold">5. Vos droits</h2>
             <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>Conformément à la législation applicable, vous disposez des droits suivants :</p>
               <ul className="list-disc space-y-1 pl-6">
@@ -89,7 +89,7 @@ const PolitiqueConfidentialite = () => (
           </div>
 
           <div className="py-8 first:pt-0">
-            <h2 className="text-lg font-semibold">6. Cookies</h2>
+            <h2 className="text-lg font-bold">6. Cookies</h2>
             <div className="mt-3 space-y-2 text-[0.9375rem] leading-7 text-foreground/85">
               <p>
                 Ce site utilise des cookies uniquement à des fins de fonctionnement technique et de mesure d'audience

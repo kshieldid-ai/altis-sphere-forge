@@ -6,68 +6,75 @@
   :root {
     /* Bleu de marque (logo ALTIS SPHERE) : #0B4EA2 */
     --background: 0 0% 100%;
-    --foreground: 220 30% 12%;
+    --foreground: 222 58% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 220 30% 12%;
+    --card-foreground: 222 58% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 12%;
+    --popover-foreground: 222 58% 11%;
     --primary: 213 87% 34%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 216 30% 96%;
-    --secondary-foreground: 220 30% 12%;
-    --muted: 216 30% 97%;
-    --muted-foreground: 218 12% 38%;
-    --accent: 213 60% 94%;
-    --accent-foreground: 213 87% 26%;
+    --secondary: 216 60% 97%;
+    --secondary-foreground: 222 58% 11%;
+    /* Fond teinté des sections alternées */
+    --muted: 216 60% 97%;
+    --muted-foreground: 222 9% 40%;
+    /* Fond des pastilles d'icône */
+    --accent: 213 80% 94%;
+    --accent-foreground: 213 87% 30%;
     --destructive: 0 72% 46%;
     --destructive-foreground: 0 0% 100%;
-    --border: 216 20% 88%;
-    --input: 216 20% 82%;
+    --border: 220 25% 90%;
+    --input: 220 20% 84%;
     --ring: 213 87% 34%;
-    --radius: 0.375rem;
-    --surface-elevated: 216 30% 97%;
-    /* Bleu nuit des bandeaux sombres (hero) */
-    --navy: 214 64% 14%;
+    --radius: 0.625rem;
+    --surface-elevated: 216 60% 97%;
+    /* Bleu nuit des bandeaux sombres (top bar, hero, pied de page) */
+    --navy: 222 64% 11%;
+    --navy-deep: 223 68% 8%;
+    /* Bleu clair du logo : accents sur fond sombre */
+    --sky: 210 78% 64%;
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 30% 12%;
+    --sidebar-foreground: 222 58% 11%;
     --sidebar-primary: 213 87% 34%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 216 30% 96%;
-    --sidebar-accent-foreground: 220 30% 12%;
-    --sidebar-border: 216 20% 88%;
+    --sidebar-accent: 216 60% 97%;
+    --sidebar-accent-foreground: 222 58% 11%;
+    --sidebar-border: 220 25% 90%;
     --sidebar-ring: 213 87% 34%;
   }
 
   .dark {
-    --background: 220 18% 9%;
-    --foreground: 216 20% 92%;
-    --card: 220 16% 12%;
-    --card-foreground: 216 20% 92%;
-    --popover: 220 16% 12%;
-    --popover-foreground: 216 20% 92%;
-    --primary: 213 80% 60%;
-    --primary-foreground: 220 30% 8%;
-    --secondary: 220 14% 16%;
-    --secondary-foreground: 216 20% 92%;
-    --muted: 220 16% 12%;
-    --muted-foreground: 216 10% 64%;
-    --accent: 213 40% 18%;
-    --accent-foreground: 213 80% 78%;
+    --background: 223 40% 8%;
+    --foreground: 216 25% 93%;
+    --card: 223 34% 12%;
+    --card-foreground: 216 25% 93%;
+    --popover: 223 34% 12%;
+    --popover-foreground: 216 25% 93%;
+    --primary: 211 80% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 223 30% 14%;
+    --secondary-foreground: 216 25% 93%;
+    --muted: 223 34% 11%;
+    --muted-foreground: 218 12% 66%;
+    --accent: 213 45% 20%;
+    --accent-foreground: 211 80% 78%;
     --destructive: 0 65% 55%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 12% 20%;
-    --input: 220 12% 26%;
-    --ring: 213 80% 60%;
-    --surface-elevated: 220 16% 12%;
-    --navy: 216 40% 7%;
-    --sidebar-background: 220 18% 9%;
-    --sidebar-foreground: 216 20% 92%;
-    --sidebar-primary: 213 80% 60%;
-    --sidebar-primary-foreground: 220 30% 8%;
-    --sidebar-accent: 220 14% 16%;
-    --sidebar-accent-foreground: 216 20% 92%;
-    --sidebar-border: 220 12% 20%;
-    --sidebar-ring: 213 80% 60%;
+    --border: 223 22% 20%;
+    --input: 223 20% 26%;
+    --ring: 211 80% 58%;
+    --surface-elevated: 223 34% 11%;
+    --navy: 223 48% 6%;
+    --navy-deep: 223 52% 4%;
+    --sky: 210 78% 66%;
+    --sidebar-background: 223 40% 8%;
+    --sidebar-foreground: 216 25% 93%;
+    --sidebar-primary: 211 80% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 223 30% 14%;
+    --sidebar-accent-foreground: 216 25% 93%;
+    --sidebar-border: 223 22% 20%;
+    --sidebar-ring: 211 80% 58%;
   }
 
   * {
@@ -79,12 +86,11 @@
   }
 
   body {
-    @apply bg-background font-sans text-foreground antialiased;
-    font-feature-settings: "kern", "liga";
+    @apply bg-background font-sans text-[1rem] leading-[1.7] text-muted-foreground antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-foreground;
+    @apply font-bold tracking-[-0.02em] text-foreground;
   }
 
   ::selection {
@@ -93,38 +99,65 @@
 }
 
 @layer components {
-  /* Petit libellé au-dessus d'un titre de section */
+  /* Sur-titre précédé d'un trait : « —— NOS SERVICES » */
   .section-kicker {
-    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-primary;
+    @apply inline-flex items-center gap-3 text-[0.8125rem] font-bold uppercase tracking-[0.15em] text-primary;
+  }
+  .section-kicker::before {
+    content: "";
+    @apply h-0.5 w-7 shrink-0 bg-current;
   }
 
   .section-title {
-    @apply text-3xl font-semibold leading-tight tracking-tight sm:text-4xl;
+    @apply text-3xl font-bold leading-[1.12] tracking-[-0.035em] sm:text-4xl lg:text-[2.75rem];
   }
 
   .section-lead {
-    @apply mt-4 max-w-2xl text-base leading-7 text-muted-foreground;
+    @apply mt-5 max-w-2xl text-base leading-[1.75] text-muted-foreground;
   }
 
-  /* Pastille d'icône : fond bleu clair, icône bleu marque */
+  /* Pastille d'icône carrée, fond bleu clair */
   .icon-shell {
-    @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-accent text-primary;
+    @apply flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-accent text-primary;
   }
 
-  /* Carte standard (services, produits, piliers…) */
+  /* Carte avec accent bleu en haut à gauche */
   .service-shell {
-    @apply rounded-lg border bg-card p-6 shadow-sm transition-colors duration-200 hover:border-primary/40 lg:p-7;
+    @apply relative rounded-2xl border bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_-20px_hsl(var(--navy)/0.25)] lg:p-8;
+  }
+  .service-shell::before {
+    content: "";
+    @apply absolute left-7 top-0 h-[3px] w-14 rounded-b bg-primary lg:left-8;
   }
 
-  /* Bloc de contenu neutre (textes légaux, encadrés) */
   .editorial-panel {
-    @apply rounded-lg border bg-card p-6 lg:p-7;
+    @apply rounded-2xl border bg-card p-7 lg:p-8;
+  }
+
+  /* Bandes diagonales décoratives des bandeaux sombres */
+  .diagonal-bands {
+    @apply pointer-events-none absolute inset-y-0 right-0 w-1/2 overflow-hidden;
+  }
+  .diagonal-bands::before,
+  .diagonal-bands::after {
+    content: "";
+    @apply absolute inset-y-[-10%] skew-x-[-22deg];
+  }
+  .diagonal-bands::before {
+    right: 18%;
+    width: 4.5rem;
+    background: hsl(var(--primary) / 0.55);
+  }
+  .diagonal-bands::after {
+    right: 4%;
+    width: 7rem;
+    background: hsl(var(--sky) / 0.12);
   }
 
   .feature-grid {
     display: grid;
-    gap: 2.5rem;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 3rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
   @media (max-width: 1023px) {

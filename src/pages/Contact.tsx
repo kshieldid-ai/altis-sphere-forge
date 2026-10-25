@@ -169,7 +169,7 @@ const Contact = () => {
         lead="Une question, un projet ? Écrivez-nous ou appelez-nous : nous répondons sous 24 heures ouvrées."
       />
 
-      <section className="py-16 lg:py-20">
+      <section className="py-20 lg:py-24">
         <div className="container grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <aside className="space-y-6">
             <ul className="divide-y rounded-lg border bg-card">
@@ -179,7 +179,7 @@ const Contact = () => {
                     <item.icon size={18} aria-hidden="true" />
                   </span>
                   <div className="min-w-0">
-                    <p className="text-sm font-semibold">{item.label}</p>
+                    <p className="text-sm font-bold">{item.label}</p>
                     {item.href ? (
                       <a href={item.href} className="mt-1 block break-words text-sm leading-6 text-muted-foreground hover:text-primary">
                         {item.value}
@@ -203,8 +203,8 @@ const Contact = () => {
               <div className="flex items-start gap-4">
                 <CheckCircle2 size={28} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
                 <div>
-                  <h2 className="text-xl font-semibold">Merci, votre message est bien arrivé</h2>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  <h2 className="text-xl font-bold">Merci, votre message est bien arrivé</h2>
+                  <p className="mt-3 text-[0.9375rem] leading-[1.7] text-muted-foreground">
                     Un membre de l'équipe ALTIS SPHERE GROUP prend connaissance de votre demande et revient vers vous rapidement.
                   </p>
                 </div>
@@ -213,7 +213,7 @@ const Contact = () => {
               <dl className="mt-7 divide-y rounded-md border text-sm">
                 <div className="flex justify-between gap-4 px-4 py-3">
                   <dt className="text-muted-foreground">Référence</dt>
-                  <dd className="font-semibold tabular-nums">CONTACT-{String(receipt.id).padStart(5, "0")}</dd>
+                  <dd className="font-bold tabular-nums">CONTACT-{String(receipt.id).padStart(5, "0")}</dd>
                 </div>
                 <div className="flex justify-between gap-4 px-4 py-3">
                   <dt className="text-muted-foreground">Réponse à</dt>
@@ -236,7 +236,7 @@ const Contact = () => {
           ) : (
             /* ══════════ FORMULAIRE ══════════ */
             <form onSubmit={handleSubmit} noValidate className="rounded-lg border bg-card p-6 shadow-sm lg:p-8">
-              <h2 className="text-lg font-semibold">Envoyer un message</h2>
+              <h2 className="text-lg font-bold">Envoyer un message</h2>
               <p className="mt-1 text-sm text-muted-foreground">Les champs marqués d'un * sont obligatoires.</p>
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
