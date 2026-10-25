@@ -39,8 +39,7 @@ const About = () => (
       <div className="container feature-grid lg:items-center">
         <ScrollReveal className="lg:pr-6">
           <BrandImageCard
-            src={aboutPhoto}
-            alt="Préparation d'un manchon de fibre optique sur un chantier ALTIS SPHERE"
+            images={[{ src: aboutPhoto, alt: "Préparation d'un manchon de fibre optique sur un chantier ALTIS SPHERE" }]}
             caption={<>ALTIS SPHERE<br />Votre partenaire IT</>}
             badge={{ value: "10+", label: "Ans d'expérience" }}
           />

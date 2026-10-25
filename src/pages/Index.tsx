@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
 import BrandImageCard from "@/components/BrandImageCard";
+import CountUp from "@/components/CountUp";
 import ScrollReveal from "@/components/ScrollReveal";
 import Seo from "@/components/Seo";
 import heroVideo from "@/assets/dernier.mp4";
@@ -27,6 +28,13 @@ import whyPhoto from "@/assets/IMG-20260607-WA0035.jpg";
 import domotiquePhoto from "@/assets/service-domotique.jpg";
 import { SITE_URL, ORG_ID } from "@/lib/site";
 import { serviceOffers, clientTestimonials, webProjects } from "@/data/services";
+
+// Photo existante en premier, puis 5 photos du service Internet & Connectivité
+const connectivityImages = serviceOffers.find((s) => s.id === "internet")?.images ?? [];
+const aboutSlides = [
+  { src: aboutPhoto, alt: "Technicien ALTIS SPHERE en intervention sur une baie réseau" },
+  ...[2, 1, 3, 7, 8].map((i) => connectivityImages[i]).filter(Boolean),
+];
 
 const stats = [
   { value: "10+", label: "Ans d'expérience" },
@@ -98,8 +106,7 @@ const About = () => (
     <div className="container feature-grid lg:items-center">
       <ScrollReveal className="lg:pr-6">
         <BrandImageCard
-          src={aboutPhoto}
-          alt="Technicien ALTIS SPHERE en intervention sur une baie réseau"
+          images={aboutSlides}
           caption={<>ALTIS SPHERE<br />Votre partenaire IT</>}
           badge={{ value: "10+", label: "Ans d'expérience" }}
         />
@@ -180,7 +187,7 @@ const Services = () => (
             <div key={s.label} className="border-white/15 px-6 py-9 text-center sm:[&:nth-child(odd)]:border-r lg:border-r lg:last:border-r-0">
               <dt className="sr-only">{s.label}</dt>
               <dd>
-                <span className="block text-5xl font-bold tracking-[-0.03em]">{s.value}</span>
+                <CountUp value={s.value} className="block text-5xl font-bold tracking-[-0.03em]" />
                 <span className="mt-2 block font-bold text-white/85">{s.label}</span>
               </dd>
             </div>
@@ -258,8 +265,7 @@ const WhyUs = () => (
     <div className="container feature-grid lg:items-center">
       <ScrollReveal className="lg:pr-6">
         <BrandImageCard
-          src={whyPhoto}
-          alt="Soudure de fibre optique sur un chantier ALTIS SPHERE"
+          images={[{ src: whyPhoto, alt: "Soudure de fibre optique sur un chantier ALTIS SPHERE" }]}
           caption={<>Des installations<br />faites pour durer</>}
         />
       </ScrollReveal>
