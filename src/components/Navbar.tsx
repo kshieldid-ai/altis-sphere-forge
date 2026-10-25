@@ -1,6 +1,6 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, useAnimation, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useAnimation, useReducedMotion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { Menu, X, Sun, Moon, Mail, MapPin, Phone } from "lucide-react";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
@@ -118,10 +118,128 @@ const TopBar = () => (
   </div>
 );
 
+type MobileMenuProps = {
+  open: boolean;
+  pathname: string;
+  onClose: () => void;
+};
+
+/** Volet de navigation mobile : panneau bleu nuit qui glisse depuis la droite. */
+const MobileMenu = ({ open, pathname, onClose }: MobileMenuProps) => {
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!open) return;
+    // Bloque le défilement de la page et ferme avec Échap
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open, onClose]);
+
+  const roundButton =
+    "inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20";
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <div className="fixed inset-0 z-50 xl:hidden">
+          <motion.div
+            className="absolute inset-0 bg-navy-deep/60"
+            onClick={onClose}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            aria-hidden="true"
+          />
+          <motion.div
+            id="menu-mobile"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu de navigation"
+            className="absolute inset-y-0 right-0 flex w-full flex-col overflow-y-auto bg-navy px-6 pb-8 pt-5 sm:max-w-sm"
+            initial={reduceMotion ? { opacity: 0 } : { x: "100%" }}
+            animate={reduceMotion ? { opacity: 1 } : { x: 0 }}
+            exit={reduceMotion ? { opacity: 0 } : { x: "100%" }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <div className="flex items-center justify-between">
+              <Link to="/" aria-label="ALTIS SPHERE GROUP — accueil">
+                <img src={altisLogo} alt="ALTIS SPHERE GROUP" width={128} height={44} className="h-11 w-auto brightness-0 invert" />
+              </Link>
+              <div className="flex items-center gap-3">
+                <ThemeToggle className={roundButton} />
+                <button ref={closeRef} type="button" onClick={onClose} aria-label="Fermer le menu" className={roundButton}>
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            <nav aria-label="Navigation mobile" className="mt-8">
+              <ul>
+                {navItems.map((item) => {
+                  const active = isActive(pathname, item.path);
+                  return (
+                    <li key={item.path} className="border-b border-white/10">
+                      <Link
+                        to={item.path}
+                        aria-current={active ? "page" : undefined}
+                        className={cn(
+                          "block py-4 text-[0.9375rem] font-bold uppercase tracking-[0.08em] transition-colors",
+                          active ? "text-sky" : "text-white hover:text-sky",
+                        )}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+
+            <div className="mt-8">
+              <QuoteRequestModal triggerVariant="hero" triggerSize="lg" triggerClassName="w-full" />
+            </div>
+
+            <ul className="mt-8 space-y-4 text-[0.9375rem] text-white/80">
+              <li>
+                <a href="mailto:support@altisphere-group.com" className="flex items-center gap-3.5 hover:text-white">
+                  <Mail size={18} className="shrink-0 text-sky" aria-hidden="true" /> support@altisphere-group.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+243998914448" className="flex items-center gap-3.5 hover:text-white">
+                  <Phone size={18} className="shrink-0 text-sky" aria-hidden="true" /> +243 998 914 448
+                </a>
+              </li>
+              <li>
+                <a href="tel:+243993653332" className="flex items-center gap-3.5 hover:text-white">
+                  <Phone size={18} className="shrink-0 text-sky" aria-hidden="true" /> +243 993 653 332
+                </a>
+              </li>
+              <li className="flex items-start gap-3.5">
+                <MapPin size={18} className="mt-1 shrink-0 text-sky" aria-hidden="true" /> 110, Av. Biayi, Kalubwe, Lubumbashi, RD Congo
+              </li>
+            </ul>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
+
+  const closeMenu = useCallback(() => setOpen(false), []);
 
   // Referme le menu mobile à chaque changement de page
   useEffect(() => setOpen(false), [pathname]);
@@ -172,47 +290,19 @@ const Navbar = () => {
             <QuoteRequestModal triggerVariant="hero" triggerSize="sm" triggerClassName="h-11 px-6" />
           </div>
 
-          <div className="flex items-center gap-1 xl:hidden">
-            <ThemeToggle className="text-foreground hover:bg-secondary lg:hidden" />
-            <button
-              type="button"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-[0.625rem] text-foreground hover:bg-secondary"
-              onClick={() => setOpen(!open)}
-              aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-              aria-expanded={open}
-              aria-controls="menu-mobile"
-            >
-              {open ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          <button
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-[0.625rem] text-foreground hover:bg-secondary xl:hidden"
+            onClick={() => setOpen(true)}
+            aria-label="Ouvrir le menu"
+            aria-expanded={open}
+            aria-controls="menu-mobile"
+          >
+            <Menu size={26} />
+          </button>
         </nav>
 
-        {open && (
-          <div id="menu-mobile" className="max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t bg-background xl:hidden">
-            <ul className="container flex flex-col py-3">
-              {navItems.map((item) => {
-                const active = isActive(pathname, item.path);
-                return (
-                  <li key={item.path}>
-                    <Link
-                      to={item.path}
-                      aria-current={active ? "page" : undefined}
-                      className={cn(
-                        "block border-b py-3.5 text-[0.875rem] font-bold uppercase tracking-[0.08em] last:border-b-0",
-                        active ? "text-primary" : "text-foreground",
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-              <li className="pb-3 pt-5">
-                <QuoteRequestModal triggerVariant="hero" triggerSize="lg" triggerClassName="w-full" />
-              </li>
-            </ul>
-          </div>
-        )}
+        <MobileMenu open={open} pathname={pathname} onClose={closeMenu} />
       </header>
     </>
   );
