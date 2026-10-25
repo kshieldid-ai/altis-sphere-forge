@@ -1,5 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { motion, useAnimation, useReducedMotion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { Menu, X, Sun, Moon, Mail, MapPin, Phone } from "lucide-react";
 import QuoteRequestModal from "@/components/QuoteRequestModal";
@@ -40,6 +41,57 @@ const ThemeToggle = ({ className }: { className?: string }) => {
     >
       {isDark ? <Sun size={17} /> : <Moon size={17} />}
     </button>
+  );
+};
+
+/**
+ * Logo animé : rotation à 360 degrés, deux rebonds, pause, en boucle,
+ * avec une ombre portée au sol. Figé si l'utilisateur réduit les animations.
+ */
+const AnimatedLogo = () => {
+  const controls = useAnimation();
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    let cancelled = false;
+
+    const startAnimation = async () => {
+      while (!cancelled) {
+        await controls.start({ rotateY: 360, transition: { duration: 2, ease: "easeInOut" } });
+        controls.set({ rotateY: 0 });
+
+        // Premier rebond
+        await controls.start({ y: -20, transition: { duration: 0.3, ease: "easeOut" } });
+        await controls.start({ y: 0, transition: { duration: 0.3, ease: "easeIn" } });
+        // Second rebond
+        await controls.start({ y: -10, transition: { duration: 0.2, ease: "easeOut" } });
+        await controls.start({ y: 0, transition: { duration: 0.2, ease: "easeIn" } });
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+    };
+    startAnimation();
+
+    return () => {
+      cancelled = true;
+      controls.stop();
+    };
+  }, [controls, reduceMotion]);
+
+  return (
+    <motion.div animate={controls} className="relative flex items-center">
+      <img
+        src={altisLogo}
+        alt="ALTIS SPHERE GROUP"
+        width={128}
+        height={44}
+        fetchPriority="high"
+        decoding="async"
+        className="relative z-10 h-10 w-auto lg:h-11"
+      />
+      <div className="absolute bottom-[-5px] left-1/2 z-0 h-2 w-20 -translate-x-1/2 rounded-full bg-black/30 blur-sm" aria-hidden="true" />
+    </motion.div>
   );
 };
 
@@ -92,15 +144,7 @@ const Navbar = () => {
       >
         <nav aria-label="Navigation principale" className="container flex h-[4.5rem] items-center justify-between gap-6 lg:h-[4.75rem]">
           <Link to="/" aria-label="ALTIS SPHERE GROUP — accueil" className="flex shrink-0 items-center">
-            <img
-              src={altisLogo}
-              alt="ALTIS SPHERE GROUP"
-              width={128}
-              height={44}
-              fetchPriority="high"
-              decoding="async"
-              className="h-10 w-auto lg:h-11"
-            />
+            <AnimatedLogo />
           </Link>
 
           <ul className="hidden h-full items-center gap-1 xl:flex">
