@@ -1,4 +1,4 @@
-import { Router, Antenna, HardDrive, Monitor, Check } from "lucide-react";
+import { Router, Antenna, HardDrive, Monitor, Cctv, Check } from "lucide-react";
 import Seo from "@/components/Seo";
 import PageHeader from "@/components/PageHeader";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -9,10 +9,11 @@ const products = [
   { icon: Monitor, category: "Matériel informatique", items: ["Postes de travail", "Ordinateurs portables", "Écrans professionnels", "Périphériques"] },
   { icon: Antenna, category: "Solutions de connectivité", items: ["Antennes Starlink", "Modems fibre", "Amplificateurs de signal", "Équipements 4G/5G"] },
   { icon: HardDrive, category: "Stockage & serveurs", items: ["Serveurs rack", "NAS entreprise", "Solutions de sauvegarde", "Disques SSD/HDD"] },
+  { icon: Cctv, category: "Vidéosurveillance (CCTV)", items: ["Caméras IP et HD", "Caméras PTZ motorisées", "Enregistreurs NVR/DVR", "Écrans de supervision"] },
 ];
 
 const productsJsonLd = [
-  webPage("Produits & équipements IT", "/produits", "Routeurs, switches, antennes Starlink, serveurs, NAS et matériel informatique professionnel."),
+  webPage("Produits & équipements IT", "/produits", "Routeurs, switches, antennes Starlink, serveurs, NAS, caméras de vidéosurveillance et matériel informatique professionnel."),
   breadcrumb("Produits", "/produits"),
 ];
 
@@ -20,7 +21,7 @@ const Products = () => (
   <>
     <Seo
       title="Produits & Équipements IT | ALTIS SPHERE"
-      description="Routeurs, switches, antennes Starlink, serveurs, NAS et matériel informatique professionnel sélectionnés par ALTIS SPHERE."
+      description="Routeurs, switches, antennes Starlink, serveurs, NAS, caméras de vidéosurveillance et matériel informatique professionnel sélectionnés par ALTIS SPHERE."
       path="/produits"
       jsonLd={productsJsonLd}
     />
@@ -33,7 +34,12 @@ const Products = () => (
     <section className="py-20 lg:py-24">
       <div className="container grid gap-6 md:grid-cols-2">
         {products.map((p, i) => (
-          <ScrollReveal key={p.category} delay={i * 0.05}>
+          // Nombre impair de catégories : la dernière occupe toute la largeur
+          <ScrollReveal
+            key={p.category}
+            delay={i * 0.05}
+            className={i === products.length - 1 && products.length % 2 === 1 ? "md:col-span-2" : undefined}
+          >
             <div className="service-shell h-full">
               <div className="flex items-center gap-3">
                 <span className="icon-shell">

@@ -82,7 +82,8 @@ export const albums: Album[] = [
       ...albumPhotos("cctv"),
       // Photos libres de droits (Unsplash), placées après nos réalisations et signalées dans la légende
       { src: cctvStockPoteau, alt: "Caméras de surveillance sur poteau (photo d'illustration)" },
-      { src: cctvStockFacade, alt: "Caméras bullet installées en façade (photo d'illustration)" },    ],
+      { src: cctvStockFacade, alt: "Caméras bullet installées en façade (photo d'illustration)" },
+    ],
   },
 ];
 

@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
-import { Wifi, Server, Shield, Code, Headphones, Monitor } from "lucide-react";
+import { Wifi, Server, Shield, Cctv, Code, Headphones, Monitor } from "lucide-react";
+import { getAlbumBySlug } from "@/data/albums";
 import serviceInternet from "@/assets/service-internet.jpg";
 import serviceIt from "@/assets/service-it.jpg";
 import serviceCyber from "@/assets/service-cybersecurity.jpg";
@@ -139,6 +140,25 @@ export const serviceOffers: ServiceOffer[] = [
       { src: serviceCyber, alt: "Protection des accès et des données d’entreprise" },
       { src: cyberShield, alt: "Bouclier de cybersécurité et supervision des menaces" },
     ],
+  },
+  {
+    id: "cctv",
+    icon: Cctv,
+    title: "Solution CCTV",
+    subtitle: "Vidéosurveillance professionnelle",
+    desc: "Caméras, enregistrement et supervision à distance de vos sites.",
+    items: [
+      "Étude de site et plan d'implantation des caméras.",
+      "Caméras IP et analogiques HD, intérieures et extérieures.",
+      "Vision nocturne et caméras motorisées (PTZ).",
+      "Enregistreurs NVR/DVR et stockage des enregistrements.",
+      "Consultation en direct et à distance sur smartphone et PC.",
+      "Alertes de détection de mouvement et d'intrusion.",
+      "Intégration au contrôle d'accès et à l'alarme.",
+      "Maintenance préventive et contrats de supervision.",
+    ],
+    // Photos de l'album CCTV du blog (src/assets/albums/cctv/)
+    images: (getAlbumBySlug("cctv")?.photos ?? []).slice(0, 4),
   },
   {
     id: "web",

@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
+import { ArrowRight, Mail, MessageCircle, Phone, MapPin } from "lucide-react";
 import altisLogo from "@/assets/altis-logo.png";
 
 const serviceLinks = [
   { label: "Internet & connectivité", path: "/services#internet" },
   { label: "Solutions IT", path: "/services#it" },
   { label: "Cybersécurité", path: "/services#cyber" },
+  { label: "Solution CCTV", path: "/services#cctv" },
   { label: "Développement web", path: "/services#web" },
   { label: "Support technique", path: "/services#support" },
   { label: "Équipements IT", path: "/services#equipements" },
@@ -20,9 +21,10 @@ const companyLinks = [
   { label: "Téléchargements", path: "/altis-download" },
 ];
 
-const contacts = [
+const contacts: { icon: typeof Mail; label: string; href?: string; external?: boolean }[] = [
   { icon: Phone, label: "+243 998 914 448", href: "tel:+243998914448" },
   { icon: Phone, label: "+243 993 653 332", href: "tel:+243993653332" },
+  { icon: MessageCircle, label: "WhatsApp : +243 993 653 332", href: "https://wa.me/qr/65WOO3RNAPOLN1", external: true },
   { icon: Mail, label: "support@altisphere-group.com", href: "mailto:support@altisphere-group.com" },
   { icon: MapPin, label: "110, Av. Biayi, Kalubwe, Lubumbashi, RD Congo" },
 ];
@@ -123,7 +125,13 @@ const Footer = () => {
                   return (
                     <li key={c.label}>
                       {c.href ? (
-                        <a href={c.href} className={`flex items-start gap-3.5 ${linkClass}`}>{content}</a>
+                        <a
+                          href={c.href}
+                          {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                          className={`flex items-start gap-3.5 ${linkClass}`}
+                        >
+                          {content}
+                        </a>
                       ) : (
                         <p className="flex items-start gap-3.5 text-[0.9375rem] text-white/70">{content}</p>
                       )}

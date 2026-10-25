@@ -1,9 +1,11 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { blogPosts } from "@/data/blog";
 import Seo from "@/components/Seo";
 import PageHeader from "@/components/PageHeader";
 import ScrollReveal from "@/components/ScrollReveal";
+import TechTrends from "@/components/TechTrends";
+import PhotoAlbums from "@/components/PhotoAlbums";
 import { SITE_URL, ORG_ID } from "@/lib/site";
 
 const blogJsonLd = {
@@ -66,6 +68,10 @@ const Blog = () => (
         ))}
       </div>
     </section>
+
+    <PhotoAlbums />
+
+    <TechTrends />
   </>
 );
 

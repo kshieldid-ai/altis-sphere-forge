@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle2, Clock, Mail, MapPin, Phone, Send } from "lucide-react";
+import { CheckCircle2, Clock, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -40,9 +40,13 @@ const fieldLabels: Record<string, string> = {
   message: "Message",
 };
 
-const contactItems = [
+// Lien de conversation fourni par WhatsApp (QR code du compte +243 993 653 332)
+const WHATSAPP_URL = "https://wa.me/qr/65WOO3RNAPOLN1";
+
+const contactItems: { icon: typeof Mail; label: string; value: string; href?: string; external?: boolean }[] = [
   { icon: Mail, label: "Email", value: "support@altisphere-group.com", href: "mailto:support@altisphere-group.com" },
   { icon: Phone, label: "Téléphone", value: "+243 998 914 448 / +243 993 653 332", href: "tel:+243998914448" },
+  { icon: MessageCircle, label: "WhatsApp", value: "+243 993 653 332", href: WHATSAPP_URL, external: true },
   { icon: MapPin, label: "Adresse", value: "110, Av. Biayi, Kalubwe, Lubumbashi, RD Congo" },
 ];
 
@@ -181,7 +185,11 @@ const Contact = () => {
                   <div className="min-w-0">
                     <p className="text-sm font-bold">{item.label}</p>
                     {item.href ? (
-                      <a href={item.href} className="mt-1 block break-words text-sm leading-6 text-muted-foreground hover:text-primary">
+                      <a
+                        href={item.href}
+                        {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        className="mt-1 block break-words text-sm leading-6 text-muted-foreground hover:text-primary"
+                      >
                         {item.value}
                       </a>
                     ) : (
@@ -191,6 +199,11 @@ const Contact = () => {
                 </li>
               ))}
             </ul>
+            <Button variant="hero-outline" size="lg" className="w-full" asChild>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                <MessageCircle size={18} aria-hidden="true" /> Discuter sur WhatsApp
+              </a>
+            </Button>
             <p className="flex items-center gap-2 text-sm text-muted-foreground">
               <Clock size={16} className="shrink-0 text-primary" aria-hidden="true" />
               Réponse sous 24 heures ouvrées.

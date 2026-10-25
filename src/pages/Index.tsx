@@ -4,9 +4,13 @@ import {
   ArrowRight,
   ArrowUpRight,
   Award,
+  BellRing,
+  Cctv,
   Clock,
   Cloud,
   Headphones,
+  MonitorSmartphone,
+  MoonStar,
   Network,
   Quote,
   Router,
@@ -23,16 +27,18 @@ import ScrollReveal from "@/components/ScrollReveal";
 import Seo from "@/components/Seo";
 import heroVideo from "@/assets/dernier.mp4";
 import heroPoster from "@/assets/hero-bg.jpg";
-import aboutPhoto from "@/assets/service-it.jpg";
 import whyPhoto from "@/assets/IMG-20260607-WA0035.jpg";
 import domotiquePhoto from "@/assets/service-domotique.jpg";
+import rackPhoto from "@/assets/albums/services-informatiques/00-Baie réseau installée et câblée par nos équipes.jpg";
+import cctvStockPhoto from "@/assets/stock/cameras-surveillance-poteau.jpg";
 import { SITE_URL, ORG_ID } from "@/lib/site";
 import { serviceOffers, clientTestimonials, webProjects } from "@/data/services";
+import { getAlbumBySlug } from "@/data/albums";
 
-// Photo existante en premier, puis 5 photos du service Internet & Connectivité
+// Baie réseau en couverture, puis 5 photos du service Internet & Connectivité
 const connectivityImages = serviceOffers.find((s) => s.id === "internet")?.images ?? [];
 const aboutSlides = [
-  { src: aboutPhoto, alt: "Technicien ALTIS SPHERE en intervention sur une baie réseau" },
+  { src: rackPhoto, alt: "Baie réseau installée et câblée par nos équipes" },
   ...[2, 1, 3, 7, 8].map((i) => connectivityImages[i]).filter(Boolean),
 ];
 
@@ -56,6 +62,23 @@ const reasons = [
   { icon: Award, title: "Expérience", desc: "Une équipe certifiée, plus de 10 ans dans les réseaux et l'informatique." },
   { icon: Users, title: "Proximité", desc: "Un interlocuteur dédié qui suit votre dossier de bout en bout." },
   { icon: Wrench, title: "Travail soigné", desc: "Matériel professionnel, installations propres et documentées." },
+];
+
+// Photo d'illustration (banque d'images Unsplash, licence libre) en couverture, puis les photos choisies
+// dans l'album CCTV du blog, repérées par leur légende. La photo d'illustration reste hors de l'album :
+// celui-ci ne montre que nos propres réalisations.
+const CCTV_HOME_PHOTOS = ["Pose de caméra en hauteur avec harnais de sécurité"];
+const cctvAlbumPhotos = getAlbumBySlug("cctv")?.photos ?? [];
+const cctvSlides = [
+  { src: cctvStockPhoto, alt: "Caméras de vidéosurveillance montées sur un poteau" },
+  ...CCTV_HOME_PHOTOS.flatMap((alt) => cctvAlbumPhotos.filter((photo) => photo.alt === alt)),
+];
+
+const cctvFeatures = [
+  { icon: Cctv, title: "Caméras HD et PTZ", desc: "Intérieur, extérieur, sites industriels et zones étendues." },
+  { icon: MoonStar, title: "Vision de nuit", desc: "Images exploitables 24 h/24, même sans éclairage." },
+  { icon: MonitorSmartphone, title: "Accès à distance", desc: "Vos caméras en direct sur smartphone et ordinateur." },
+  { icon: BellRing, title: "Alertes d'intrusion", desc: "Notification immédiate en cas de mouvement suspect." },
 ];
 
 const Hero = () => {
@@ -291,6 +314,50 @@ const WhyUs = () => (
   </section>
 );
 
+const CctvSolution = () => (
+  <section className="py-24 lg:py-28">
+    <div className="container feature-grid lg:items-center">
+      <ScrollReveal>
+        <p className="section-kicker">Solution CCTV</p>
+        <h2 className="section-title mt-4">Vos sites sous surveillance, de jour comme de nuit</h2>
+        <p className="section-lead">
+          Bureaux, entrepôts, sites miniers ou industriels : nous étudions votre site, installons les caméras et
+          l'enregistreur, puis assurons la maintenance de l'ensemble.
+        </p>
+
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+          {cctvFeatures.map((f) => (
+            <li key={f.title} className="flex gap-4 rounded-2xl border bg-card p-5">
+              <span className="icon-shell h-12 w-12 shrink-0">
+                <f.icon size={22} aria-hidden="true" />
+              </span>
+              <div>
+                <h3 className="font-bold text-foreground">{f.title}</h3>
+                <p className="mt-1 text-sm leading-6">{f.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-9 flex flex-wrap gap-4">
+          <Button variant="hero" size="lg" asChild>
+            <Link to="/services#cctv">
+              Découvrir la solution <ArrowRight size={16} />
+            </Link>
+          </Button>
+          <Button variant="outline" size="lg" asChild>
+            <Link to="/blog/albums/cctv">Voir nos réalisations</Link>
+          </Button>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal className="lg:pl-6">
+        <BrandImageCard images={cctvSlides} caption={<>Vidéosurveillance<br />installée et suivie</>} />
+      </ScrollReveal>
+    </div>
+  </section>
+);
+
 const Testimonials = () => (
   <section className="pb-24 pt-24 lg:pt-28">
     <div className="container">
@@ -350,6 +417,7 @@ const Index = () => (
     <Domotique />
     <Solutions />
     <WhyUs />
+    <CctvSolution />
     <Testimonials />
   </>
 );

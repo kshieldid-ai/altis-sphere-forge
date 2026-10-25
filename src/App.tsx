@@ -16,6 +16,7 @@ const Products = lazy(() => import("./pages/Products"));
 const Solutions = lazy(() => import("./pages/Solutions"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const AlbumPage = lazy(() => import("./pages/AlbumPage"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const DomotiquePage = lazy(() => import("./pages/Domotique"));
@@ -56,6 +57,7 @@ const App = () => (
                 <Route path="/solutions" element={<Solutions />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="/blog/albums/:slug" element={<AlbumPage />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/domotique" element={<DomotiquePage />} />
                 <Route path="/politique-de-confidentialite" element={<PolitiqueConfidentialite />} />

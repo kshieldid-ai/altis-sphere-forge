@@ -30,6 +30,12 @@ for (const [, slug] of blogSource.matchAll(/slug:\s*"([^"]+)"/g)) {
   entries.push({ path: `/blog/${slug}`, changefreq: "yearly", priority: "0.6" });
 }
 
+// Albums photos : mêmes contraintes, slugs lus dans src/data/albums.ts
+const albumSource = readFileSync(resolve("src/data/albums.ts"), "utf8");
+for (const [, slug] of albumSource.matchAll(/slug:\s*"([^"]+)"/g)) {
+  entries.push({ path: `/blog/albums/${slug}`, changefreq: "monthly", priority: "0.5" });
+}
+
 const lastmod = new Date().toISOString().slice(0, 10);
 
 const xml = [

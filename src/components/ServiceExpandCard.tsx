@@ -38,21 +38,23 @@ const ServiceExpandCard = ({ service, open, onOpenChange }: Props) => {
           <div className="mt-6 border-t pt-6">
             <p className="text-sm font-bold">{service.subtitle}</p>
 
-            <div className={cn("mt-4 grid gap-2", service.images.length > 1 ? "grid-cols-2" : "grid-cols-1")}>
-              {service.images.map((image, index) => {
-                const isHero = service.images.length === 3 && index === 0;
-                return (
-                  <figure key={image.src} className={cn("overflow-hidden rounded-md", isHero && "col-span-2")}>
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      loading="lazy"
-                      className={cn("h-28 w-full object-cover sm:h-32", isHero && "h-40 sm:h-48")}
-                    />
-                  </figure>
-                );
-              })}
-            </div>
+            {service.images.length > 0 ? (
+              <div className={cn("mt-4 grid gap-2", service.images.length > 1 ? "grid-cols-2" : "grid-cols-1")}>
+                {service.images.map((image, index) => {
+                  const isHero = service.images.length === 3 && index === 0;
+                  return (
+                    <figure key={image.src} className={cn("overflow-hidden rounded-md", isHero && "col-span-2")}>
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        loading="lazy"
+                        className={cn("h-28 w-full object-cover sm:h-32", isHero && "h-40 sm:h-48")}
+                      />
+                    </figure>
+                  );
+                })}
+              </div>
+            ) : null}
 
             <ul className="mt-5 space-y-2">
               {service.items.map((item) => (
