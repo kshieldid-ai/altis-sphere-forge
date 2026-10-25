@@ -18,26 +18,26 @@ type Props = {
   className?: string;
 };
 
-/** Les deux bandes diagonales (mêmes positions que .diagonal-bands). */
+/** Les deux bandes diagonales : position de repos (depuis la droite), largeur, couleur. */
 const BANDS = [
-  { className: "right-[18%] w-[4.5rem] bg-primary/55", delay: 0 },
-  { className: "right-[4%] w-28 bg-sky/[0.12]", delay: 0.12 },
+  { rest: "12%", className: "w-[4.5rem] bg-primary/55", delay: 0 },
+  { rest: "3%", className: "w-28 bg-sky/[0.12]", delay: 0.15 },
 ];
 
 /**
- * Bandes diagonales qui balaient l'image depuis la droite.
- * `cycle` change à chaque photo : les bandes sont remontées et rejouent l'entrée.
+ * Bandes diagonales. À chaque changement de photo (`cycle`), elles font une vague :
+ * elles traversent toute l'image vers la gauche puis reviennent à leur place.
  */
 const AnimatedBands = ({ cycle, animated }: { cycle: number; animated: boolean }) => (
-  <div className="pointer-events-none absolute inset-y-0 right-0 w-2/3 overflow-hidden" aria-hidden="true">
+  <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
     {BANDS.map((band) => (
       <motion.div
-        key={`${band.className}-${cycle}`}
-        // L'inclinaison passe par framer-motion : une classe skew-x serait écrasée par son transform
+        key={`${band.rest}-${cycle}`}
         className={cn("absolute -inset-y-[10%]", band.className)}
-        initial={animated ? { x: "160%", skewX: -22, opacity: 0 } : false}
-        animate={{ x: 0, skewX: -22, opacity: 1 }}
-        transition={{ duration: 0.9, delay: band.delay, ease: [0.22, 1, 0.36, 1] }}
+        // L'inclinaison passe par framer-motion : une classe skew-x serait écrasée par son transform
+        style={{ right: band.rest, skewX: -22 }}
+        animate={animated ? { right: [band.rest, "112%", band.rest] } : undefined}
+        transition={{ duration: 1.8, delay: band.delay, times: [0, 0.5, 1], ease: "easeInOut" }}
       />
     ))}
   </div>
@@ -53,8 +53,19 @@ const BrandImageCard = ({ images, caption, badge, interval = 5000, className }: 
   const [paused, setPaused] = useState(false);
   const isSlider = images.length > 1;
 
+  // Nombre de changements de photo : déclenche la vague des bandes (0 = premier affichage, pas de vague)
+  const [wave, setWave] = useState(0);
+
+  const show = useCallback((next: number) => {
+    setIndex(next);
+    setWave((w) => w + 1);
+  }, []);
+
   const go = useCallback(
-    (step: number) => setIndex((i) => (i + step + images.length) % images.length),
+    (step: number) => {
+      setIndex((i) => (i + step + images.length) % images.length);
+      setWave((w) => w + 1);
+    },
     [images.length],
   );
 
@@ -91,7 +102,7 @@ const BrandImageCard = ({ images, caption, badge, interval = 5000, className }: 
           ))}
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(to_top,hsl(var(--navy)/0.85),hsl(var(--navy)/0.15)_55%,transparent)]" aria-hidden="true" />
-        <AnimatedBands cycle={index} animated={isSlider && !reduceMotion} />
+        <AnimatedBands cycle={wave} animated={wave > 0 && isSlider && !reduceMotion} />
 
         {isSlider ? (
           <div className="absolute inset-x-6 top-6 flex items-center justify-between gap-4">
@@ -100,7 +111,7 @@ const BrandImageCard = ({ images, caption, badge, interval = 5000, className }: 
                 <button
                   key={image.src}
                   type="button"
-                  onClick={() => setIndex(i)}
+                  onClick={() => i !== index && show(i)}
                   aria-label={`Afficher la photo ${i + 1} sur ${images.length}`}
                   aria-current={i === index}
                   className={cn(
